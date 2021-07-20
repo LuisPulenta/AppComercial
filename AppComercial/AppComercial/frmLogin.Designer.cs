@@ -29,15 +29,18 @@ namespace AppComercial
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.label1 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.tetClave = new System.Windows.Forms.TextBox();
+            this.txtClave = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -53,16 +56,16 @@ namespace AppComercial
             // 
             this.txtUsuario.Location = new System.Drawing.Point(93, 38);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(125, 22);
+            this.txtUsuario.Size = new System.Drawing.Size(113, 22);
             this.txtUsuario.TabIndex = 1;
             // 
-            // tetClave
+            // txtClave
             // 
-            this.tetClave.Location = new System.Drawing.Point(93, 83);
-            this.tetClave.Name = "tetClave";
-            this.tetClave.PasswordChar = '*';
-            this.tetClave.Size = new System.Drawing.Size(125, 22);
-            this.tetClave.TabIndex = 3;
+            this.txtClave.Location = new System.Drawing.Point(93, 83);
+            this.txtClave.Name = "txtClave";
+            this.txtClave.PasswordChar = '*';
+            this.txtClave.Size = new System.Drawing.Size(113, 22);
+            this.txtClave.TabIndex = 3;
             // 
             // label2
             // 
@@ -77,13 +80,14 @@ namespace AppComercial
             // 
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAceptar.Location = new System.Drawing.Point(84, 151);
+            this.btnAceptar.Location = new System.Drawing.Point(84, 153);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(93, 60);
             this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -97,6 +101,7 @@ namespace AppComercial
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // pictureBox1
             // 
@@ -107,6 +112,10 @@ namespace AppComercial
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmLogin
             // 
@@ -119,7 +128,7 @@ namespace AppComercial
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.tetClave);
+            this.Controls.Add(this.txtClave);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.label1);
@@ -131,6 +140,7 @@ namespace AppComercial
             this.Text = "Ingreso al Sistema";
             this.Load += new System.EventHandler(this.frmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,11 +150,12 @@ namespace AppComercial
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.TextBox tetClave;
+        private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 
