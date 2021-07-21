@@ -13,7 +13,8 @@ namespace AppComercial
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            txtUsuario.Text = "luis";
+            txtClave.Text = "123";
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
