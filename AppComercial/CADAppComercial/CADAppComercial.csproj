@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CADCliente.cs" />
     <Compile Include="CADUsuario.cs" />
+    <Compile Include="DSAppComercial.cs">
+      <DependentUpon>DSAppComercial.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DSAppComercial.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
