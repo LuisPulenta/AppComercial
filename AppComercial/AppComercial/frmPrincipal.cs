@@ -25,5 +25,12 @@ namespace AppComercial
             miForm.MdiParent = this;
             miForm.Show();
         }
+
+        private void proveedoresToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            frmProveedores miForm = new frmProveedores();
+            miForm.MdiParent = this;
+            miForm.Show();
+        }
     }
 }

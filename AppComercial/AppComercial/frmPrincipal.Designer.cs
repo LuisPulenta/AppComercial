@@ -160,6 +160,7 @@ namespace AppComercial
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
             this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.proveedoresToolStripMenuItem.Text = "P&roveedores";
+            this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
             // tiposDeDocumentoToolStripMenuItem
             // 
