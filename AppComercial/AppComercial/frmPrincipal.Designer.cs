@@ -106,6 +106,7 @@ namespace AppComercial
             this.bodegasToolStripMenuItem.Name = "bodegasToolStripMenuItem";
             this.bodegasToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.bodegasToolStripMenuItem.Text = "&Bodegas";
+            this.bodegasToolStripMenuItem.Click += new System.EventHandler(this.bodegasToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem
             // 

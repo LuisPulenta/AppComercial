@@ -32,5 +32,12 @@ namespace AppComercial
             miForm.MdiParent = this;
             miForm.Show();
         }
+
+        private void bodegasToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            frmBodegas miForm = new frmBodegas();
+            miForm.MdiParent = this;
+            miForm.Show();
+        }
     }
 }
