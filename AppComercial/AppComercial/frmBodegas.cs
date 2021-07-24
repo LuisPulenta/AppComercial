@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppComercial
@@ -15,14 +8,6 @@ namespace AppComercial
         public frmBodegas()
         {
             InitializeComponent();
-        }
-
-        private void bodegaBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bodegaBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.dSAppComercial);
-
         }
 
         private void frmBodegas_Load(object sender, EventArgs e)
@@ -76,7 +61,7 @@ namespace AppComercial
             this.tableAdapterManager.UpdateAll(this.dSAppComercial);
             Habilitar(false);
         }
-
+     
         private void bindingNavigatorCancelItem_Click(object sender, EventArgs e)
         {
             this.bodegaBindingSource.CancelEdit();
@@ -106,7 +91,5 @@ namespace AppComercial
             this.bodegaBindingSource.RemoveAt(bodegaBindingSource.Position);
 
         }
-
-       
     }
 }

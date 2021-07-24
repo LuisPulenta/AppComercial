@@ -44,7 +44,7 @@ namespace AppComercial
             this.proveedorBindingSource.RemoveAt(proveedorBindingSource.Position);
         }
 
-        private void proveedorBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        private void bindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             if (!Validarcampos()) return;
             this.Validate();
@@ -76,7 +76,7 @@ namespace AppComercial
             bindingNavigatorEditItem.Enabled = !campo;
             bindingNavigatorAddNewItem.Enabled = !campo;
             bindingNavigatorDeleteItem.Enabled = !campo;
-            proveedorBindingNavigatorSaveItem.Enabled = campo;
+            bindingNavigatorSaveItem.Enabled = campo;
             bindingNavigatorCancelItem.Enabled = campo;
             bindingNavigatorSearchItem.Enabled = !campo;
 
@@ -156,6 +156,15 @@ namespace AppComercial
             }
 
             return true;
+        }
+
+        private void bindingNavigatorSearchItem_Click(object sender, EventArgs e)
+        {
+            frmBusquedaProveedor miBusqueda = new frmBusquedaProveedor();
+            miBusqueda.ShowDialog();
+            if (miBusqueda.IDElegido == 0) return;
+            int position = proveedorBindingSource.Find("IDProveedor", miBusqueda.IDElegido);
+            proveedorBindingSource.Position = position;
         }
     }
 }
