@@ -1,7 +1,7 @@
 ﻿
 namespace AppComercial
 {
-    partial class frmBusquedaProveedor
+    partial class frmBusquedaCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -32,14 +32,14 @@ namespace AppComercial
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusquedaProveedor));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusquedaCliente));
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.iDProveedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDTipoDocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tipoDocumentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dSAppComercial = new AppComercial.DSAppComercial();
             this.documentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreComercialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombresContactoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidosContactoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,35 +47,33 @@ namespace AppComercial
             this.telefono2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.correoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proveedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.aniversarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fillByToolStrip = new System.Windows.Forms.ToolStrip();
             this.documentoToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.documentoToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.nombreToolStripLabel = new System.Windows.Forms.ToolStripLabel();
-            this.nombreToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.nombreComercialToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.nombreComercialToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.nombresContactoToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.nombresContactoToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.apellidosContactoToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.apellidosContactoToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.tsbBuscar = new System.Windows.Forms.ToolStripButton();
-            this.iVABindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.iVATableAdapter = new AppComercial.DSAppComercialTableAdapters.IVATableAdapter();
-            this.proveedorTableAdapter = new AppComercial.DSAppComercialTableAdapters.ProveedorTableAdapter();
+            this.clienteTableAdapter = new AppComercial.DSAppComercialTableAdapters.ClienteTableAdapter();
             this.tipoDocumentoTableAdapter = new AppComercial.DSAppComercialTableAdapters.TipoDocumentoTableAdapter();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnQuitarFiltros = new System.Windows.Forms.Button();
             this.rbtIgual = new System.Windows.Forms.RadioButton();
             this.rbtTermina = new System.Windows.Forms.RadioButton();
             this.rbtEmpiece = new System.Windows.Forms.RadioButton();
             this.rbtContenga = new System.Windows.Forms.RadioButton();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSAppComercial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.proveedorBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
             this.fillByToolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iVABindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,18 +88,19 @@ namespace AppComercial
             this.dgvDatos.AutoGenerateColumns = false;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDProveedorDataGridViewTextBoxColumn,
-            this.nombreDataGridViewTextBoxColumn,
+            this.iDClienteDataGridViewTextBoxColumn,
             this.iDTipoDocumentoDataGridViewTextBoxColumn,
             this.documentoDataGridViewTextBoxColumn,
+            this.nombreComercialDataGridViewTextBoxColumn,
             this.nombresContactoDataGridViewTextBoxColumn,
             this.apellidosContactoDataGridViewTextBoxColumn,
             this.direccionDataGridViewTextBoxColumn,
             this.telefono1DataGridViewTextBoxColumn,
             this.telefono2DataGridViewTextBoxColumn,
             this.correoDataGridViewTextBoxColumn,
-            this.notasDataGridViewTextBoxColumn});
-            this.dgvDatos.DataSource = this.proveedorBindingSource;
+            this.notasDataGridViewTextBoxColumn,
+            this.aniversarioDataGridViewTextBoxColumn});
+            this.dgvDatos.DataSource = this.clienteBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -110,31 +109,22 @@ namespace AppComercial
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvDatos.Location = new System.Drawing.Point(2, 105);
+            this.dgvDatos.Location = new System.Drawing.Point(3, 104);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
             this.dgvDatos.RowHeadersWidth = 51;
             this.dgvDatos.RowTemplate.Height = 24;
             this.dgvDatos.Size = new System.Drawing.Size(1296, 541);
-            this.dgvDatos.TabIndex = 0;
+            this.dgvDatos.TabIndex = 1;
             // 
-            // iDProveedorDataGridViewTextBoxColumn
+            // iDClienteDataGridViewTextBoxColumn
             // 
-            this.iDProveedorDataGridViewTextBoxColumn.DataPropertyName = "IDProveedor";
-            this.iDProveedorDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDProveedorDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.iDProveedorDataGridViewTextBoxColumn.Name = "iDProveedorDataGridViewTextBoxColumn";
-            this.iDProveedorDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDProveedorDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nombreDataGridViewTextBoxColumn.Width = 125;
+            this.iDClienteDataGridViewTextBoxColumn.DataPropertyName = "IDCliente";
+            this.iDClienteDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDClienteDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iDClienteDataGridViewTextBoxColumn.Name = "iDClienteDataGridViewTextBoxColumn";
+            this.iDClienteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDClienteDataGridViewTextBoxColumn.Width = 125;
             // 
             // iDTipoDocumentoDataGridViewTextBoxColumn
             // 
@@ -168,6 +158,15 @@ namespace AppComercial
             this.documentoDataGridViewTextBoxColumn.Name = "documentoDataGridViewTextBoxColumn";
             this.documentoDataGridViewTextBoxColumn.ReadOnly = true;
             this.documentoDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nombreComercialDataGridViewTextBoxColumn
+            // 
+            this.nombreComercialDataGridViewTextBoxColumn.DataPropertyName = "NombreComercial";
+            this.nombreComercialDataGridViewTextBoxColumn.HeaderText = "Nombre Comercial";
+            this.nombreComercialDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nombreComercialDataGridViewTextBoxColumn.Name = "nombreComercialDataGridViewTextBoxColumn";
+            this.nombreComercialDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombreComercialDataGridViewTextBoxColumn.Width = 125;
             // 
             // nombresContactoDataGridViewTextBoxColumn
             // 
@@ -208,7 +207,7 @@ namespace AppComercial
             // telefono2DataGridViewTextBoxColumn
             // 
             this.telefono2DataGridViewTextBoxColumn.DataPropertyName = "Telefono2";
-            this.telefono2DataGridViewTextBoxColumn.HeaderText = "Celular";
+            this.telefono2DataGridViewTextBoxColumn.HeaderText = "Celular:";
             this.telefono2DataGridViewTextBoxColumn.MinimumWidth = 6;
             this.telefono2DataGridViewTextBoxColumn.Name = "telefono2DataGridViewTextBoxColumn";
             this.telefono2DataGridViewTextBoxColumn.ReadOnly = true;
@@ -232,10 +231,19 @@ namespace AppComercial
             this.notasDataGridViewTextBoxColumn.ReadOnly = true;
             this.notasDataGridViewTextBoxColumn.Width = 125;
             // 
-            // proveedorBindingSource
+            // aniversarioDataGridViewTextBoxColumn
             // 
-            this.proveedorBindingSource.DataMember = "Proveedor";
-            this.proveedorBindingSource.DataSource = this.dSAppComercial;
+            this.aniversarioDataGridViewTextBoxColumn.DataPropertyName = "Aniversario";
+            this.aniversarioDataGridViewTextBoxColumn.HeaderText = "Aniversario";
+            this.aniversarioDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.aniversarioDataGridViewTextBoxColumn.Name = "aniversarioDataGridViewTextBoxColumn";
+            this.aniversarioDataGridViewTextBoxColumn.ReadOnly = true;
+            this.aniversarioDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // clienteBindingSource
+            // 
+            this.clienteBindingSource.DataMember = "Cliente";
+            this.clienteBindingSource.DataSource = this.dSAppComercial;
             // 
             // fillByToolStrip
             // 
@@ -243,8 +251,8 @@ namespace AppComercial
             this.fillByToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.documentoToolStripLabel,
             this.documentoToolStripTextBox,
-            this.nombreToolStripLabel,
-            this.nombreToolStripTextBox,
+            this.nombreComercialToolStripLabel,
+            this.nombreComercialToolStripTextBox,
             this.nombresContactoToolStripLabel,
             this.nombresContactoToolStripTextBox,
             this.apellidosContactoToolStripLabel,
@@ -252,8 +260,8 @@ namespace AppComercial
             this.tsbBuscar});
             this.fillByToolStrip.Location = new System.Drawing.Point(0, 0);
             this.fillByToolStrip.Name = "fillByToolStrip";
-            this.fillByToolStrip.Size = new System.Drawing.Size(1298, 27);
-            this.fillByToolStrip.TabIndex = 1;
+            this.fillByToolStrip.Size = new System.Drawing.Size(1319, 27);
+            this.fillByToolStrip.TabIndex = 2;
             this.fillByToolStrip.Text = "fillByToolStrip";
             // 
             // documentoToolStripLabel
@@ -268,17 +276,17 @@ namespace AppComercial
             this.documentoToolStripTextBox.Name = "documentoToolStripTextBox";
             this.documentoToolStripTextBox.Size = new System.Drawing.Size(100, 27);
             // 
-            // nombreToolStripLabel
+            // nombreComercialToolStripLabel
             // 
-            this.nombreToolStripLabel.Name = "nombreToolStripLabel";
-            this.nombreToolStripLabel.Size = new System.Drawing.Size(67, 24);
-            this.nombreToolStripLabel.Text = "Nombre:";
+            this.nombreComercialToolStripLabel.Name = "nombreComercialToolStripLabel";
+            this.nombreComercialToolStripLabel.Size = new System.Drawing.Size(138, 24);
+            this.nombreComercialToolStripLabel.Text = "Nombre Comercial:";
             // 
-            // nombreToolStripTextBox
+            // nombreComercialToolStripTextBox
             // 
-            this.nombreToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.nombreToolStripTextBox.Name = "nombreToolStripTextBox";
-            this.nombreToolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            this.nombreComercialToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.nombreComercialToolStripTextBox.Name = "nombreComercialToolStripTextBox";
+            this.nombreComercialToolStripTextBox.Size = new System.Drawing.Size(100, 27);
             // 
             // nombresContactoToolStripLabel
             // 
@@ -314,22 +322,40 @@ namespace AppComercial
             this.tsbBuscar.ToolTipText = "Aplica los criterios de búsqueda seleccionados";
             this.tsbBuscar.Click += new System.EventHandler(this.fillByToolStripButton_Click);
             // 
-            // iVABindingSource
+            // clienteTableAdapter
             // 
-            this.iVABindingSource.DataMember = "IVA";
-            this.iVABindingSource.DataSource = this.dSAppComercial;
-            // 
-            // iVATableAdapter
-            // 
-            this.iVATableAdapter.ClearBeforeFill = true;
-            // 
-            // proveedorTableAdapter
-            // 
-            this.proveedorTableAdapter.ClearBeforeFill = true;
+            this.clienteTableAdapter.ClearBeforeFill = true;
             // 
             // tipoDocumentoTableAdapter
             // 
             this.tipoDocumentoTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelar.Location = new System.Drawing.Point(727, 36);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(93, 60);
+            this.btnCancelar.TabIndex = 10;
+            this.btnCancelar.Text = "&Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
+            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAceptar.Location = new System.Drawing.Point(609, 36);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(93, 60);
+            this.btnAceptar.TabIndex = 9;
+            this.btnAceptar.Text = "&Aceptar";
+            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // groupBox1
             // 
@@ -338,10 +364,10 @@ namespace AppComercial
             this.groupBox1.Controls.Add(this.rbtTermina);
             this.groupBox1.Controls.Add(this.rbtEmpiece);
             this.groupBox1.Controls.Add(this.rbtContenga);
-            this.groupBox1.Location = new System.Drawing.Point(12, 39);
+            this.groupBox1.Location = new System.Drawing.Point(3, 36);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(600, 56);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipo criterio";
             // 
@@ -398,39 +424,12 @@ namespace AppComercial
             this.rbtContenga.Text = "Contenga…";
             this.rbtContenga.UseVisualStyleBackColor = true;
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(736, 39);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(93, 60);
-            this.btnCancelar.TabIndex = 7;
-            this.btnCancelar.Text = "&Cancelar";
-            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
-            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAceptar.Location = new System.Drawing.Point(618, 39);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(93, 60);
-            this.btnAceptar.TabIndex = 6;
-            this.btnAceptar.Text = "&Aceptar";
-            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // frmBusquedaProveedor
+            // frmBusquedaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(1298, 648);
+            this.ClientSize = new System.Drawing.Size(1319, 665);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.groupBox1);
@@ -439,17 +438,16 @@ namespace AppComercial
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmBusquedaProveedor";
+            this.Name = "frmBusquedaCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Búsqueda de Proveedores";
-            this.Load += new System.EventHandler(this.frmBusquedaProveedor_Load);
+            this.Text = "Búsqueda de Clientes";
+            this.Load += new System.EventHandler(this.frmBusquedaCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSAppComercial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.proveedorBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             this.fillByToolStrip.ResumeLayout(false);
             this.fillByToolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iVABindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -461,16 +459,14 @@ namespace AppComercial
 
         private System.Windows.Forms.DataGridView dgvDatos;
         private DSAppComercial dSAppComercial;
-        private System.Windows.Forms.BindingSource iVABindingSource;
-        private DSAppComercialTableAdapters.IVATableAdapter iVATableAdapter;
-        private System.Windows.Forms.BindingSource proveedorBindingSource;
-        private DSAppComercialTableAdapters.ProveedorTableAdapter proveedorTableAdapter;
+        private System.Windows.Forms.BindingSource clienteBindingSource;
+        private DSAppComercialTableAdapters.ClienteTableAdapter clienteTableAdapter;
         private System.Windows.Forms.BindingSource tipoDocumentoBindingSource;
         private DSAppComercialTableAdapters.TipoDocumentoTableAdapter tipoDocumentoTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDProveedorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDClienteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn iDTipoDocumentoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn documentoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreComercialDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombresContactoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidosContactoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccionDataGridViewTextBoxColumn;
@@ -478,23 +474,24 @@ namespace AppComercial
         private System.Windows.Forms.DataGridViewTextBoxColumn telefono2DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn correoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn notasDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aniversarioDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStrip fillByToolStrip;
         private System.Windows.Forms.ToolStripLabel documentoToolStripLabel;
         private System.Windows.Forms.ToolStripTextBox documentoToolStripTextBox;
-        private System.Windows.Forms.ToolStripLabel nombreToolStripLabel;
-        private System.Windows.Forms.ToolStripTextBox nombreToolStripTextBox;
+        private System.Windows.Forms.ToolStripLabel nombreComercialToolStripLabel;
+        private System.Windows.Forms.ToolStripTextBox nombreComercialToolStripTextBox;
         private System.Windows.Forms.ToolStripLabel nombresContactoToolStripLabel;
         private System.Windows.Forms.ToolStripTextBox nombresContactoToolStripTextBox;
         private System.Windows.Forms.ToolStripLabel apellidosContactoToolStripLabel;
         private System.Windows.Forms.ToolStripTextBox apellidosContactoToolStripTextBox;
         private System.Windows.Forms.ToolStripButton tsbBuscar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnQuitarFiltros;
         private System.Windows.Forms.RadioButton rbtIgual;
         private System.Windows.Forms.RadioButton rbtTermina;
         private System.Windows.Forms.RadioButton rbtEmpiece;
         private System.Windows.Forms.RadioButton rbtContenga;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button btnQuitarFiltros;
     }
 }

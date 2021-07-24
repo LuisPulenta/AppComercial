@@ -120,6 +120,7 @@ namespace AppComercial
             this.conceptosToolStripMenuItem.Name = "conceptosToolStripMenuItem";
             this.conceptosToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.conceptosToolStripMenuItem.Text = "C&onceptos";
+            this.conceptosToolStripMenuItem.Click += new System.EventHandler(this.conceptosToolStripMenuItem_Click);
             // 
             // productosToolStripMenuItem
             // 

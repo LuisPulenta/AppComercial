@@ -21,7 +21,7 @@ namespace AppComercial
 
         private void clientesToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            frmClientesTemp miForm = new frmClientesTemp();
+            frmClientes miForm = new frmClientes();
             miForm.MdiParent = this;
             miForm.Show();
         }
@@ -38,6 +38,14 @@ namespace AppComercial
             frmBodegas miForm = new frmBodegas();
             miForm.MdiParent = this;
             miForm.Show();
+        }
+
+        private void conceptosToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            frmConceptos miForm = new frmConceptos();
+            miForm.MdiParent = this;
+            miForm.Show();
+
         }
     }
 }
