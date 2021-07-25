@@ -34,6 +34,24 @@ namespace AppComercial
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusquedaCliente));
             this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.fillByToolStrip = new System.Windows.Forms.ToolStrip();
+            this.documentoToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.documentoToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.nombreComercialToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.nombreComercialToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.nombresContactoToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.nombresContactoToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.apellidosContactoToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.apellidosContactoToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.tsbBuscar = new System.Windows.Forms.ToolStripButton();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnQuitarFiltros = new System.Windows.Forms.Button();
+            this.rbtIgual = new System.Windows.Forms.RadioButton();
+            this.rbtTermina = new System.Windows.Forms.RadioButton();
+            this.rbtEmpiece = new System.Windows.Forms.RadioButton();
+            this.rbtContenga = new System.Windows.Forms.RadioButton();
             this.iDClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDTipoDocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tipoDocumentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -49,32 +67,14 @@ namespace AppComercial
             this.notasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aniversarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.fillByToolStrip = new System.Windows.Forms.ToolStrip();
-            this.documentoToolStripLabel = new System.Windows.Forms.ToolStripLabel();
-            this.documentoToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.nombreComercialToolStripLabel = new System.Windows.Forms.ToolStripLabel();
-            this.nombreComercialToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.nombresContactoToolStripLabel = new System.Windows.Forms.ToolStripLabel();
-            this.nombresContactoToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.apellidosContactoToolStripLabel = new System.Windows.Forms.ToolStripLabel();
-            this.apellidosContactoToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.tsbBuscar = new System.Windows.Forms.ToolStripButton();
             this.clienteTableAdapter = new AppComercial.DSAppComercialTableAdapters.ClienteTableAdapter();
             this.tipoDocumentoTableAdapter = new AppComercial.DSAppComercialTableAdapters.TipoDocumentoTableAdapter();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnQuitarFiltros = new System.Windows.Forms.Button();
-            this.rbtIgual = new System.Windows.Forms.RadioButton();
-            this.rbtTermina = new System.Windows.Forms.RadioButton();
-            this.rbtEmpiece = new System.Windows.Forms.RadioButton();
-            this.rbtContenga = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
+            this.fillByToolStrip.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSAppComercial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
-            this.fillByToolStrip.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvDatos
@@ -116,6 +116,177 @@ namespace AppComercial
             this.dgvDatos.RowTemplate.Height = 24;
             this.dgvDatos.Size = new System.Drawing.Size(1296, 541);
             this.dgvDatos.TabIndex = 1;
+            // 
+            // fillByToolStrip
+            // 
+            this.fillByToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.fillByToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.documentoToolStripLabel,
+            this.documentoToolStripTextBox,
+            this.nombreComercialToolStripLabel,
+            this.nombreComercialToolStripTextBox,
+            this.nombresContactoToolStripLabel,
+            this.nombresContactoToolStripTextBox,
+            this.apellidosContactoToolStripLabel,
+            this.apellidosContactoToolStripTextBox,
+            this.tsbBuscar});
+            this.fillByToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.fillByToolStrip.Name = "fillByToolStrip";
+            this.fillByToolStrip.Size = new System.Drawing.Size(1319, 27);
+            this.fillByToolStrip.TabIndex = 2;
+            this.fillByToolStrip.Text = "fillByToolStrip";
+            // 
+            // documentoToolStripLabel
+            // 
+            this.documentoToolStripLabel.Name = "documentoToolStripLabel";
+            this.documentoToolStripLabel.Size = new System.Drawing.Size(90, 24);
+            this.documentoToolStripLabel.Text = "Documento:";
+            // 
+            // documentoToolStripTextBox
+            // 
+            this.documentoToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.documentoToolStripTextBox.Name = "documentoToolStripTextBox";
+            this.documentoToolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            // 
+            // nombreComercialToolStripLabel
+            // 
+            this.nombreComercialToolStripLabel.Name = "nombreComercialToolStripLabel";
+            this.nombreComercialToolStripLabel.Size = new System.Drawing.Size(138, 24);
+            this.nombreComercialToolStripLabel.Text = "Nombre Comercial:";
+            // 
+            // nombreComercialToolStripTextBox
+            // 
+            this.nombreComercialToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.nombreComercialToolStripTextBox.Name = "nombreComercialToolStripTextBox";
+            this.nombreComercialToolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            // 
+            // nombresContactoToolStripLabel
+            // 
+            this.nombresContactoToolStripLabel.Name = "nombresContactoToolStripLabel";
+            this.nombresContactoToolStripLabel.Size = new System.Drawing.Size(131, 24);
+            this.nombresContactoToolStripLabel.Text = "Nombre Contacto:";
+            // 
+            // nombresContactoToolStripTextBox
+            // 
+            this.nombresContactoToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.nombresContactoToolStripTextBox.Name = "nombresContactoToolStripTextBox";
+            this.nombresContactoToolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            // 
+            // apellidosContactoToolStripLabel
+            // 
+            this.apellidosContactoToolStripLabel.Name = "apellidosContactoToolStripLabel";
+            this.apellidosContactoToolStripLabel.Size = new System.Drawing.Size(133, 24);
+            this.apellidosContactoToolStripLabel.Text = "Apellido Contacto:";
+            // 
+            // apellidosContactoToolStripTextBox
+            // 
+            this.apellidosContactoToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.apellidosContactoToolStripTextBox.Name = "apellidosContactoToolStripTextBox";
+            this.apellidosContactoToolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            // 
+            // tsbBuscar
+            // 
+            this.tsbBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbBuscar.Image = ((System.Drawing.Image)(resources.GetObject("tsbBuscar.Image")));
+            this.tsbBuscar.Name = "tsbBuscar";
+            this.tsbBuscar.Size = new System.Drawing.Size(29, 24);
+            this.tsbBuscar.Text = "FillBy";
+            this.tsbBuscar.ToolTipText = "Aplica los criterios de búsqueda seleccionados";
+            this.tsbBuscar.Click += new System.EventHandler(this.fillByToolStripButton_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelar.Location = new System.Drawing.Point(727, 36);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(93, 60);
+            this.btnCancelar.TabIndex = 10;
+            this.btnCancelar.Text = "&Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
+            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAceptar.Location = new System.Drawing.Point(609, 36);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(93, 60);
+            this.btnAceptar.TabIndex = 9;
+            this.btnAceptar.Text = "&Aceptar";
+            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnQuitarFiltros);
+            this.groupBox1.Controls.Add(this.rbtIgual);
+            this.groupBox1.Controls.Add(this.rbtTermina);
+            this.groupBox1.Controls.Add(this.rbtEmpiece);
+            this.groupBox1.Controls.Add(this.rbtContenga);
+            this.groupBox1.Location = new System.Drawing.Point(3, 36);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(600, 56);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tipo criterio";
+            // 
+            // btnQuitarFiltros
+            // 
+            this.btnQuitarFiltros.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnQuitarFiltros.Location = new System.Drawing.Point(466, 12);
+            this.btnQuitarFiltros.Name = "btnQuitarFiltros";
+            this.btnQuitarFiltros.Size = new System.Drawing.Size(128, 38);
+            this.btnQuitarFiltros.TabIndex = 8;
+            this.btnQuitarFiltros.Text = "&Quitar Filtros";
+            this.btnQuitarFiltros.UseVisualStyleBackColor = true;
+            this.btnQuitarFiltros.Click += new System.EventHandler(this.btnQuitarFiltros_Click);
+            // 
+            // rbtIgual
+            // 
+            this.rbtIgual.AutoSize = true;
+            this.rbtIgual.Location = new System.Drawing.Point(381, 22);
+            this.rbtIgual.Name = "rbtIgual";
+            this.rbtIgual.Size = new System.Drawing.Size(79, 21);
+            this.rbtIgual.TabIndex = 3;
+            this.rbtIgual.Text = "Igual a…";
+            this.rbtIgual.UseVisualStyleBackColor = true;
+            // 
+            // rbtTermina
+            // 
+            this.rbtTermina.AutoSize = true;
+            this.rbtTermina.Location = new System.Drawing.Point(255, 22);
+            this.rbtTermina.Name = "rbtTermina";
+            this.rbtTermina.Size = new System.Drawing.Size(109, 21);
+            this.rbtTermina.TabIndex = 2;
+            this.rbtTermina.Text = "Termina en…";
+            this.rbtTermina.UseVisualStyleBackColor = true;
+            // 
+            // rbtEmpiece
+            // 
+            this.rbtEmpiece.AutoSize = true;
+            this.rbtEmpiece.Location = new System.Drawing.Point(133, 22);
+            this.rbtEmpiece.Name = "rbtEmpiece";
+            this.rbtEmpiece.Size = new System.Drawing.Size(116, 21);
+            this.rbtEmpiece.TabIndex = 1;
+            this.rbtEmpiece.Text = "Empiece por…";
+            this.rbtEmpiece.UseVisualStyleBackColor = true;
+            // 
+            // rbtContenga
+            // 
+            this.rbtContenga.AutoSize = true;
+            this.rbtContenga.Checked = true;
+            this.rbtContenga.Location = new System.Drawing.Point(20, 22);
+            this.rbtContenga.Name = "rbtContenga";
+            this.rbtContenga.Size = new System.Drawing.Size(98, 21);
+            this.rbtContenga.TabIndex = 0;
+            this.rbtContenga.TabStop = true;
+            this.rbtContenga.Text = "Contenga…";
+            this.rbtContenga.UseVisualStyleBackColor = true;
             // 
             // iDClienteDataGridViewTextBoxColumn
             // 
@@ -245,83 +416,6 @@ namespace AppComercial
             this.clienteBindingSource.DataMember = "Cliente";
             this.clienteBindingSource.DataSource = this.dSAppComercial;
             // 
-            // fillByToolStrip
-            // 
-            this.fillByToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.fillByToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.documentoToolStripLabel,
-            this.documentoToolStripTextBox,
-            this.nombreComercialToolStripLabel,
-            this.nombreComercialToolStripTextBox,
-            this.nombresContactoToolStripLabel,
-            this.nombresContactoToolStripTextBox,
-            this.apellidosContactoToolStripLabel,
-            this.apellidosContactoToolStripTextBox,
-            this.tsbBuscar});
-            this.fillByToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.fillByToolStrip.Name = "fillByToolStrip";
-            this.fillByToolStrip.Size = new System.Drawing.Size(1319, 27);
-            this.fillByToolStrip.TabIndex = 2;
-            this.fillByToolStrip.Text = "fillByToolStrip";
-            // 
-            // documentoToolStripLabel
-            // 
-            this.documentoToolStripLabel.Name = "documentoToolStripLabel";
-            this.documentoToolStripLabel.Size = new System.Drawing.Size(90, 24);
-            this.documentoToolStripLabel.Text = "Documento:";
-            // 
-            // documentoToolStripTextBox
-            // 
-            this.documentoToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.documentoToolStripTextBox.Name = "documentoToolStripTextBox";
-            this.documentoToolStripTextBox.Size = new System.Drawing.Size(100, 27);
-            // 
-            // nombreComercialToolStripLabel
-            // 
-            this.nombreComercialToolStripLabel.Name = "nombreComercialToolStripLabel";
-            this.nombreComercialToolStripLabel.Size = new System.Drawing.Size(138, 24);
-            this.nombreComercialToolStripLabel.Text = "Nombre Comercial:";
-            // 
-            // nombreComercialToolStripTextBox
-            // 
-            this.nombreComercialToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.nombreComercialToolStripTextBox.Name = "nombreComercialToolStripTextBox";
-            this.nombreComercialToolStripTextBox.Size = new System.Drawing.Size(100, 27);
-            // 
-            // nombresContactoToolStripLabel
-            // 
-            this.nombresContactoToolStripLabel.Name = "nombresContactoToolStripLabel";
-            this.nombresContactoToolStripLabel.Size = new System.Drawing.Size(131, 24);
-            this.nombresContactoToolStripLabel.Text = "Nombre Contacto:";
-            // 
-            // nombresContactoToolStripTextBox
-            // 
-            this.nombresContactoToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.nombresContactoToolStripTextBox.Name = "nombresContactoToolStripTextBox";
-            this.nombresContactoToolStripTextBox.Size = new System.Drawing.Size(100, 27);
-            // 
-            // apellidosContactoToolStripLabel
-            // 
-            this.apellidosContactoToolStripLabel.Name = "apellidosContactoToolStripLabel";
-            this.apellidosContactoToolStripLabel.Size = new System.Drawing.Size(133, 24);
-            this.apellidosContactoToolStripLabel.Text = "Apellido Contacto:";
-            // 
-            // apellidosContactoToolStripTextBox
-            // 
-            this.apellidosContactoToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.apellidosContactoToolStripTextBox.Name = "apellidosContactoToolStripTextBox";
-            this.apellidosContactoToolStripTextBox.Size = new System.Drawing.Size(100, 27);
-            // 
-            // tsbBuscar
-            // 
-            this.tsbBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbBuscar.Image = ((System.Drawing.Image)(resources.GetObject("tsbBuscar.Image")));
-            this.tsbBuscar.Name = "tsbBuscar";
-            this.tsbBuscar.Size = new System.Drawing.Size(29, 24);
-            this.tsbBuscar.Text = "FillBy";
-            this.tsbBuscar.ToolTipText = "Aplica los criterios de búsqueda seleccionados";
-            this.tsbBuscar.Click += new System.EventHandler(this.fillByToolStripButton_Click);
-            // 
             // clienteTableAdapter
             // 
             this.clienteTableAdapter.ClearBeforeFill = true;
@@ -329,100 +423,6 @@ namespace AppComercial
             // tipoDocumentoTableAdapter
             // 
             this.tipoDocumentoTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(727, 36);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(93, 60);
-            this.btnCancelar.TabIndex = 10;
-            this.btnCancelar.Text = "&Cancelar";
-            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
-            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAceptar.Location = new System.Drawing.Point(609, 36);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(93, 60);
-            this.btnAceptar.TabIndex = 9;
-            this.btnAceptar.Text = "&Aceptar";
-            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnQuitarFiltros);
-            this.groupBox1.Controls.Add(this.rbtIgual);
-            this.groupBox1.Controls.Add(this.rbtTermina);
-            this.groupBox1.Controls.Add(this.rbtEmpiece);
-            this.groupBox1.Controls.Add(this.rbtContenga);
-            this.groupBox1.Location = new System.Drawing.Point(3, 36);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(600, 56);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tipo criterio";
-            // 
-            // btnQuitarFiltros
-            // 
-            this.btnQuitarFiltros.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnQuitarFiltros.Location = new System.Drawing.Point(466, 12);
-            this.btnQuitarFiltros.Name = "btnQuitarFiltros";
-            this.btnQuitarFiltros.Size = new System.Drawing.Size(128, 38);
-            this.btnQuitarFiltros.TabIndex = 8;
-            this.btnQuitarFiltros.Text = "&Quitar Filtros";
-            this.btnQuitarFiltros.UseVisualStyleBackColor = true;
-            this.btnQuitarFiltros.Click += new System.EventHandler(this.btnQuitarFiltros_Click);
-            // 
-            // rbtIgual
-            // 
-            this.rbtIgual.AutoSize = true;
-            this.rbtIgual.Location = new System.Drawing.Point(381, 22);
-            this.rbtIgual.Name = "rbtIgual";
-            this.rbtIgual.Size = new System.Drawing.Size(79, 21);
-            this.rbtIgual.TabIndex = 3;
-            this.rbtIgual.Text = "Igual a…";
-            this.rbtIgual.UseVisualStyleBackColor = true;
-            // 
-            // rbtTermina
-            // 
-            this.rbtTermina.AutoSize = true;
-            this.rbtTermina.Location = new System.Drawing.Point(255, 22);
-            this.rbtTermina.Name = "rbtTermina";
-            this.rbtTermina.Size = new System.Drawing.Size(109, 21);
-            this.rbtTermina.TabIndex = 2;
-            this.rbtTermina.Text = "Termina en…";
-            this.rbtTermina.UseVisualStyleBackColor = true;
-            // 
-            // rbtEmpiece
-            // 
-            this.rbtEmpiece.AutoSize = true;
-            this.rbtEmpiece.Location = new System.Drawing.Point(133, 22);
-            this.rbtEmpiece.Name = "rbtEmpiece";
-            this.rbtEmpiece.Size = new System.Drawing.Size(116, 21);
-            this.rbtEmpiece.TabIndex = 1;
-            this.rbtEmpiece.Text = "Empiece por…";
-            this.rbtEmpiece.UseVisualStyleBackColor = true;
-            // 
-            // rbtContenga
-            // 
-            this.rbtContenga.AutoSize = true;
-            this.rbtContenga.Checked = true;
-            this.rbtContenga.Location = new System.Drawing.Point(20, 22);
-            this.rbtContenga.Name = "rbtContenga";
-            this.rbtContenga.Size = new System.Drawing.Size(98, 21);
-            this.rbtContenga.TabIndex = 0;
-            this.rbtContenga.TabStop = true;
-            this.rbtContenga.Text = "Contenga…";
-            this.rbtContenga.UseVisualStyleBackColor = true;
             // 
             // frmBusquedaCliente
             // 
@@ -443,13 +443,13 @@ namespace AppComercial
             this.Text = "Búsqueda de Clientes";
             this.Load += new System.EventHandler(this.frmBusquedaCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSAppComercial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             this.fillByToolStrip.ResumeLayout(false);
             this.fillByToolStrip.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSAppComercial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
