@@ -226,12 +226,15 @@ namespace AppComercial
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BarraTableAdapter = null;
+            this.tableAdapterManager.BodegaProductoTableAdapter = null;
             this.tableAdapterManager.BodegaTableAdapter = null;
             this.tableAdapterManager.ClienteTableAdapter = null;
             this.tableAdapterManager.ConceptoTableAdapter = null;
             this.tableAdapterManager.DepartamentoTableAdapter = null;
             this.tableAdapterManager.IVATableAdapter = null;
             this.tableAdapterManager.MedidaTableAdapter = null;
+            this.tableAdapterManager.ProductoTableAdapter = null;
             this.tableAdapterManager.ProveedorTableAdapter = this.proveedorTableAdapter;
             this.tableAdapterManager.TipoDocumentoTableAdapter = this.tipoDocumentoTableAdapter;
             this.tableAdapterManager.UpdateOrder = AppComercial.DSAppComercialTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -270,7 +273,7 @@ namespace AppComercial
             this.proveedorBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.proveedorBindingNavigator.Name = "proveedorBindingNavigator";
             this.proveedorBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.proveedorBindingNavigator.Size = new System.Drawing.Size(1278, 27);
+            this.proveedorBindingNavigator.Size = new System.Drawing.Size(1298, 27);
             this.proveedorBindingNavigator.TabIndex = 49;
             this.proveedorBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -448,7 +451,7 @@ namespace AppComercial
             this.dgvDatos.ReadOnly = true;
             this.dgvDatos.RowHeadersWidth = 51;
             this.dgvDatos.RowTemplate.Height = 24;
-            this.dgvDatos.Size = new System.Drawing.Size(1278, 433);
+            this.dgvDatos.Size = new System.Drawing.Size(1298, 451);
             this.dgvDatos.TabIndex = 23;
             // 
             // dataGridViewTextBoxColumn1
@@ -681,7 +684,7 @@ namespace AppComercial
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(1278, 629);
+            this.ClientSize = new System.Drawing.Size(1298, 649);
             this.Controls.Add(notasLabel);
             this.Controls.Add(this.notasTextBox);
             this.Controls.Add(correoLabel);

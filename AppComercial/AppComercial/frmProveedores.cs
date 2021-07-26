@@ -42,6 +42,7 @@ namespace AppComercial
 
             this.Validate();
             this.proveedorBindingSource.RemoveAt(proveedorBindingSource.Position);
+            this.tableAdapterManager.UpdateAll(this.dSAppComercial);
         }
 
         private void bindingNavigatorSaveItem_Click(object sender, EventArgs e)

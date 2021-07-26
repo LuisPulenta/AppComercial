@@ -54,5 +54,20 @@ namespace AppComercial
             miForm.MdiParent = this;
             miForm.Show();
         }
+
+        private void tsbClientes_Click(object sender, System.EventArgs e)
+        {
+            clientesToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tsbProveedores_Click(object sender, System.EventArgs e)
+        {
+            proveedoresToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tsbProductos_Click(object sender, System.EventArgs e)
+        {
+            productosToolStripMenuItem1_Click(sender, e);
+        }
     }
 }

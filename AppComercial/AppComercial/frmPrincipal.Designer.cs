@@ -29,6 +29,7 @@ namespace AppComercial
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bodegasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,13 @@ namespace AppComercial
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbClientes = new System.Windows.Forms.ToolStripButton();
+            this.tsbProveedores = new System.Windows.Forms.ToolStripButton();
+            this.tsbProductos = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -326,12 +333,59 @@ namespace AppComercial
             this.ayudaToolStripMenuItem1.Size = new System.Drawing.Size(167, 26);
             this.ayudaToolStripMenuItem1.Text = "&Ayuda";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbClientes,
+            this.tsbProveedores,
+            this.tsbProductos,
+            this.toolStripSeparator1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(800, 27);
+            this.toolStrip1.TabIndex = 3;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsbClientes
+            // 
+            this.tsbClientes.Image = ((System.Drawing.Image)(resources.GetObject("tsbClientes.Image")));
+            this.tsbClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbClientes.Name = "tsbClientes";
+            this.tsbClientes.Size = new System.Drawing.Size(85, 24);
+            this.tsbClientes.Text = "Clientes";
+            this.tsbClientes.Click += new System.EventHandler(this.tsbClientes_Click);
+            // 
+            // tsbProveedores
+            // 
+            this.tsbProveedores.Image = ((System.Drawing.Image)(resources.GetObject("tsbProveedores.Image")));
+            this.tsbProveedores.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbProveedores.Name = "tsbProveedores";
+            this.tsbProveedores.Size = new System.Drawing.Size(115, 24);
+            this.tsbProveedores.Text = "Proveedores";
+            this.tsbProveedores.Click += new System.EventHandler(this.tsbProveedores_Click);
+            // 
+            // tsbProductos
+            // 
+            this.tsbProductos.Image = ((System.Drawing.Image)(resources.GetObject("tsbProductos.Image")));
+            this.tsbProductos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbProductos.Name = "tsbProductos";
+            this.tsbProductos.Size = new System.Drawing.Size(99, 24);
+            this.tsbProductos.Text = "Productos";
+            this.tsbProductos.Click += new System.EventHandler(this.tsbProductos_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -341,6 +395,8 @@ namespace AppComercial
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPrincipal_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -383,5 +439,10 @@ namespace AppComercial
         private System.Windows.Forms.ToolStripMenuItem ventasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbClientes;
+        private System.Windows.Forms.ToolStripButton tsbProveedores;
+        private System.Windows.Forms.ToolStripButton tsbProductos;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

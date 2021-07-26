@@ -101,6 +101,7 @@ namespace AppComercial
 
             this.Validate();
             this.conceptoBindingSource.RemoveAt(conceptoBindingSource.Position);
+            this.tableAdapterManager.UpdateAll(this.dSAppComercial);
         }
     }
 }

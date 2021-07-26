@@ -102,6 +102,7 @@ namespace AppComercial
 
             this.Validate();
             this.clienteBindingSource.RemoveAt(clienteBindingSource.Position);
+            this.tableAdapterManager.UpdateAll(this.dSAppComercial);
         }
 
         private bool Validarcampos()

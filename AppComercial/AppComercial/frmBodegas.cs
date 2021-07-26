@@ -89,7 +89,7 @@ namespace AppComercial
 
             this.Validate();
             this.bodegaBindingSource.RemoveAt(bodegaBindingSource.Position);
-
+            this.tableAdapterManager.UpdateAll(this.dSAppComercial);
         }
     }
 }
