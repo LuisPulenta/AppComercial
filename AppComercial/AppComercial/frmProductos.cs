@@ -1,8 +1,10 @@
-﻿using System;
+﻿using CADAppComercial;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +28,7 @@ namespace AppComercial
             this.departamentoTableAdapter.Fill(this.dSAppComercial.Departamento);
             this.productoTableAdapter.Fill(this.dSAppComercial.Producto);
             LlenarGrillas();
+            CargarImagen();
 
             dgvDatos.AutoResizeColumns();
             barrasDataGridView.AutoResizeColumns();
@@ -44,7 +47,7 @@ namespace AppComercial
             iDMedidaComboBox.Enabled = campo;
             medidaTextBox.ReadOnly = !campo;
             btnAgregarBarra.Enabled = campo;
-            btnElminarBarra.Enabled = campo;
+            btnEliminarBarra.Enabled = campo;
             btnAgregarBodega.Enabled = campo;
             btnModificarBodega.Enabled = campo;
 
@@ -88,6 +91,21 @@ namespace AppComercial
                 return false;
             }
 
+            decimal precio;
+            if (!decimal.TryParse(precioTextBox.Text,out precio))
+            {
+                errorProvider1.SetError(precioTextBox, "Debe ingresar un valor numérico");
+                precioTextBox.Focus();
+                return false;
+            }
+
+            if (precio <=0)
+            {
+                errorProvider1.SetError(precioTextBox, "Debe ingresar un valor mayor a 0");
+                precioTextBox.Focus();
+                return false;
+            }
+
             errorProvider1.Clear();
             if (iDIVAComboBox.SelectedIndex == -1)
             {
@@ -110,6 +128,22 @@ namespace AppComercial
                 medidaTextBox.Focus();
                 return false;
             }
+
+            float medida;
+            if (!float.TryParse(medidaTextBox.Text, out medida))
+            {
+                errorProvider1.SetError(medidaTextBox, "Debe ingresar un valor numérico");
+                medidaTextBox.Focus();
+                return false;
+            }
+
+            if (medida <= 0)
+            {
+                errorProvider1.SetError(medidaTextBox, "Debe ingresar un valor mayor a 0");
+                medidaTextBox.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -117,6 +151,7 @@ namespace AppComercial
         private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
         {
             LlenarGrillas();
+            CargarImagen();
         }
 
         private void LlenarGrillas()
@@ -129,21 +164,25 @@ namespace AppComercial
         private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
         {
             LlenarGrillas();
+            CargarImagen();
         }
 
         private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
         {
             LlenarGrillas();
+            CargarImagen();
         }
 
         private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
         {
             LlenarGrillas();
+            CargarImagen();
         }
 
         private void dgvDatos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LlenarGrillas();
+            CargarImagen();
         }
 
         private void bindingNavigatorEditItem_Click(object sender, EventArgs e)
@@ -165,7 +204,6 @@ namespace AppComercial
             this.productoBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.dSAppComercial);
             Habilitar(false);
-
         }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
@@ -190,6 +228,51 @@ namespace AppComercial
             this.productoBindingSource.RemoveAt(productoBindingSource.Position);
             this.tableAdapterManager.UpdateAll(this.dSAppComercial);
 
+        }
+
+        private void btnBuscarImagen_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            imagenTextBox.Text = openFileDialog1.FileName;
+            CargarImagen();
+        }
+
+        private void CargarImagen()
+        {
+            if(imagenTextBox.Text==string.Empty)
+            {
+                pbxImagen.Image = null;
+            }
+            else
+            {
+                if(File.Exists(imagenTextBox.Text))
+                {
+                    pbxImagen.Load(imagenTextBox.Text);
+                }
+            }
+        }
+
+        private void btnAgregarBarra_Click(object sender, EventArgs e)
+        {
+            frmBarras miForm = new frmBarras();
+            miForm.ShowDialog();
+            if (miForm.Barra == 0) return;
+            CADBarra.BarraInsert(Convert.ToInt32(iDProductoTextBox.Text), miForm.Barra);
+            this.barraTableAdapter.FillBy(this.dSAppComercial.Barra, Convert.ToInt32(iDProductoTextBox.Text));
+        }
+
+        private void btnEliminarBarra_Click(object sender, EventArgs e)
+        {
+            DialogResult rta = MessageBox.Show(
+            "¿Está seguro de borrar el Código de Barras?",
+            "Confirmación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button2);
+            if (rta == DialogResult.No) return;
+            long barra = (long) barrasDataGridView.Rows[barraBindingSource.Position].Cells[0].Value;
+            CADBarra.BarraDelete(barra);
+            this.barraTableAdapter.FillBy(this.dSAppComercial.Barra, Convert.ToInt32(iDProductoTextBox.Text));
         }
     }
 }

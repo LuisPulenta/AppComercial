@@ -40,11 +40,11 @@ namespace AppComercial
             System.Windows.Forms.Label iDMedidaLabel;
             System.Windows.Forms.Label medidaLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -96,11 +96,12 @@ namespace AppComercial
             this.btnBuscarImagen = new System.Windows.Forms.Button();
             this.pbxImagen = new System.Windows.Forms.PictureBox();
             this.gbxBarras = new System.Windows.Forms.GroupBox();
-            this.btnElminarBarra = new System.Windows.Forms.Button();
+            this.btnEliminarBarra = new System.Windows.Forms.Button();
             this.btnAgregarBarra = new System.Windows.Forms.Button();
             this.barrasDataGridView = new System.Windows.Forms.DataGridView();
             this.barraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbxBodegas = new System.Windows.Forms.GroupBox();
+            this.btnModificarBodega = new System.Windows.Forms.Button();
             this.btnAgregarBodega = new System.Windows.Forms.Button();
             this.bodegasDataGridView = new System.Windows.Forms.DataGridView();
             this.IDBodega = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -128,7 +129,7 @@ namespace AppComercial
             this.iVATableAdapter = new AppComercial.DSAppComercialTableAdapters.IVATableAdapter();
             this.medidaTableAdapter = new AppComercial.DSAppComercialTableAdapters.MedidaTableAdapter();
             this.bodegaTableAdapter = new AppComercial.DSAppComercialTableAdapters.BodegaTableAdapter();
-            this.btnModificarBodega = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             iDProductoLabel = new System.Windows.Forms.Label();
             descripcionLabel = new System.Windows.Forms.Label();
             iDDepartamentoLabel = new System.Windows.Forms.Label();
@@ -432,9 +433,9 @@ namespace AppComercial
             this.dgvDatos.AllowUserToAddRows = false;
             this.dgvDatos.AllowUserToDeleteRows = false;
             this.dgvDatos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
-            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
+            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvDatos.AutoGenerateColumns = false;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -447,14 +448,14 @@ namespace AppComercial
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9});
             this.dgvDatos.DataSource = this.productoBindingSource;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle17;
             this.dgvDatos.Location = new System.Drawing.Point(0, 378);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
@@ -523,9 +524,9 @@ namespace AppComercial
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "Precio";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Format = "C2";
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle16.Format = "C2";
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridViewTextBoxColumn5.HeaderText = "Precio";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -684,18 +685,21 @@ namespace AppComercial
             this.btnBuscarImagen.TabIndex = 13;
             this.btnBuscarImagen.Text = "...";
             this.btnBuscarImagen.UseVisualStyleBackColor = true;
+            this.btnBuscarImagen.Click += new System.EventHandler(this.btnBuscarImagen_Click);
             // 
             // pbxImagen
             // 
+            this.pbxImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbxImagen.Location = new System.Drawing.Point(1017, 40);
             this.pbxImagen.Name = "pbxImagen";
             this.pbxImagen.Size = new System.Drawing.Size(277, 249);
+            this.pbxImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxImagen.TabIndex = 21;
             this.pbxImagen.TabStop = false;
             // 
             // gbxBarras
             // 
-            this.gbxBarras.Controls.Add(this.btnElminarBarra);
+            this.gbxBarras.Controls.Add(this.btnEliminarBarra);
             this.gbxBarras.Controls.Add(this.btnAgregarBarra);
             this.gbxBarras.Controls.Add(this.barrasDataGridView);
             this.gbxBarras.Location = new System.Drawing.Point(4, 167);
@@ -705,15 +709,16 @@ namespace AppComercial
             this.gbxBarras.TabStop = false;
             this.gbxBarras.Text = "Códigos de Barras";
             // 
-            // btnElminarBarra
+            // btnEliminarBarra
             // 
-            this.btnElminarBarra.Enabled = false;
-            this.btnElminarBarra.Location = new System.Drawing.Point(96, 20);
-            this.btnElminarBarra.Name = "btnElminarBarra";
-            this.btnElminarBarra.Size = new System.Drawing.Size(75, 31);
-            this.btnElminarBarra.TabIndex = 1;
-            this.btnElminarBarra.Text = "Eliminar";
-            this.btnElminarBarra.UseVisualStyleBackColor = true;
+            this.btnEliminarBarra.Enabled = false;
+            this.btnEliminarBarra.Location = new System.Drawing.Point(96, 20);
+            this.btnEliminarBarra.Name = "btnEliminarBarra";
+            this.btnEliminarBarra.Size = new System.Drawing.Size(75, 31);
+            this.btnEliminarBarra.TabIndex = 1;
+            this.btnEliminarBarra.Text = "Eliminar";
+            this.btnEliminarBarra.UseVisualStyleBackColor = true;
+            this.btnEliminarBarra.Click += new System.EventHandler(this.btnEliminarBarra_Click);
             // 
             // btnAgregarBarra
             // 
@@ -724,28 +729,29 @@ namespace AppComercial
             this.btnAgregarBarra.TabIndex = 0;
             this.btnAgregarBarra.Text = "Agregar";
             this.btnAgregarBarra.UseVisualStyleBackColor = true;
+            this.btnAgregarBarra.Click += new System.EventHandler(this.btnAgregarBarra_Click);
             // 
             // barrasDataGridView
             // 
             this.barrasDataGridView.AllowUserToAddRows = false;
             this.barrasDataGridView.AllowUserToDeleteRows = false;
             this.barrasDataGridView.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
-            this.barrasDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
+            this.barrasDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.barrasDataGridView.AutoGenerateColumns = false;
             this.barrasDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.barrasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.barraDataGridViewTextBoxColumn});
             this.barrasDataGridView.DataSource = this.barraBindingSource;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.barrasDataGridView.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.barrasDataGridView.DefaultCellStyle = dataGridViewCellStyle14;
             this.barrasDataGridView.Location = new System.Drawing.Point(6, 57);
             this.barrasDataGridView.Name = "barrasDataGridView";
             this.barrasDataGridView.ReadOnly = true;
@@ -774,6 +780,16 @@ namespace AppComercial
             this.gbxBodegas.TabIndex = 21;
             this.gbxBodegas.TabStop = false;
             this.gbxBodegas.Text = "Parámetros de Bodega";
+            // 
+            // btnModificarBodega
+            // 
+            this.btnModificarBodega.Enabled = false;
+            this.btnModificarBodega.Location = new System.Drawing.Point(264, 21);
+            this.btnModificarBodega.Name = "btnModificarBodega";
+            this.btnModificarBodega.Size = new System.Drawing.Size(75, 31);
+            this.btnModificarBodega.TabIndex = 2;
+            this.btnModificarBodega.Text = "Modificar";
+            this.btnModificarBodega.UseVisualStyleBackColor = true;
             // 
             // btnAgregarBodega
             // 
@@ -1027,15 +1043,9 @@ namespace AppComercial
             // 
             this.bodegaTableAdapter.ClearBeforeFill = true;
             // 
-            // btnModificarBodega
+            // openFileDialog1
             // 
-            this.btnModificarBodega.Enabled = false;
-            this.btnModificarBodega.Location = new System.Drawing.Point(264, 21);
-            this.btnModificarBodega.Name = "btnModificarBodega";
-            this.btnModificarBodega.Size = new System.Drawing.Size(75, 31);
-            this.btnModificarBodega.TabIndex = 2;
-            this.btnModificarBodega.Text = "Modificar";
-            this.btnModificarBodega.UseVisualStyleBackColor = true;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // frmProductos
             // 
@@ -1132,7 +1142,7 @@ namespace AppComercial
         private System.Windows.Forms.Button btnAgregarBodega;
         private System.Windows.Forms.DataGridView bodegasDataGridView;
         private System.Windows.Forms.GroupBox gbxBarras;
-        private System.Windows.Forms.Button btnElminarBarra;
+        private System.Windows.Forms.Button btnEliminarBarra;
         private System.Windows.Forms.Button btnAgregarBarra;
         private System.Windows.Forms.DataGridView barrasDataGridView;
         private System.Windows.Forms.PictureBox pbxImagen;
@@ -1178,5 +1188,6 @@ namespace AppComercial
         private System.Windows.Forms.DataGridViewTextBoxColumn diasReposicionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadMinimaDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnModificarBodega;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
