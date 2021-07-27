@@ -18,7 +18,7 @@ namespace CADAppComercial
             string NombreComercial,
             string NombresContacto,
             string ApellidosContacto,
-            string Direccion,
+            string Direccion, 
             string Telefono1,
             string Telefono2,
             string Correo,
