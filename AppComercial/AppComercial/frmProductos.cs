@@ -1,13 +1,6 @@
 ﻿using CADAppComercial;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppComercial
@@ -49,7 +42,6 @@ namespace AppComercial
             btnAgregarBarra.Enabled = campo;
             btnEliminarBarra.Enabled = campo;
             btnAgregarBodega.Enabled = campo;
-            btnModificarBodega.Enabled = campo;
 
             bindingNavigatorEditItem.Enabled = !campo;
             bindingNavigatorAddNewItem.Enabled = !campo;
@@ -273,6 +265,14 @@ namespace AppComercial
             long barra = (long) barrasDataGridView.Rows[barraBindingSource.Position].Cells[0].Value;
             CADBarra.BarraDelete(barra);
             this.barraTableAdapter.FillBy(this.dSAppComercial.Barra, Convert.ToInt32(iDProductoTextBox.Text));
+        }
+
+        private void btnAgregarBodega_Click(object sender, EventArgs e)
+        {
+            frmParametrosBodega miForm = new frmParametrosBodega();
+            miForm.IDProducto = Convert.ToInt32(iDProductoTextBox.Text);
+            miForm.ShowDialog();
+            this.bodegaProductoTableAdapter.FillBy(this.dSAppComercial.BodegaProducto, Convert.ToInt32(iDProductoTextBox.Text));
         }
     }
 }

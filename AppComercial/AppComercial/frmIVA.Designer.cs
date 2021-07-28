@@ -1,7 +1,7 @@
 ﻿
 namespace AppComercial
 {
-    partial class frmBodegas
+    partial class frmIVA
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +30,19 @@ namespace AppComercial
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label iDBodegaLabel;
+            System.Windows.Forms.Label iDIVALabel;
             System.Windows.Forms.Label descripcionLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBodegas));
+            System.Windows.Forms.Label tarifaLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIVA));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dSAppComercial = new AppComercial.DSAppComercial();
-            this.bodegaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bodegaTableAdapter = new AppComercial.DSAppComercialTableAdapters.BodegaTableAdapter();
+            this.iVABindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iVATableAdapter = new AppComercial.DSAppComercialTableAdapters.IVATableAdapter();
             this.tableAdapterManager = new AppComercial.DSAppComercialTableAdapters.TableAdapterManager();
-            this.bodegaBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.iVABindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -58,35 +60,47 @@ namespace AppComercial
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDBodegaTextBox = new System.Windows.Forms.TextBox();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDIVATextBox = new System.Windows.Forms.TextBox();
             this.descripcionTextBox = new System.Windows.Forms.TextBox();
-            iDBodegaLabel = new System.Windows.Forms.Label();
+            this.tarifaTextBox = new System.Windows.Forms.TextBox();
+            iDIVALabel = new System.Windows.Forms.Label();
             descripcionLabel = new System.Windows.Forms.Label();
+            tarifaLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSAppComercial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bodegaBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bodegaBindingNavigator)).BeginInit();
-            this.bodegaBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iVABindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iVABindingNavigator)).BeginInit();
+            this.iVABindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
-            // iDBodegaLabel
+            // iDIVALabel
             // 
-            iDBodegaLabel.AutoSize = true;
-            iDBodegaLabel.Location = new System.Drawing.Point(24, 46);
-            iDBodegaLabel.Name = "iDBodegaLabel";
-            iDBodegaLabel.Size = new System.Drawing.Size(74, 17);
-            iDBodegaLabel.TabIndex = 1;
-            iDBodegaLabel.Text = "IDBodega:";
+            iDIVALabel.AutoSize = true;
+            iDIVALabel.Location = new System.Drawing.Point(45, 42);
+            iDIVALabel.Name = "iDIVALabel";
+            iDIVALabel.Size = new System.Drawing.Size(46, 17);
+            iDIVALabel.TabIndex = 1;
+            iDIVALabel.Text = "IDIVA:";
             // 
             // descripcionLabel
             // 
             descripcionLabel.AutoSize = true;
-            descripcionLabel.Location = new System.Drawing.Point(12, 74);
+            descripcionLabel.Location = new System.Drawing.Point(5, 67);
             descripcionLabel.Name = "descripcionLabel";
             descripcionLabel.Size = new System.Drawing.Size(86, 17);
             descripcionLabel.TabIndex = 3;
-            descripcionLabel.Text = "Descripción:";
+            descripcionLabel.Text = "Descripcion:";
+            // 
+            // tarifaLabel
+            // 
+            tarifaLabel.AutoSize = true;
+            tarifaLabel.Location = new System.Drawing.Point(289, 67);
+            tarifaLabel.Name = "tarifaLabel";
+            tarifaLabel.Size = new System.Drawing.Size(49, 17);
+            tarifaLabel.TabIndex = 5;
+            tarifaLabel.Text = "Tarifa:";
             // 
             // errorProvider1
             // 
@@ -97,39 +111,39 @@ namespace AppComercial
             this.dSAppComercial.DataSetName = "DSAppComercial";
             this.dSAppComercial.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // bodegaBindingSource
+            // iVABindingSource
             // 
-            this.bodegaBindingSource.DataMember = "Bodega";
-            this.bodegaBindingSource.DataSource = this.dSAppComercial;
+            this.iVABindingSource.DataMember = "IVA";
+            this.iVABindingSource.DataSource = this.dSAppComercial;
             // 
-            // bodegaTableAdapter
+            // iVATableAdapter
             // 
-            this.bodegaTableAdapter.ClearBeforeFill = true;
+            this.iVATableAdapter.ClearBeforeFill = true;
             // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BarraTableAdapter = null;
             this.tableAdapterManager.BodegaProductoTableAdapter = null;
-            this.tableAdapterManager.BodegaTableAdapter = this.bodegaTableAdapter;
+            this.tableAdapterManager.BodegaTableAdapter = null;
             this.tableAdapterManager.ClienteTableAdapter = null;
             this.tableAdapterManager.ConceptoTableAdapter = null;
             this.tableAdapterManager.DepartamentoTableAdapter = null;
-            this.tableAdapterManager.IVATableAdapter = null;
+            this.tableAdapterManager.IVATableAdapter = this.iVATableAdapter;
             this.tableAdapterManager.MedidaTableAdapter = null;
             this.tableAdapterManager.ProductoTableAdapter = null;
             this.tableAdapterManager.ProveedorTableAdapter = null;
             this.tableAdapterManager.TipoDocumentoTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AppComercial.DSAppComercialTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // bodegaBindingNavigator
+            // iVABindingNavigator
             // 
-            this.bodegaBindingNavigator.AddNewItem = null;
-            this.bodegaBindingNavigator.BindingSource = this.bodegaBindingSource;
-            this.bodegaBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.bodegaBindingNavigator.DeleteItem = null;
-            this.bodegaBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.bodegaBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.iVABindingNavigator.AddNewItem = null;
+            this.iVABindingNavigator.BindingSource = this.iVABindingSource;
+            this.iVABindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.iVABindingNavigator.DeleteItem = null;
+            this.iVABindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.iVABindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -141,19 +155,19 @@ namespace AppComercial
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorEditItem,
             this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorSaveItem,
             this.bindingNavigatorDeleteItem,
+            this.bindingNavigatorSaveItem,
             this.bindingNavigatorCancelItem});
-            this.bodegaBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.bodegaBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.bodegaBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.bodegaBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.bodegaBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.bodegaBindingNavigator.Name = "bodegaBindingNavigator";
-            this.bodegaBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.bodegaBindingNavigator.Size = new System.Drawing.Size(485, 27);
-            this.bodegaBindingNavigator.TabIndex = 0;
-            this.bodegaBindingNavigator.Text = "bindingNavigator1";
+            this.iVABindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.iVABindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.iVABindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.iVABindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.iVABindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.iVABindingNavigator.Name = "iVABindingNavigator";
+            this.iVABindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.iVABindingNavigator.Size = new System.Drawing.Size(485, 27);
+            this.iVABindingNavigator.TabIndex = 0;
+            this.iVABindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
@@ -286,34 +300,35 @@ namespace AppComercial
             this.dgvDatos.AllowUserToDeleteRows = false;
             this.dgvDatos.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
             this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatos.AutoGenerateColumns = false;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.dgvDatos.DataSource = this.bodegaBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.dgvDatos.DataSource = this.iVABindingSource;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatos.Location = new System.Drawing.Point(0, 112);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
             this.dgvDatos.RowHeadersWidth = 51;
             this.dgvDatos.RowTemplate.Height = 24;
             this.dgvDatos.Size = new System.Drawing.Size(483, 315);
-            this.dgvDatos.TabIndex = 5;
+            this.dgvDatos.TabIndex = 7;
             // 
             // dataGridViewTextBoxColumn1
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "IDBodega";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "IDIVA";
+            this.dataGridViewTextBoxColumn1.HeaderText = "IDIVA";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -328,50 +343,75 @@ namespace AppComercial
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Width = 125;
             // 
-            // iDBodegaTextBox
+            // dataGridViewTextBoxColumn3
             // 
-            this.iDBodegaTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bodegaBindingSource, "IDBodega", true));
-            this.iDBodegaTextBox.Location = new System.Drawing.Point(104, 43);
-            this.iDBodegaTextBox.Name = "iDBodegaTextBox";
-            this.iDBodegaTextBox.ReadOnly = true;
-            this.iDBodegaTextBox.Size = new System.Drawing.Size(100, 22);
-            this.iDBodegaTextBox.TabIndex = 2;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Tarifa";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Tarifa";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // iDIVATextBox
+            // 
+            this.iDIVATextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iVABindingSource, "IDIVA", true));
+            this.iDIVATextBox.Location = new System.Drawing.Point(97, 39);
+            this.iDIVATextBox.Name = "iDIVATextBox";
+            this.iDIVATextBox.ReadOnly = true;
+            this.iDIVATextBox.Size = new System.Drawing.Size(100, 22);
+            this.iDIVATextBox.TabIndex = 2;
             // 
             // descripcionTextBox
             // 
             this.descripcionTextBox.BackColor = System.Drawing.Color.Aquamarine;
-            this.descripcionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bodegaBindingSource, "Descripcion", true));
-            this.descripcionTextBox.Location = new System.Drawing.Point(104, 71);
+            this.descripcionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iVABindingSource, "Descripcion", true));
+            this.descripcionTextBox.Location = new System.Drawing.Point(97, 64);
             this.descripcionTextBox.Name = "descripcionTextBox";
             this.descripcionTextBox.ReadOnly = true;
-            this.descripcionTextBox.Size = new System.Drawing.Size(327, 22);
+            this.descripcionTextBox.Size = new System.Drawing.Size(161, 22);
             this.descripcionTextBox.TabIndex = 4;
             // 
-            // frmBodegas
+            // tarifaTextBox
+            // 
+            this.tarifaTextBox.BackColor = System.Drawing.Color.Aquamarine;
+            this.tarifaTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iVABindingSource, "Tarifa", true));
+            this.tarifaTextBox.Location = new System.Drawing.Point(344, 64);
+            this.tarifaTextBox.Name = "tarifaTextBox";
+            this.tarifaTextBox.ReadOnly = true;
+            this.tarifaTextBox.Size = new System.Drawing.Size(100, 22);
+            this.tarifaTextBox.TabIndex = 6;
+            // 
+            // frmIVA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(485, 427);
+            this.Controls.Add(tarifaLabel);
+            this.Controls.Add(this.tarifaTextBox);
             this.Controls.Add(descripcionLabel);
             this.Controls.Add(this.descripcionTextBox);
-            this.Controls.Add(iDBodegaLabel);
-            this.Controls.Add(this.iDBodegaTextBox);
+            this.Controls.Add(iDIVALabel);
+            this.Controls.Add(this.iDIVATextBox);
             this.Controls.Add(this.dgvDatos);
-            this.Controls.Add(this.bodegaBindingNavigator);
+            this.Controls.Add(this.iVABindingNavigator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmBodegas";
+            this.Name = "frmIVA";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Bodegas";
-            this.Load += new System.EventHandler(this.frmBodegas_Load);
+            this.Text = "IVAs";
+            this.Load += new System.EventHandler(this.frmIVA_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSAppComercial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bodegaBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bodegaBindingNavigator)).EndInit();
-            this.bodegaBindingNavigator.ResumeLayout(false);
-            this.bodegaBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iVABindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iVABindingNavigator)).EndInit();
+            this.iVABindingNavigator.ResumeLayout(false);
+            this.iVABindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -381,8 +421,8 @@ namespace AppComercial
         #endregion
 
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.BindingNavigator bodegaBindingNavigator;
-        private System.Windows.Forms.BindingSource bodegaBindingSource;
+        private System.Windows.Forms.BindingNavigator iVABindingNavigator;
+        private System.Windows.Forms.BindingSource iVABindingSource;
         private DSAppComercial dSAppComercial;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
@@ -393,17 +433,19 @@ namespace AppComercial
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private DSAppComercialTableAdapters.BodegaTableAdapter bodegaTableAdapter;
+        private DSAppComercialTableAdapters.IVATableAdapter iVATableAdapter;
         private DSAppComercialTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridView dgvDatos;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.TextBox tarifaTextBox;
         private System.Windows.Forms.TextBox descripcionTextBox;
-        private System.Windows.Forms.TextBox iDBodegaTextBox;
+        private System.Windows.Forms.TextBox iDIVATextBox;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorEditItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorSaveItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorCancelItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorEditItem;
     }
 }

@@ -145,12 +145,14 @@ namespace AppComercial
             this.departamentosToolStripMenuItem.Name = "departamentosToolStripMenuItem";
             this.departamentosToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
             this.departamentosToolStripMenuItem.Text = "&Departamentos";
+            this.departamentosToolStripMenuItem.Click += new System.EventHandler(this.departamentosToolStripMenuItem_Click);
             // 
             // iVAsToolStripMenuItem
             // 
             this.iVAsToolStripMenuItem.Name = "iVAsToolStripMenuItem";
             this.iVAsToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
             this.iVAsToolStripMenuItem.Text = "&IVAs";
+            this.iVAsToolStripMenuItem.Click += new System.EventHandler(this.iVAsToolStripMenuItem_Click);
             // 
             // productosToolStripMenuItem1
             // 
@@ -164,6 +166,7 @@ namespace AppComercial
             this.unidadesDeMedidaToolStripMenuItem.Name = "unidadesDeMedidaToolStripMenuItem";
             this.unidadesDeMedidaToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
             this.unidadesDeMedidaToolStripMenuItem.Text = "&Unidades de Medida";
+            this.unidadesDeMedidaToolStripMenuItem.Click += new System.EventHandler(this.unidadesDeMedidaToolStripMenuItem_Click);
             // 
             // proveedoresToolStripMenuItem
             // 
@@ -177,6 +180,7 @@ namespace AppComercial
             this.tiposDeDocumentoToolStripMenuItem.Name = "tiposDeDocumentoToolStripMenuItem";
             this.tiposDeDocumentoToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.tiposDeDocumentoToolStripMenuItem.Text = "&Tipos de Documento";
+            this.tiposDeDocumentoToolStripMenuItem.Click += new System.EventHandler(this.tiposDeDocumentoToolStripMenuItem_Click);
             // 
             // usuarioToolStripMenuItem
             // 

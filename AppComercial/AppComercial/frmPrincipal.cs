@@ -69,5 +69,33 @@ namespace AppComercial
         {
             productosToolStripMenuItem1_Click(sender, e);
         }
+
+        private void departamentosToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            frmDepartamentos miForm = new frmDepartamentos();
+            miForm.MdiParent = this;
+            miForm.Show();
+        }
+
+        private void unidadesDeMedidaToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            frmMedidas miForm = new frmMedidas();
+            miForm.MdiParent = this;
+            miForm.Show();
+        }
+
+        private void tiposDeDocumentoToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            frmTiposDocumento miForm = new frmTiposDocumento();
+            miForm.MdiParent = this;
+            miForm.Show();
+        }
+
+        private void iVAsToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            frmIVA miForm = new frmIVA();
+            miForm.MdiParent = this;
+            miForm.Show();
+        }
     }
 }
