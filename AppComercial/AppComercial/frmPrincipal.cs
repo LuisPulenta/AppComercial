@@ -1,9 +1,18 @@
-﻿using System.Windows.Forms;
+﻿using CADAppComercial;
+using System.Windows.Forms;
 
 namespace AppComercial
 {
     public partial class frmPrincipal : Form
     {
+        private CADUsuario usuarioLogueado;
+
+        public CADUsuario UsuarioLogueado
+        {
+            get => usuarioLogueado;
+            set => usuarioLogueado = value;
+        }
+
         public frmPrincipal()
         {
             InitializeComponent();
@@ -96,6 +105,19 @@ namespace AppComercial
             frmIVA miForm = new frmIVA();
             miForm.MdiParent = this;
             miForm.Show();
+        }
+
+        private void usuarioToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            frmUsuarios miForm = new frmUsuarios();
+            miForm.MdiParent = this;
+            miForm.Show();
+
+        }
+
+        private void frmPrincipal_Load(object sender, System.EventArgs e)
+        {
+            nombresUsuarioToolStripStatusLabel.Text = "Usuario: " + usuarioLogueado.Nombres + " " + usuarioLogueado.Apellidos;
         }
     }
 }

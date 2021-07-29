@@ -50,6 +50,7 @@ namespace AppComercial
             }
 
             frmPrincipal miForm = new frmPrincipal();
+            miForm.UsuarioLogueado = CADUsuario.UsuarioGetUsuarioByIDUsuario(txtUsuario.Text);
             miForm.Show();
             this.Hide();
         }
