@@ -184,6 +184,7 @@ namespace AppComercial
         private void bindingNavigatorEditItem_Click_1(object sender, EventArgs e)
         {
             Habilitar(true);
+            iDUsuarioTextBox.ReadOnly = true;
             nuevo = false;
             iDRolComboBox.Focus();
         }

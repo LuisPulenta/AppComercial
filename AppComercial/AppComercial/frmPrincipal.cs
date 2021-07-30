@@ -1,4 +1,5 @@
 ﻿using CADAppComercial;
+using System;
 using System.Windows.Forms;
 
 namespace AppComercial
@@ -110,13 +111,39 @@ namespace AppComercial
         private void usuarioToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             frmUsuarios miForm = new frmUsuarios();
-            miForm.MdiParent = this;
-            miForm.Show();
-
+            miForm.ShowDialog();
         }
 
         private void frmPrincipal_Load(object sender, System.EventArgs e)
         {
+            nombresUsuarioToolStripStatusLabel.Text = "Usuario: " + usuarioLogueado.Nombres + " " + usuarioLogueado.Apellidos;
+            VerificaCambioClave(sender, e);
+        }
+
+        private void VerificaCambioClave(object sender, System.EventArgs e)
+        {
+            if(usuarioLogueado.FechaModificacionClave.AddDays(30)<DateTime.Now)
+            {
+                cambioDeClaveToolStripMenuItem_Click(sender, e);
+            }
+        }
+
+        private void cambioDeClaveToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            frmCambioClave miForm = new frmCambioClave();
+            miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.ShowDialog();
+        }
+
+        private void cambioDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCambioUsuario miForm = new frmCambioUsuario();
+            miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.ShowDialog();
+            if(miForm.UsuarioLogueado!=null)
+            {
+                usuarioLogueado = miForm.UsuarioLogueado;
+            }
             nombresUsuarioToolStripStatusLabel.Text = "Usuario: " + usuarioLogueado.Nombres + " " + usuarioLogueado.Apellidos;
         }
     }

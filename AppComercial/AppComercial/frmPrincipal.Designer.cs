@@ -202,12 +202,14 @@ namespace AppComercial
             this.cambioDeUsuarioToolStripMenuItem.Name = "cambioDeUsuarioToolStripMenuItem";
             this.cambioDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.cambioDeUsuarioToolStripMenuItem.Text = "Ca&mbio de Usuario";
+            this.cambioDeUsuarioToolStripMenuItem.Click += new System.EventHandler(this.cambioDeUsuarioToolStripMenuItem_Click);
             // 
             // cambioDeClaveToolStripMenuItem
             // 
             this.cambioDeClaveToolStripMenuItem.Name = "cambioDeClaveToolStripMenuItem";
             this.cambioDeClaveToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.cambioDeClaveToolStripMenuItem.Text = "Cam&bio de Clave";
+            this.cambioDeClaveToolStripMenuItem.Click += new System.EventHandler(this.cambioDeClaveToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
