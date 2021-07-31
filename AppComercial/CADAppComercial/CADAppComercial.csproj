@@ -44,6 +44,7 @@
     <Compile Include="CADBarra.cs" />
     <Compile Include="CADBodegaProducto.cs" />
     <Compile Include="CADCliente.cs" />
+    <Compile Include="CADPermisoRol.cs" />
     <Compile Include="CADUsuario.cs" />
     <Compile Include="DSAppComercial.cs">
       <DependentUpon>DSAppComercial.xsd</DependentUpon>

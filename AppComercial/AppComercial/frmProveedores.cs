@@ -1,10 +1,19 @@
-﻿using System;
+﻿using CADAppComercial;
+using System;
 using System.Windows.Forms;
 
 namespace AppComercial
 {
     public partial class frmProveedores : Form
     {
+        private CADUsuario usuarioLogueado;
+
+        public CADUsuario UsuarioLogueado
+        {
+            get => usuarioLogueado;
+            set => usuarioLogueado = value;
+        }
+
         public frmProveedores()
         {
             InitializeComponent();
@@ -15,6 +24,14 @@ namespace AppComercial
             this.tipoDocumentoTableAdapter.Fill(this.dSAppComercial.TipoDocumento);
             this.proveedorTableAdapter.Fill(this.dSAppComercial.Proveedor);
             dgvDatos.AutoResizeColumns();
+            VerificarPermisos();
+        }
+
+        private void VerificarPermisos()
+        {
+            bindingNavigatorAddNewItem.Enabled = CADPermisoRol.PermisoRolPuedeModificar(usuarioLogueado.IDRol, this.Name);
+            bindingNavigatorEditItem.Enabled = CADPermisoRol.PermisoRolPuedeModificar(usuarioLogueado.IDRol, this.Name);
+            bindingNavigatorDeleteItem.Enabled = CADPermisoRol.PermisoRolPuedeBorrar(usuarioLogueado.IDRol, this.Name);
         }
 
         private void bindingNavigatorEditItem_Click(object sender, EventArgs e)
@@ -62,6 +79,7 @@ namespace AppComercial
                 return;
             }
             Habilitar(false);
+            VerificarPermisos();
         }
 
         private void bindingNavigatorCancelItem_Click(object sender, EventArgs e)
@@ -69,6 +87,7 @@ namespace AppComercial
             this.proveedorBindingSource.CancelEdit();
             errorProvider1.Clear();
             Habilitar(false);
+            VerificarPermisos();
         }
 
         private void Habilitar(bool campo)

@@ -1,10 +1,19 @@
-﻿using System;
+﻿using CADAppComercial;
+using System;
 using System.Windows.Forms;
 
 namespace AppComercial
 {
     public partial class frmBodegas : Form
     {
+        private CADUsuario usuarioLogueado;
+
+        public CADUsuario UsuarioLogueado
+        {
+            get => usuarioLogueado;
+            set => usuarioLogueado = value;
+        }
+
         public frmBodegas()
         {
             InitializeComponent();
@@ -14,6 +23,14 @@ namespace AppComercial
         {
             this.bodegaTableAdapter.Fill(this.dSAppComercial.Bodega);
             dgvDatos.AutoResizeColumns();
+            VerificarPermisos();
+        }
+
+        private void VerificarPermisos()
+        {
+            bindingNavigatorAddNewItem.Enabled = CADPermisoRol.PermisoRolPuedeModificar(usuarioLogueado.IDRol, this.Name);
+            bindingNavigatorEditItem.Enabled = CADPermisoRol.PermisoRolPuedeModificar(usuarioLogueado.IDRol, this.Name);
+            bindingNavigatorDeleteItem.Enabled = CADPermisoRol.PermisoRolPuedeBorrar(usuarioLogueado.IDRol, this.Name);
         }
 
         private void Habilitar(bool campo)
@@ -32,6 +49,7 @@ namespace AppComercial
             bindingNavigatorMoveLastItem.Enabled = !campo;
             bindingNavigatorPositionItem.Enabled = !campo;
             bindingNavigatorCountItem.Enabled = !campo;
+            VerificarPermisos();
         }
 
         private void bindingNavigatorEditItem_Click(object sender, EventArgs e)

@@ -40,6 +40,7 @@ namespace AppComercial
         {
             frmProveedores miForm = new frmProveedores();
             miForm.MdiParent = this;
+            miForm.UsuarioLogueado = usuarioLogueado;
             miForm.Show();
         }
 
@@ -47,6 +48,7 @@ namespace AppComercial
         {
             frmBodegas miForm = new frmBodegas();
             miForm.MdiParent = this;
+            miForm.UsuarioLogueado = usuarioLogueado;
             miForm.Show();
         }
 
@@ -118,6 +120,15 @@ namespace AppComercial
         {
             nombresUsuarioToolStripStatusLabel.Text = "Usuario: " + usuarioLogueado.Nombres + " " + usuarioLogueado.Apellidos;
             VerificaCambioClave(sender, e);
+            VerificarPermisos();
+        }
+
+        private void VerificarPermisos()
+        {
+            proveedoresToolStripMenuItem.Visible = CADPermisoRol.PermisoRolPuedeVer(usuarioLogueado.IDRol, "frmProveedores");
+            tsbProveedores.Visible = CADPermisoRol.PermisoRolPuedeVer(usuarioLogueado.IDRol, "frmProveedores");
+
+            bodegasToolStripMenuItem.Visible = CADPermisoRol.PermisoRolPuedeVer(usuarioLogueado.IDRol, "frmBodegas");
         }
 
         private void VerificaCambioClave(object sender, System.EventArgs e)
@@ -143,8 +154,9 @@ namespace AppComercial
             if(miForm.UsuarioLogueado!=null)
             {
                 usuarioLogueado = miForm.UsuarioLogueado;
+                nombresUsuarioToolStripStatusLabel.Text = "Usuario: " + usuarioLogueado.Nombres + " " + usuarioLogueado.Apellidos;
+                VerificarPermisos();
             }
-            nombresUsuarioToolStripStatusLabel.Text = "Usuario: " + usuarioLogueado.Nombres + " " + usuarioLogueado.Apellidos;
         }
     }
 }
