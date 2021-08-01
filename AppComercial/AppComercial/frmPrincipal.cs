@@ -158,5 +158,18 @@ namespace AppComercial
                 VerificarPermisos();
             }
         }
+
+        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCompras miForm = new frmCompras();
+            miForm.MdiParent = this;
+            miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.Show();
+        }
+
+        private void tsbCompras_Click(object sender, EventArgs e)
+        {
+            comprasToolStripMenuItem_Click(sender, e);
+        }
     }
 }

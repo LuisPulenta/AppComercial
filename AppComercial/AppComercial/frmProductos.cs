@@ -274,5 +274,16 @@ namespace AppComercial
             miForm.ShowDialog();
             this.bodegaProductoTableAdapter.FillBy(this.dSAppComercial.BodegaProducto, Convert.ToInt32(iDProductoTextBox.Text));
         }
+
+        private void bindingNavigatorSearchItem_Click(object sender, EventArgs e)
+        {
+            frmBusquedaProducto miBusqueda = new frmBusquedaProducto();
+            miBusqueda.ShowDialog();
+            if (miBusqueda.IDElegido == 0) return;
+            int position = productoBindingSource.Find("IDProducto", miBusqueda.IDElegido);
+            productoBindingSource.Position = position;
+            LlenarGrillas();
+            CargarImagen();
+        }
     }
 }

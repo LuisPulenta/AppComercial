@@ -33,8 +33,8 @@ namespace AppComercial
             System.Windows.Forms.Label iDTipoDocumentoLabel;
             System.Windows.Forms.Label descripcionLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTiposDocumento));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dSAppComercial = new AppComercial.DSAppComercial();
             this.tipoDocumentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -50,16 +50,16 @@ namespace AppComercial
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDTipoDocumentoTextBox = new System.Windows.Forms.TextBox();
-            this.descripcionTextBox = new System.Windows.Forms.TextBox();
             this.bindingNavigatorEditItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCancelItem = new System.Windows.Forms.ToolStripButton();
+            this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDTipoDocumentoTextBox = new System.Windows.Forms.TextBox();
+            this.descripcionTextBox = new System.Windows.Forms.TextBox();
             iDTipoDocumentoLabel = new System.Windows.Forms.Label();
             descripcionLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -119,8 +119,10 @@ namespace AppComercial
             this.tableAdapterManager.MedidaTableAdapter = null;
             this.tableAdapterManager.ProductoTableAdapter = null;
             this.tableAdapterManager.ProveedorTableAdapter = null;
+            this.tableAdapterManager.RolTableAdapter = null;
             this.tableAdapterManager.TipoDocumentoTableAdapter = this.tipoDocumentoTableAdapter;
             this.tableAdapterManager.UpdateOrder = AppComercial.DSAppComercialTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UsuarioTableAdapter = null;
             // 
             // tipoDocumentoBindingNavigator
             // 
@@ -223,73 +225,6 @@ namespace AppComercial
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
-            // dgvDatos
-            // 
-            this.dgvDatos.AllowUserToAddRows = false;
-            this.dgvDatos.AllowUserToDeleteRows = false;
-            this.dgvDatos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
-            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
-            this.dgvDatos.AutoGenerateColumns = false;
-            this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.dgvDatos.DataSource = this.tipoDocumentoBindingSource;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle20;
-            this.dgvDatos.Location = new System.Drawing.Point(0, 112);
-            this.dgvDatos.Name = "dgvDatos";
-            this.dgvDatos.ReadOnly = true;
-            this.dgvDatos.RowHeadersWidth = 51;
-            this.dgvDatos.RowTemplate.Height = 24;
-            this.dgvDatos.Size = new System.Drawing.Size(483, 315);
-            this.dgvDatos.TabIndex = 5;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "IDTipoDocumento";
-            this.dataGridViewTextBoxColumn1.HeaderText = "IDTipoDocumento";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Descripcion";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Descripción";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // iDTipoDocumentoTextBox
-            // 
-            this.iDTipoDocumentoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tipoDocumentoBindingSource, "IDTipoDocumento", true));
-            this.iDTipoDocumentoTextBox.Location = new System.Drawing.Point(155, 39);
-            this.iDTipoDocumentoTextBox.Name = "iDTipoDocumentoTextBox";
-            this.iDTipoDocumentoTextBox.ReadOnly = true;
-            this.iDTipoDocumentoTextBox.Size = new System.Drawing.Size(100, 22);
-            this.iDTipoDocumentoTextBox.TabIndex = 2;
-            // 
-            // descripcionTextBox
-            // 
-            this.descripcionTextBox.BackColor = System.Drawing.Color.Aquamarine;
-            this.descripcionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tipoDocumentoBindingSource, "Descripcion", true));
-            this.descripcionTextBox.Location = new System.Drawing.Point(155, 67);
-            this.descripcionTextBox.Name = "descripcionTextBox";
-            this.descripcionTextBox.ReadOnly = true;
-            this.descripcionTextBox.Size = new System.Drawing.Size(289, 22);
-            this.descripcionTextBox.TabIndex = 4;
-            // 
             // bindingNavigatorEditItem
             // 
             this.bindingNavigatorEditItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -347,6 +282,73 @@ namespace AppComercial
             this.bindingNavigatorCancelItem.ToolTipText = "Cancelar cambios en  el Registro actual";
             this.bindingNavigatorCancelItem.Click += new System.EventHandler(this.bindingNavigatorCancelItem_Click);
             // 
+            // dgvDatos
+            // 
+            this.dgvDatos.AllowUserToAddRows = false;
+            this.dgvDatos.AllowUserToDeleteRows = false;
+            this.dgvDatos.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
+            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDatos.AutoGenerateColumns = false;
+            this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dgvDatos.DataSource = this.tipoDocumentoBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvDatos.Location = new System.Drawing.Point(0, 112);
+            this.dgvDatos.Name = "dgvDatos";
+            this.dgvDatos.ReadOnly = true;
+            this.dgvDatos.RowHeadersWidth = 51;
+            this.dgvDatos.RowTemplate.Height = 24;
+            this.dgvDatos.Size = new System.Drawing.Size(483, 315);
+            this.dgvDatos.TabIndex = 5;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "IDTipoDocumento";
+            this.dataGridViewTextBoxColumn1.HeaderText = "IDTipoDocumento";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Descripcion";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Descripción";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // iDTipoDocumentoTextBox
+            // 
+            this.iDTipoDocumentoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tipoDocumentoBindingSource, "IDTipoDocumento", true));
+            this.iDTipoDocumentoTextBox.Location = new System.Drawing.Point(155, 39);
+            this.iDTipoDocumentoTextBox.Name = "iDTipoDocumentoTextBox";
+            this.iDTipoDocumentoTextBox.ReadOnly = true;
+            this.iDTipoDocumentoTextBox.Size = new System.Drawing.Size(100, 22);
+            this.iDTipoDocumentoTextBox.TabIndex = 2;
+            // 
+            // descripcionTextBox
+            // 
+            this.descripcionTextBox.BackColor = System.Drawing.Color.Aquamarine;
+            this.descripcionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tipoDocumentoBindingSource, "Descripcion", true));
+            this.descripcionTextBox.Location = new System.Drawing.Point(155, 67);
+            this.descripcionTextBox.Name = "descripcionTextBox";
+            this.descripcionTextBox.ReadOnly = true;
+            this.descripcionTextBox.Size = new System.Drawing.Size(289, 22);
+            this.descripcionTextBox.TabIndex = 4;
+            // 
             // frmTiposDocumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -360,6 +362,7 @@ namespace AppComercial
             this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.tipoDocumentoBindingNavigator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmTiposDocumento";

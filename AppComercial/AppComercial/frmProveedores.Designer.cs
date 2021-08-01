@@ -236,8 +236,10 @@ namespace AppComercial
             this.tableAdapterManager.MedidaTableAdapter = null;
             this.tableAdapterManager.ProductoTableAdapter = null;
             this.tableAdapterManager.ProveedorTableAdapter = this.proveedorTableAdapter;
+            this.tableAdapterManager.RolTableAdapter = null;
             this.tableAdapterManager.TipoDocumentoTableAdapter = this.tipoDocumentoTableAdapter;
             this.tableAdapterManager.UpdateOrder = AppComercial.DSAppComercialTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UsuarioTableAdapter = null;
             // 
             // tipoDocumentoTableAdapter
             // 
@@ -710,6 +712,7 @@ namespace AppComercial
             this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.proveedorBindingNavigator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmProveedores";

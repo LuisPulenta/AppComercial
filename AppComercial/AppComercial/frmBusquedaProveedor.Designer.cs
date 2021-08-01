@@ -30,8 +30,8 @@ namespace AppComercial
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusquedaProveedor));
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.iDProveedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,9 +84,9 @@ namespace AppComercial
             this.dgvDatos.AllowUserToAddRows = false;
             this.dgvDatos.AllowUserToDeleteRows = false;
             this.dgvDatos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatos.AutoGenerateColumns = false;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -102,14 +102,14 @@ namespace AppComercial
             this.correoDataGridViewTextBoxColumn,
             this.notasDataGridViewTextBoxColumn});
             this.dgvDatos.DataSource = this.proveedorBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDatos.Location = new System.Drawing.Point(2, 105);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
@@ -259,50 +259,50 @@ namespace AppComercial
             // documentoToolStripLabel
             // 
             this.documentoToolStripLabel.Name = "documentoToolStripLabel";
-            this.documentoToolStripLabel.Size = new System.Drawing.Size(90, 24);
+            this.documentoToolStripLabel.Size = new System.Drawing.Size(90, 28);
             this.documentoToolStripLabel.Text = "Documento:";
             // 
             // documentoToolStripTextBox
             // 
             this.documentoToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.documentoToolStripTextBox.Name = "documentoToolStripTextBox";
-            this.documentoToolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            this.documentoToolStripTextBox.Size = new System.Drawing.Size(100, 31);
             // 
             // nombreToolStripLabel
             // 
             this.nombreToolStripLabel.Name = "nombreToolStripLabel";
-            this.nombreToolStripLabel.Size = new System.Drawing.Size(67, 24);
+            this.nombreToolStripLabel.Size = new System.Drawing.Size(67, 28);
             this.nombreToolStripLabel.Text = "Nombre:";
             // 
             // nombreToolStripTextBox
             // 
             this.nombreToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.nombreToolStripTextBox.Name = "nombreToolStripTextBox";
-            this.nombreToolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            this.nombreToolStripTextBox.Size = new System.Drawing.Size(100, 31);
             // 
             // nombresContactoToolStripLabel
             // 
             this.nombresContactoToolStripLabel.Name = "nombresContactoToolStripLabel";
-            this.nombresContactoToolStripLabel.Size = new System.Drawing.Size(131, 24);
+            this.nombresContactoToolStripLabel.Size = new System.Drawing.Size(131, 28);
             this.nombresContactoToolStripLabel.Text = "Nombre Contacto:";
             // 
             // nombresContactoToolStripTextBox
             // 
             this.nombresContactoToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.nombresContactoToolStripTextBox.Name = "nombresContactoToolStripTextBox";
-            this.nombresContactoToolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            this.nombresContactoToolStripTextBox.Size = new System.Drawing.Size(100, 31);
             // 
             // apellidosContactoToolStripLabel
             // 
             this.apellidosContactoToolStripLabel.Name = "apellidosContactoToolStripLabel";
-            this.apellidosContactoToolStripLabel.Size = new System.Drawing.Size(133, 24);
+            this.apellidosContactoToolStripLabel.Size = new System.Drawing.Size(133, 28);
             this.apellidosContactoToolStripLabel.Text = "Apellido Contacto:";
             // 
             // apellidosContactoToolStripTextBox
             // 
             this.apellidosContactoToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.apellidosContactoToolStripTextBox.Name = "apellidosContactoToolStripTextBox";
-            this.apellidosContactoToolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            this.apellidosContactoToolStripTextBox.Size = new System.Drawing.Size(100, 31);
             // 
             // tsbBuscar
             // 
