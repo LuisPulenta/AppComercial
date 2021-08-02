@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetalleCompra.cs" />
     <Compile Include="DSAppComercial.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

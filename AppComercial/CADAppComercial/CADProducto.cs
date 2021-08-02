@@ -41,7 +41,7 @@ namespace CADAppComercial
             }
         }
 
-        public static CADProducto ProductoGetProductoByIDBarra(int IDBarra)
+        public static CADProducto ProductoGetProductoByIDBarra(long IDBarra)
         {
             CADProducto miProducto = null;
             DSAppComercial.ProductoDataTable miTabla = adaptador.ProductoGetProductoByIDBarra(IDBarra);
