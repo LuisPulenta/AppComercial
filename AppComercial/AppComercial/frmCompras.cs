@@ -11,6 +11,12 @@ namespace AppComercial
     {
         private CADUsuario usuarioLogueado;
 
+        private int totalItems = 0;
+        private decimal totalBruto = 0;
+        private decimal totalIVA = 0;
+        private decimal totalDescuento = 0;
+        private decimal totalNeto = 0;
+
         public CADUsuario UsuarioLogueado
         {
             get => usuarioLogueado;
@@ -191,8 +197,135 @@ namespace AppComercial
             miDetalle.PorcentajeIVA = CADIVA.IVAGetIVAByIDIVA(ultimoProducto.IDIVA).Tarifa;
 
             misDetalles.Add(miDetalle);
+
+            totalItems += 1;
+            totalBruto += miDetalle.valorBruto;
+            totalIVA += miDetalle.valorIVA;
+            totalDescuento += miDetalle.valorDescuento;
+            totalNeto += miDetalle.valorNeto;
+
+            RefrescaGrid();
+            
+            LimpiarControles();
+        }
+
+        private void LimpiarControles()
+        {
+            ultimoProducto = null;
+            productoTextBox.Text = string.Empty;
+            productoLabel.Text = string.Empty;
+            cantidadTextBox.Text = string.Empty;
+            costoTextBox.Text = string.Empty;
+            porcentajeDescuentoTextBox.Text = string.Empty;
+            productoTextBox.Focus();
+        }
+
+        private void RefrescaGrid()
+        {
             dgvDatos.DataSource = null;
             dgvDatos.DataSource = misDetalles;
+
+            totalItemTextBox.Text = string.Format("{0:N0}", totalItems);
+            totalBrutoTextBox.Text = string.Format("{0:C2}", totalBruto);
+            totalIVATextBox.Text = string.Format("{0:C2}", totalIVA);
+            totalDescuentoTextBox.Text = string.Format("{0:C2}", totalDescuento);
+            totalNetoTextBox.Text = string.Format("{0:C2}", totalNeto);
+
+            PersonalizaGrid();
+        }
+
+        private void PersonalizaGrid()
+        {
+            dgvDatos.Columns["IDProducto"].HeaderText = "ID Producto";
+            dgvDatos.Columns["IDProducto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvDatos.Columns["Descripcion"].HeaderText = "Descripción";
+            
+            dgvDatos.Columns["Costo"].HeaderText = "Costo";
+            dgvDatos.Columns["Costo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvDatos.Columns["Costo"].DefaultCellStyle.Format = "C2";
+
+            dgvDatos.Columns["Cantidad"].HeaderText = "Cantidad";
+            dgvDatos.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvDatos.Columns["Cantidad"].DefaultCellStyle.Format = "N2";
+
+            dgvDatos.Columns["PorcentajeIVA"].HeaderText = "% IVA";
+            dgvDatos.Columns["PorcentajeIVA"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvDatos.Columns["PorcentajeIVA"].DefaultCellStyle.Format = "P2";
+
+            dgvDatos.Columns["PorcentajeDescuento"].HeaderText = "% Descuento";
+            dgvDatos.Columns["PorcentajeDescuento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvDatos.Columns["PorcentajeDescuento"].DefaultCellStyle.Format = "P2";
+
+            dgvDatos.Columns["ValorBruto"].HeaderText = "Valor Bruto";
+            dgvDatos.Columns["ValorBruto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvDatos.Columns["ValorBruto"].DefaultCellStyle.Format = "C2";
+
+            dgvDatos.Columns["ValorIVA"].HeaderText = "Valor IVA";
+            dgvDatos.Columns["ValorIVA"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvDatos.Columns["ValorIVA"].DefaultCellStyle.Format = "C2";
+
+            dgvDatos.Columns["ValorDescuento"].HeaderText = "Valor Descuento";
+            dgvDatos.Columns["ValorDescuento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvDatos.Columns["ValorDescuento"].DefaultCellStyle.Format = "C2";
+
+            dgvDatos.Columns["ValorNeto"].HeaderText = "Valor Neto";
+            dgvDatos.Columns["ValorNeto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvDatos.Columns["ValorNeto"].DefaultCellStyle.Format = "C2";
+
+            //dgvDatos.AutoResizeColumns();
+
+            dgvDatos.Columns["IDProducto"].Width = 80;
+            dgvDatos.Columns["Descripcion"].Width = 200;
+            dgvDatos.Columns["Cantidad"].Width = 80;
+            dgvDatos.Columns["Costo"].Width = 80;
+            dgvDatos.Columns["PorcentajeIVA"].Width = 80;
+            dgvDatos.Columns["PorcentajeDescuento"].Width = 80;
+            dgvDatos.Columns["ValorBruto"].Width = 80;
+            dgvDatos.Columns["ValorIVA"].Width = 80;
+            dgvDatos.Columns["ValorDescuento"].Width = 80;
+            dgvDatos.Columns["ValorNeto"].Width = 80;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnGrabar_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            if (proveedorComboBox.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(proveedorComboBox, "Debe seleccionar un Proveedor");
+                proveedorComboBox.Focus();
+                return;
+            }
+
+            if (bodegaComboBox.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(bodegaComboBox, "Debe seleccionar una Bodega");
+                bodegaComboBox.Focus();
+                return;
+            }
+
+            if (misDetalles.Count==0)
+            {
+                errorProvider1.SetError(productoTextBox, "Debe ingresar al menos un Producto");
+                productoTextBox.Focus();
+                return;
+            }
+
+            DialogResult rta = MessageBox.Show(
+            "¿Está seguro de guardar la Compra?",
+            "Confirmación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button2);
+
+            if (rta == DialogResult.No) return;
+
+         
         }
     }
 }
