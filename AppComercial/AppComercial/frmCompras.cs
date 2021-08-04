@@ -325,7 +325,28 @@ namespace AppComercial
 
             if (rta == DialogResult.No) return;
 
-         
+            int IDProveedor = (int)proveedorComboBox.SelectedValue;
+            int IDBodega=(int)bodegaComboBox.SelectedValue;
+
+            //Grabamos la Cabecera de la Compra
+            int IDCompra = CADCompra.CompraInsertCompra(
+                fechaDateTimePicker.Value,
+                IDProveedor,
+                IDBodega);
+
+            //Grabamos el Detalle de la Compra
+            foreach (DetalleCompra midetalle in misDetalles)
+            {
+                //Consultamos saldo de producto en la bodega
+                CADBodegaProducto miBodegaProducto = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodega,midetalle.IDProducto);
+                float stock = 0;
+                if (miBodegaProducto==null)
+                {
+                    CADBodegaProducto.BodegaProductoUpdate(IDBodega, midetalle.IDProducto, 1, 1, 1, 1);
+                    
+                }
+                CADBodegaProducto.BodegaProductoActualizaStock(midetalle.Cantidad, IDBodega, midetalle.IDProducto);
+            }
         }
     }
 }

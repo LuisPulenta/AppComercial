@@ -55,5 +55,10 @@ namespace CADAppComercial
                 adaptador.BodegaProductoUpdate(Minimo, Maximo, DiasReposicion, CantidadMinima,IDBodega,IDProducto);
             }
         }
+
+        public static void BodegaProductoActualizaStock(float Cantidad, int IDBodega, int IDProducto)
+        {
+            adaptador.BodegaProductoActualizaStock(Cantidad, IDBodega, IDProducto);
+        }
     }
 }
