@@ -198,11 +198,7 @@ namespace AppComercial
 
             misDetalles.Add(miDetalle);
 
-            totalItems += 1;
-            totalBruto += miDetalle.valorBruto;
-            totalIVA += miDetalle.valorIVA;
-            totalDescuento += miDetalle.valorDescuento;
-            totalNeto += miDetalle.valorNeto;
+            pbxImagen.Image = null;
 
             RefrescaGrid();
             
@@ -224,6 +220,21 @@ namespace AppComercial
         {
             dgvDatos.DataSource = null;
             dgvDatos.DataSource = misDetalles;
+
+            totalItems = 0;
+            totalBruto = 0;
+            totalIVA = 0;
+            totalDescuento = 0;
+            totalNeto = 0;
+
+            foreach (DetalleCompra miDetalle in misDetalles)
+            {
+                totalItems += 1;
+                totalBruto += miDetalle.valorBruto;
+                totalIVA += miDetalle.valorIVA;
+                totalDescuento += miDetalle.valorDescuento;
+                totalNeto += miDetalle.valorNeto;
+            }
 
             totalItemTextBox.Text = string.Format("{0:N0}", totalItems);
             totalBrutoTextBox.Text = string.Format("{0:C2}", totalBruto);
@@ -327,6 +338,7 @@ namespace AppComercial
 
             int IDProveedor = (int)proveedorComboBox.SelectedValue;
             int IDBodega=(int)bodegaComboBox.SelectedValue;
+            DateTime fecha = fechaDateTimePicker.Value;
 
             //Grabamos la Cabecera de la Compra
             int IDCompra = CADCompra.CompraInsertCompra(
@@ -337,15 +349,129 @@ namespace AppComercial
             //Grabamos el Detalle de la Compra
             foreach (DetalleCompra midetalle in misDetalles)
             {
-                //Consultamos saldo de producto en la bodega
+                //Actualizamos la Tabla BodegaProducto
                 CADBodegaProducto miBodegaProducto = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodega,midetalle.IDProducto);
-                float stock = 0;
+                
                 if (miBodegaProducto==null)
                 {
                     CADBodegaProducto.BodegaProductoUpdate(IDBodega, midetalle.IDProducto, 1, 1, 1, 1);
                     
                 }
                 CADBodegaProducto.BodegaProductoActualizaStock(midetalle.Cantidad, IDBodega, midetalle.IDProducto);
+
+                //Actualizamos el Kardex
+                CADKardex miKardex = CADKardex.KardexUltimoKardex(IDBodega, midetalle.IDProducto);
+                
+                int IDKardex;
+                float nuevoSaldo;
+                decimal nuevoCostoPromedio;
+
+                if (miKardex == null)
+                {
+                    nuevoSaldo = midetalle.Cantidad;
+                    nuevoCostoPromedio = midetalle.Costo;
+                }
+                else
+                {
+                    nuevoSaldo = miKardex.Saldo + midetalle.Cantidad;
+                    nuevoCostoPromedio = (miKardex.CostoPromedio * (decimal)miKardex.Saldo + midetalle.Costo * (decimal)midetalle.Cantidad) / (decimal)nuevoSaldo;
+                }
+
+                IDKardex = CADKardex.KardexInsertKardex(
+                        IDBodega,
+                        midetalle.IDProducto,
+                        fecha,
+                        string.Format("CO-{0}", IDCompra),
+                        midetalle.Cantidad,
+                        0,
+                        nuevoSaldo,
+                        midetalle.Costo,
+                        nuevoCostoPromedio);
+
+                //Actualizamos CompraDetalle
+                CADCompraDetalle.CompraDetalleInsertCompraDetalle(
+                    IDCompra,
+                    midetalle.IDProducto,
+                    midetalle.Descripcion,
+                    midetalle.Costo,
+                    midetalle.Cantidad,
+                    IDKardex, midetalle.PorcentajeIVA,
+                    midetalle.PorcentajeDescuento);
+            }
+
+            MessageBox.Show(
+                string.Format("La Compra {0}, fue grabada de forma exitosa",IDCompra),
+                "Confirmación",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        
+            totalItems = 0;
+            totalBruto = 0;
+            totalIVA = 0;
+            totalDescuento = 0;
+            totalNeto = 0;
+            pbxImagen.Image = null;
+
+            proveedorComboBox.SelectedIndex = -1;
+            bodegaComboBox.SelectedIndex = -1;
+            misDetalles.Clear();
+            pbxImagen.Image = null;
+            RefrescaGrid();
+            proveedorComboBox.Focus();
+        }
+
+        private void eliminarTodoButton_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            if (misDetalles.Count == 0) return;
+
+            DialogResult rta = MessageBox.Show(
+             "¿Está seguro de borrar el todas las líneas de la Compra?",
+             "Confirmación",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question,
+             MessageBoxDefaultButton.Button2);
+
+            if (rta == DialogResult.No) return;
+
+            misDetalles.Clear();
+            
+            totalItems = 0;
+            totalBruto = 0;
+            totalIVA = 0;
+            totalDescuento = 0;
+            totalNeto = 0;
+            RefrescaGrid();
+            pbxImagen.Image = null;
+
+        }
+
+        private void eliminarLineaButton_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            if (misDetalles.Count == 0) return;
+            if(dgvDatos.SelectedRows.Count==0)
+            {
+                misDetalles.RemoveAt(misDetalles.Count - 1);
+                RefrescaGrid();
+            }
+        }
+
+        private void frmCompras_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(misDetalles.Count>0)
+            {
+                DialogResult rta = MessageBox.Show(
+            "La Compra tiene productos cargados, ¿está seguro de salir sin terminar la Compra?",
+            "Confirmación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button2);
+
+                if (rta == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }

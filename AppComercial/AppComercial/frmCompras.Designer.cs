@@ -54,7 +54,7 @@ namespace AppComercial
             this.cantidadTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.agregarButton = new System.Windows.Forms.Button();
-            this.eliminarButton = new System.Windows.Forms.Button();
+            this.eliminarLineaButton = new System.Windows.Forms.Button();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.costoTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -74,6 +74,7 @@ namespace AppComercial
             this.label14 = new System.Windows.Forms.Label();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.eliminarTodoButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proveedorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSAppComercial)).BeginInit();
@@ -226,7 +227,7 @@ namespace AppComercial
             // pbxImagen
             // 
             this.pbxImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbxImagen.Location = new System.Drawing.Point(854, 12);
+            this.pbxImagen.Location = new System.Drawing.Point(1009, 12);
             this.pbxImagen.Name = "pbxImagen";
             this.pbxImagen.Size = new System.Drawing.Size(277, 249);
             this.pbxImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -255,24 +256,25 @@ namespace AppComercial
             this.agregarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.agregarButton.Location = new System.Drawing.Point(256, 139);
             this.agregarButton.Name = "agregarButton";
-            this.agregarButton.Size = new System.Drawing.Size(118, 42);
+            this.agregarButton.Size = new System.Drawing.Size(132, 48);
             this.agregarButton.TabIndex = 15;
             this.agregarButton.Text = "Agregar";
             this.agregarButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.agregarButton.UseVisualStyleBackColor = true;
             this.agregarButton.Click += new System.EventHandler(this.agregarButton_Click);
             // 
-            // eliminarButton
+            // eliminarLineaButton
             // 
-            this.eliminarButton.Image = ((System.Drawing.Image)(resources.GetObject("eliminarButton.Image")));
-            this.eliminarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.eliminarButton.Location = new System.Drawing.Point(392, 140);
-            this.eliminarButton.Name = "eliminarButton";
-            this.eliminarButton.Size = new System.Drawing.Size(118, 41);
-            this.eliminarButton.TabIndex = 16;
-            this.eliminarButton.Text = "Eliminar";
-            this.eliminarButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.eliminarButton.UseVisualStyleBackColor = true;
+            this.eliminarLineaButton.Image = ((System.Drawing.Image)(resources.GetObject("eliminarLineaButton.Image")));
+            this.eliminarLineaButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.eliminarLineaButton.Location = new System.Drawing.Point(671, 141);
+            this.eliminarLineaButton.Name = "eliminarLineaButton";
+            this.eliminarLineaButton.Size = new System.Drawing.Size(132, 48);
+            this.eliminarLineaButton.TabIndex = 16;
+            this.eliminarLineaButton.Text = "Elim. Línea";
+            this.eliminarLineaButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.eliminarLineaButton.UseVisualStyleBackColor = true;
+            this.eliminarLineaButton.Click += new System.EventHandler(this.eliminarLineaButton_Click);
             // 
             // dgvDatos
             // 
@@ -435,9 +437,9 @@ namespace AppComercial
             // 
             this.btnGrabar.Image = ((System.Drawing.Image)(resources.GetObject("btnGrabar.Image")));
             this.btnGrabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGrabar.Location = new System.Drawing.Point(529, 139);
+            this.btnGrabar.Location = new System.Drawing.Point(395, 140);
             this.btnGrabar.Name = "btnGrabar";
-            this.btnGrabar.Size = new System.Drawing.Size(118, 42);
+            this.btnGrabar.Size = new System.Drawing.Size(132, 48);
             this.btnGrabar.TabIndex = 35;
             this.btnGrabar.Text = "Grabar";
             this.btnGrabar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -448,14 +450,27 @@ namespace AppComercial
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(667, 139);
+            this.btnCancelar.Location = new System.Drawing.Point(533, 140);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(118, 42);
+            this.btnCancelar.Size = new System.Drawing.Size(132, 48);
             this.btnCancelar.TabIndex = 36;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // eliminarTodoButton
+            // 
+            this.eliminarTodoButton.Image = ((System.Drawing.Image)(resources.GetObject("eliminarTodoButton.Image")));
+            this.eliminarTodoButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.eliminarTodoButton.Location = new System.Drawing.Point(809, 140);
+            this.eliminarTodoButton.Name = "eliminarTodoButton";
+            this.eliminarTodoButton.Size = new System.Drawing.Size(132, 48);
+            this.eliminarTodoButton.TabIndex = 37;
+            this.eliminarTodoButton.Text = "Elim. Todo";
+            this.eliminarTodoButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.eliminarTodoButton.UseVisualStyleBackColor = true;
+            this.eliminarTodoButton.Click += new System.EventHandler(this.eliminarTodoButton_Click);
             // 
             // frmCompras
             // 
@@ -463,6 +478,7 @@ namespace AppComercial
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(1298, 649);
+            this.Controls.Add(this.eliminarTodoButton);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGrabar);
             this.Controls.Add(this.label14);
@@ -482,7 +498,7 @@ namespace AppComercial
             this.Controls.Add(this.costoTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dgvDatos);
-            this.Controls.Add(this.eliminarButton);
+            this.Controls.Add(this.eliminarLineaButton);
             this.Controls.Add(this.agregarButton);
             this.Controls.Add(this.cantidadTextBox);
             this.Controls.Add(this.label5);
@@ -505,6 +521,7 @@ namespace AppComercial
             this.Name = "frmCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compras";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCompras_FormClosing);
             this.Load += new System.EventHandler(this.frmCompras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.proveedorBindingSource)).EndInit();
@@ -541,7 +558,7 @@ namespace AppComercial
         private System.Windows.Forms.Label productoLabel;
         private System.Windows.Forms.PictureBox pbxImagen;
         private System.Windows.Forms.DataGridView dgvDatos;
-        private System.Windows.Forms.Button eliminarButton;
+        private System.Windows.Forms.Button eliminarLineaButton;
         private System.Windows.Forms.Button agregarButton;
         private System.Windows.Forms.TextBox cantidadTextBox;
         private System.Windows.Forms.Label label5;
@@ -563,5 +580,6 @@ namespace AppComercial
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGrabar;
+        private System.Windows.Forms.Button eliminarTodoButton;
     }
 }
