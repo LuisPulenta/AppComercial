@@ -60,5 +60,10 @@ namespace CADAppComercial
         {
             adaptador.BodegaProductoActualizaStock(Cantidad, IDBodega, IDProducto);
         }
+
+        public static void DeleteBodegaProductoByIDProducto(int IDProducto)
+        {
+            adaptador.DeleteBodegaProductoByIDProducto(IDProducto);
+        }
     }
 }

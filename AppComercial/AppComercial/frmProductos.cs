@@ -148,33 +148,9 @@ namespace AppComercial
 
         private void LlenarGrillas()
         {
+            if (iDProductoTextBox.Text == string.Empty) return;
             this.barraTableAdapter.FillBy(this.dSAppComercial.Barra,Convert.ToInt32(iDProductoTextBox.Text));
             this.bodegaProductoTableAdapter.FillBy(this.dSAppComercial.BodegaProducto, Convert.ToInt32(iDProductoTextBox.Text));
-        }
-
-     
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            LlenarGrillas();
-            CargarImagen();
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            LlenarGrillas();
-            CargarImagen();
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            LlenarGrillas();
-            CargarImagen();
-        }
-
-        private void dgvDatos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            LlenarGrillas();
-            CargarImagen();
         }
 
         private void bindingNavigatorEditItem_Click(object sender, EventArgs e)
@@ -216,16 +192,30 @@ namespace AppComercial
 
             if (rta == DialogResult.No) return;
 
+            if (CADKardex.KardexProductoTieneMovimientos(Convert.ToInt32(iDProductoTextBox.Text)))
+            {
+                MessageBox.Show(
+                    "No se puede borrar Producto porque tiene movimientos",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
             this.Validate();
+
+            CADBarra.DeleteBarraByIDProducto(Convert.ToInt32(iDProductoTextBox.Text));
+            CADBodegaProducto.DeleteBodegaProductoByIDProducto(Convert.ToInt32(iDProductoTextBox.Text));
             this.productoBindingSource.RemoveAt(productoBindingSource.Position);
             this.tableAdapterManager.UpdateAll(this.dSAppComercial);
+            CargarImagen();
 
         }
 
         private void btnBuscarImagen_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-            imagenTextBox.Text = openFileDialog1.FileName;
+            imagenTextBox.Text = openFileDialog1.SafeFileName;
             CargarImagen();
         }
 
@@ -237,9 +227,9 @@ namespace AppComercial
             }
             else
             {
-                if(File.Exists(imagenTextBox.Text))
+                if(File.Exists("Images\\"+imagenTextBox.Text))
                 {
-                    pbxImagen.Load(imagenTextBox.Text);
+                    pbxImagen.Load("Images\\" + imagenTextBox.Text);
                 }
             }
         }
@@ -282,6 +272,12 @@ namespace AppComercial
             if (miBusqueda.IDElegido == 0) return;
             int position = productoBindingSource.Find("IDProducto", miBusqueda.IDElegido);
             productoBindingSource.Position = position;
+            LlenarGrillas();
+            CargarImagen();
+        }
+
+        private void productoBindingSource_PositionChanged(object sender, EventArgs e)
+        {
             LlenarGrillas();
             CargarImagen();
         }

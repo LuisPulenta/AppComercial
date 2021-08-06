@@ -105,6 +105,16 @@ namespace AppComercial
 
             if (rta == DialogResult.No) return;
 
+            if (CADKardex.KardexBodegaTieneMovimientos(Convert.ToInt32(iDBodegaTextBox.Text)))
+            {
+                MessageBox.Show(
+                    "No se puede borrar Bodega porque tiene movimientos",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
             this.Validate();
             this.bodegaBindingSource.RemoveAt(bodegaBindingSource.Position);
             this.tableAdapterManager.UpdateAll(this.dSAppComercial);

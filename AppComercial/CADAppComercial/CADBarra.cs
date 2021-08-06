@@ -29,5 +29,10 @@ namespace CADAppComercial
         {
             adaptador.BarraDeleteBarra(Barra);
         }
+
+        public static void DeleteBarraByIDProducto(int IDProducto)
+        {
+            adaptador.DeleteBarraByIDProducto(IDProducto);
+        }
     }
 }

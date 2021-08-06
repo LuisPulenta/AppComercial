@@ -106,9 +106,20 @@ namespace AppComercial
                 }
                 else
                 {
-                    if (File.Exists(miProducto.Imagen))
+                    
+                  if (File.Exists("Images\\" + miProducto.Imagen))
                     {
-                        pbxImagen.Load(miProducto.Imagen);
+                        if (miProducto.Imagen == string.Empty)
+                        {
+                            pbxImagen.Image = null;
+                        }
+                        else
+                        {
+                            if (File.Exists("Images\\" + miProducto.Imagen))
+                            {
+                                pbxImagen.Load("Images\\" + miProducto.Imagen);
+                            }
+                        }
                     }
                     else
                     {
@@ -117,6 +128,9 @@ namespace AppComercial
                 }
             }
         }
+
+       
+
 
         private void agregarButton_Click(object sender, EventArgs e)
         {
