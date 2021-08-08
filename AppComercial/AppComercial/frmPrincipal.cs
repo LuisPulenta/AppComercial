@@ -171,5 +171,18 @@ namespace AppComercial
         {
             comprasToolStripMenuItem_Click(sender, e);
         }
+
+        private void ventasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVentas miForm = new frmVentas();
+            miForm.MdiParent = this;
+            miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.Show();
+        }
+
+        private void tsbVentas_Click(object sender, EventArgs e)
+        {
+            ventasToolStripMenuItem_Click(sender, e);
+        }
     }
 }
