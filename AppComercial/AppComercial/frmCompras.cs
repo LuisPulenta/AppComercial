@@ -471,11 +471,24 @@ namespace AppComercial
         {
             errorProvider1.Clear();
             if (misDetalles.Count == 0) return;
-            if(dgvDatos.SelectedRows.Count==0)
+            if (dgvDatos.SelectedRows.Count == 0)
             {
                 misDetalles.RemoveAt(misDetalles.Count - 1);
                 RefrescaGrid();
             }
+            else
+            {
+                int IDProducto = (int)dgvDatos.SelectedRows[0].Cells[0].Value;
+                for (int i = 0; i < misDetalles.Count; i++)
+                {
+                    if (misDetalles[i].IDProducto == IDProducto)
+                    {
+                        misDetalles.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+            RefrescaGrid();
         }
 
         private void frmCompras_FormClosing(object sender, FormClosingEventArgs e)

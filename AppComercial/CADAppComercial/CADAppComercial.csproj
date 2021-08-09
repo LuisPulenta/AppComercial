@@ -51,6 +51,8 @@
     <Compile Include="CADPermisoRol.cs" />
     <Compile Include="CADProducto.cs" />
     <Compile Include="CADUsuario.cs" />
+    <Compile Include="CADVenta.cs" />
+    <Compile Include="CADVentaDetalle.cs" />
     <Compile Include="DSAppComercial.cs">
       <DependentUpon>DSAppComercial.xsd</DependentUpon>
     </Compile>

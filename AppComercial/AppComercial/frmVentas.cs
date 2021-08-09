@@ -288,5 +288,197 @@ namespace AppComercial
             dgvDatos.Columns["ValorDescuento"].Width = 80;
             dgvDatos.Columns["ValorNeto"].Width = 80;
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void eliminarLineaButton_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            if (misDetalles.Count == 0) return;
+            if (dgvDatos.SelectedRows.Count == 0)
+            {
+                misDetalles.RemoveAt(misDetalles.Count - 1);
+                RefrescaGrid();
+            }
+            else
+            {
+                int IDProducto = (int) dgvDatos.SelectedRows[0].Cells[0].Value;
+                for(int i=0;i<misDetalles.Count;i++)
+                {
+                    if (misDetalles[i].IDProducto==IDProducto)
+                    {
+                        misDetalles.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+            RefrescaGrid();
+        }
+
+        private void eliminarTodoButton_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            if (misDetalles.Count == 0) return;
+
+            DialogResult rta = MessageBox.Show(
+             "¿Está seguro de borrar el todas las líneas de la Venta?",
+             "Confirmación",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question,
+             MessageBoxDefaultButton.Button2);
+
+            if (rta == DialogResult.No) return;
+
+            misDetalles.Clear();
+
+            totalItems = 0;
+            totalBruto = 0;
+            totalIVA = 0;
+            totalDescuento = 0;
+            totalNeto = 0;
+            RefrescaGrid();
+            pbxImagen.Image = null;
+        }
+
+        private void frmVentas_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (misDetalles.Count > 0)
+            {
+                DialogResult rta = MessageBox.Show(
+            "La Venta tiene productos cargados, ¿está seguro de salir sin terminar la Venta?",
+            "Confirmación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button2);
+
+                if (rta == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void btnGrabar_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            if (clienteComboBox.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(clienteComboBox, "Debe seleccionar un Cliente");
+                clienteComboBox.Focus();
+                return;
+            }
+
+            if (bodegaComboBox.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(bodegaComboBox, "Debe seleccionar una Bodega");
+                bodegaComboBox.Focus();
+                return;
+            }
+
+            if (misDetalles.Count == 0)
+            {
+                errorProvider1.SetError(productoTextBox, "Debe ingresar al menos un Producto");
+                productoTextBox.Focus();
+                return;
+            }
+
+            DialogResult rta = MessageBox.Show(
+            "¿Está seguro de guardar la Venta?",
+            "Confirmación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button2);
+
+            if (rta == DialogResult.No) return;
+
+            int IDCliente = (int)clienteComboBox.SelectedValue;
+            int IDBodega = (int)bodegaComboBox.SelectedValue;
+            DateTime fecha = fechaDateTimePicker.Value;
+
+            //Grabamos la Cabecera de la Compra
+            int IDVenta = CADVenta.VentaInsertVenta(
+                fechaDateTimePicker.Value,
+                IDCliente,
+                IDBodega);
+
+            //Grabamos el Detalle de la Compra
+            foreach (DetalleVenta midetalle in misDetalles)
+            {
+                //Actualizamos la Tabla BodegaProducto
+                CADBodegaProducto miBodegaProducto = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodega, midetalle.IDProducto);
+
+                if (miBodegaProducto == null)
+                {
+                    CADBodegaProducto.BodegaProductoUpdate(IDBodega, midetalle.IDProducto, 1, 1, 1, 1);
+
+                }
+                CADBodegaProducto.BodegaProductoActualizaStock(-midetalle.Cantidad, IDBodega, midetalle.IDProducto);
+
+                //Actualizamos el Kardex
+                CADKardex miKardex = CADKardex.KardexUltimoKardex(IDBodega, midetalle.IDProducto);
+
+                int IDKardex;
+                float nuevoSaldo;
+                decimal nuevoCostoPromedio;
+                decimal nuevoUltimoCosto;
+
+                if (miKardex == null)
+                {
+                    nuevoSaldo = -midetalle.Cantidad;
+                    nuevoCostoPromedio = 0;
+                    nuevoUltimoCosto = 0;
+                }
+                else
+                {
+                    nuevoSaldo = miKardex.Saldo - midetalle.Cantidad;
+                    nuevoCostoPromedio = miKardex.CostoPromedio;
+                    nuevoUltimoCosto = miKardex.UltimoCosto;
+                }
+
+                IDKardex = CADKardex.KardexInsertKardex(
+                        IDBodega,
+                        midetalle.IDProducto,
+                        fecha,
+                        string.Format("VE-{0}", IDVenta),
+                        0,
+                        midetalle.Cantidad,
+                        nuevoSaldo,
+                        nuevoUltimoCosto,
+                        nuevoCostoPromedio);
+
+                //Actualizamos VentaDetalle
+                CADVentaDetalle.VentaDetalleInsertVentaDetalle(
+                    IDVenta,
+                    midetalle.IDProducto,
+                    midetalle.Descripcion,
+                    midetalle.Precio,
+                    midetalle.Cantidad,
+                    IDKardex, midetalle.PorcentajeIVA,
+                    midetalle.PorcentajeDescuento);
+            }
+
+            MessageBox.Show(
+                string.Format("La Venta {0}, fue grabada de forma exitosa", IDVenta),
+                "Confirmación",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            totalItems = 0;
+            totalBruto = 0;
+            totalIVA = 0;
+            totalDescuento = 0;
+            totalNeto = 0;
+            pbxImagen.Image = null;
+
+            clienteComboBox.SelectedIndex = -1;
+            bodegaComboBox.SelectedIndex = -1;
+            misDetalles.Clear();
+            pbxImagen.Image = null;
+            RefrescaGrid();
+            clienteComboBox.Focus();
+        }
     }
 }
