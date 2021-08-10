@@ -65,5 +65,10 @@ namespace CADAppComercial
         {
             adaptador.DeleteBodegaProductoByIDProducto(IDProducto);
         }
+
+        public static DSAppComercial.BodegaProductoDataTable GetData()
+        {
+            return adaptador.GetData();
+        }
     }
 }

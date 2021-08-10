@@ -478,6 +478,7 @@ namespace AppComercial
             misDetalles.Clear();
             pbxImagen.Image = null;
             RefrescaGrid();
+            fechaDateTimePicker.Value = DateTime.Now;
             clienteComboBox.Focus();
         }
     }

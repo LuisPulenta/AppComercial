@@ -75,5 +75,48 @@ namespace CADAppComercial
             }
             return true;
         }
+
+        public static void ReKardex()
+        {
+            DSAppComercial.BodegaProductoDataTable misBodegaProductos = CADBodegaProducto.GetData();
+            foreach(DSAppComercial.BodegaProductoRow miBodegaProducto in misBodegaProductos.Rows)
+            {
+                DSAppComercial.KardexDataTable misKardex = adaptador.KardexGetKardexByIDBodegaAndIDProducto(miBodegaProducto.IDBodega, miBodegaProducto.IDProducto);
+                if (misKardex.Rows.Count > 0)
+                {
+                    float saldo = 0;
+                    decimal costoPromedio = 0;
+                    decimal ultimoCosto = 0;
+                    if (misKardex[0].Entrada>0)
+                    {
+                        saldo = (float)misKardex[0].Entrada;
+                        costoPromedio = misKardex[0].UltimoCosto;
+                        ultimoCosto= misKardex[0].UltimoCosto;
+                    }
+                    else
+                    {
+                        saldo = (float)misKardex[0].Salida;
+                        ultimoCosto = 0;
+                    }
+
+                    adaptador.KardexUpdateKardex(saldo, costoPromedio,ultimoCosto,misKardex[0].IDKardex);
+
+                    for (int i=1; i<misKardex.Rows.Count;i++)
+                    {
+                        if(misKardex[i].Entrada>0)
+                        {
+                            costoPromedio = ((decimal)saldo * costoPromedio + (decimal)misKardex[i].Entrada * misKardex[i].UltimoCosto) / (decimal)(saldo + misKardex[i].Entrada);
+                            ultimoCosto = misKardex[i].UltimoCosto;
+                            saldo += (float) misKardex[i].Entrada;
+                        }
+                        else
+                        {
+                            saldo -= (float)misKardex[i].Salida;
+                        }
+                        adaptador.KardexUpdateKardex(saldo, costoPromedio, ultimoCosto, misKardex[i].IDKardex);
+                    }
+                }
+            }
+        }
     }
 }
