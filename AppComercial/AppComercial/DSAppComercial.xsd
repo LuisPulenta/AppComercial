@@ -993,6 +993,29 @@ ORDER BY Fecha</CommandText>
               </DbSource>
             </Sources>
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VentaTableAdapter" GeneratorDataComponentClassName="VentaTableAdapter" Name="Venta" UserDataComponentName="VentaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="LuisAplicacionComercialConnectionString (Settings)" DbObjectName="LuisAplicacionComercial.dbo.Venta" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Venta.IDVenta, 'Venta: ' +Convert(NVARCHAR,Venta.IDVenta)+' '+Convert(NVARCHAR,Venta.Fecha)+' Cliente: '+ Convert(NVARCHAR,Cliente.IDCliente) + '-'+Cliente.NombreComercial+' Monto: '+ Convert(NVARCHAR,SUM( VentaDetalle.Cantidad * VentaDetalle.Precio - ( VentaDetalle.Precio * VentaDetalle.Cantidad) / (1 + VentaDetalle.PorcentajeIVA) 
+         * VentaDetalle.PorcentajeDescuento)) +' Items: '+ Convert(NVARCHAR,COUNT( VentaDetalle.IDVenta)) AS Venta
+FROM   Venta INNER JOIN
+          Cliente ON Venta.IDCliente = Cliente.IDCliente INNER JOIN
+          VentaDetalle ON Venta.IDVenta = VentaDetalle.IDVenta
+GROUP BY Venta.IDVenta, Venta.Fecha, Cliente.IDCliente,Cliente.NombreComercial
+ORDER BY Venta.Fecha DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDVenta" DataSetColumn="IDVenta" />
+              <Mapping SourceColumn="Venta" DataSetColumn="Venta" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1375,6 +1398,20 @@ ORDER BY Fecha</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Venta" msprop:Generator_TableClassName="VentaDataTable" msprop:Generator_TableVarName="tableVenta" msprop:Generator_TablePropName="Venta" msprop:Generator_RowDeletingName="VentaRowDeleting" msprop:Generator_RowChangingName="VentaRowChanging" msprop:Generator_RowEvHandlerName="VentaRowChangeEventHandler" msprop:Generator_RowDeletedName="VentaRowDeleted" msprop:Generator_UserTableName="Venta" msprop:Generator_RowChangedName="VentaRowChanged" msprop:Generator_RowEvArgName="VentaRowChangeEvent" msprop:Generator_RowClassName="VentaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDVenta" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIDVenta" msprop:Generator_ColumnPropNameInRow="IDVenta" msprop:Generator_ColumnPropNameInTable="IDVentaColumn" msprop:Generator_UserColumnName="IDVenta" type="xs:int" />
+              <xs:element name="Venta" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVenta" msprop:Generator_ColumnPropNameInRow="Venta" msprop:Generator_ColumnPropNameInTable="VentaColumn" msprop:Generator_UserColumnName="Venta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -1434,6 +1471,10 @@ ORDER BY Fecha</CommandText>
     <xs:unique name="Kardex_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Kardex" />
       <xs:field xpath="mstns:IDKardex" />
+    </xs:unique>
+    <xs:unique name="Venta_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Venta" />
+      <xs:field xpath="mstns:IDVenta" />
     </xs:unique>
   </xs:element>
   <xs:annotation>

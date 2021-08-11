@@ -208,5 +208,18 @@ namespace AppComercial
             miForm.UsuarioLogueado = usuarioLogueado;
             miForm.Show();
         }
+
+        private void dEvolucionesDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDevolucionClientes miForm = new frmDevolucionClientes();
+            miForm.MdiParent = this;
+            miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.Show();
+        }
+
+        private void tsbDevolucionCliente_Click(object sender, EventArgs e)
+        {
+            dEvolucionesDeClientesToolStripMenuItem_Click(sender, e);
+        }
     }
 }

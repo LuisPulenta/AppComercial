@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="DetalleCompra.cs" />
     <Compile Include="DetalleVenta.cs" />
+    <Compile Include="DevolucionClienteDevuelto.cs" />
+    <Compile Include="DevolucionClienteDisponible.cs" />
     <Compile Include="DSAppComercial.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -130,6 +132,12 @@
     </Compile>
     <Compile Include="frmDepartamentos.Designer.cs">
       <DependentUpon>frmDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDevolucionClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDevolucionClientes.Designer.cs">
+      <DependentUpon>frmDevolucionClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="frmIVA.cs">
       <SubType>Form</SubType>
@@ -232,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDepartamentos.resx">
       <DependentUpon>frmDepartamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDevolucionClientes.resx">
+      <DependentUpon>frmDevolucionClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmIVA.resx">
       <DependentUpon>frmIVA.cs</DependentUpon>
