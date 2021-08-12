@@ -46,6 +46,8 @@
     <Compile Include="CADCliente.cs" />
     <Compile Include="CADCompra.cs" />
     <Compile Include="CADCompraDetalle.cs" />
+    <Compile Include="CADDevolucionCliente.cs" />
+    <Compile Include="CADDevolucionClienteDetalle.cs" />
     <Compile Include="CADIVA.cs" />
     <Compile Include="CADKardex.cs" />
     <Compile Include="CADPermisoRol.cs" />
