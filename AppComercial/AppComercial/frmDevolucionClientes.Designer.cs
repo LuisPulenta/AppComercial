@@ -65,6 +65,7 @@ namespace AppComercial
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.fechaDevolucionDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.btnDevolverTodo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSAppComercial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource)).BeginInit();
@@ -253,7 +254,7 @@ namespace AppComercial
             this.productoComboBox.FormattingEnabled = true;
             this.productoComboBox.Location = new System.Drawing.Point(80, 367);
             this.productoComboBox.Name = "productoComboBox";
-            this.productoComboBox.Size = new System.Drawing.Size(323, 24);
+            this.productoComboBox.Size = new System.Drawing.Size(289, 24);
             this.productoComboBox.TabIndex = 13;
             this.productoComboBox.ValueMember = "IDProducto";
             // 
@@ -270,33 +271,35 @@ namespace AppComercial
             // 
             this.eliminarTodoButton.Image = ((System.Drawing.Image)(resources.GetObject("eliminarTodoButton.Image")));
             this.eliminarTodoButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.eliminarTodoButton.Location = new System.Drawing.Point(987, 368);
+            this.eliminarTodoButton.Location = new System.Drawing.Point(1125, 367);
             this.eliminarTodoButton.Name = "eliminarTodoButton";
-            this.eliminarTodoButton.Size = new System.Drawing.Size(132, 48);
+            this.eliminarTodoButton.Size = new System.Drawing.Size(140, 48);
             this.eliminarTodoButton.TabIndex = 20;
             this.eliminarTodoButton.Text = "Elim. Todo";
             this.eliminarTodoButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.eliminarTodoButton.UseVisualStyleBackColor = true;
+            this.eliminarTodoButton.Click += new System.EventHandler(this.eliminarTodoButton_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(711, 368);
+            this.btnCancelar.Location = new System.Drawing.Point(835, 367);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(132, 48);
+            this.btnCancelar.Size = new System.Drawing.Size(140, 48);
             this.btnCancelar.TabIndex = 18;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGrabar
             // 
             this.btnGrabar.Image = ((System.Drawing.Image)(resources.GetObject("btnGrabar.Image")));
             this.btnGrabar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGrabar.Location = new System.Drawing.Point(573, 368);
+            this.btnGrabar.Location = new System.Drawing.Point(691, 367);
             this.btnGrabar.Name = "btnGrabar";
-            this.btnGrabar.Size = new System.Drawing.Size(132, 48);
+            this.btnGrabar.Size = new System.Drawing.Size(140, 48);
             this.btnGrabar.TabIndex = 17;
             this.btnGrabar.Text = "Grabar";
             this.btnGrabar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -307,21 +310,22 @@ namespace AppComercial
             // 
             this.eliminarLineaButton.Image = ((System.Drawing.Image)(resources.GetObject("eliminarLineaButton.Image")));
             this.eliminarLineaButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.eliminarLineaButton.Location = new System.Drawing.Point(849, 369);
+            this.eliminarLineaButton.Location = new System.Drawing.Point(979, 368);
             this.eliminarLineaButton.Name = "eliminarLineaButton";
-            this.eliminarLineaButton.Size = new System.Drawing.Size(132, 48);
+            this.eliminarLineaButton.Size = new System.Drawing.Size(140, 48);
             this.eliminarLineaButton.TabIndex = 19;
             this.eliminarLineaButton.Text = "Elim. Línea";
             this.eliminarLineaButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.eliminarLineaButton.UseVisualStyleBackColor = true;
+            this.eliminarLineaButton.Click += new System.EventHandler(this.eliminarLineaButton_Click);
             // 
             // agregarButton
             // 
             this.agregarButton.Image = ((System.Drawing.Image)(resources.GetObject("agregarButton.Image")));
             this.agregarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agregarButton.Location = new System.Drawing.Point(434, 367);
+            this.agregarButton.Location = new System.Drawing.Point(403, 367);
             this.agregarButton.Name = "agregarButton";
-            this.agregarButton.Size = new System.Drawing.Size(132, 48);
+            this.agregarButton.Size = new System.Drawing.Size(140, 48);
             this.agregarButton.TabIndex = 16;
             this.agregarButton.Text = "Agregar";
             this.agregarButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -360,6 +364,19 @@ namespace AppComercial
             this.fechaDevolucionDateTimePicker.Size = new System.Drawing.Size(263, 22);
             this.fechaDevolucionDateTimePicker.TabIndex = 6;
             // 
+            // btnDevolverTodo
+            // 
+            this.btnDevolverTodo.Image = ((System.Drawing.Image)(resources.GetObject("btnDevolverTodo.Image")));
+            this.btnDevolverTodo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDevolverTodo.Location = new System.Drawing.Point(547, 366);
+            this.btnDevolverTodo.Name = "btnDevolverTodo";
+            this.btnDevolverTodo.Size = new System.Drawing.Size(140, 48);
+            this.btnDevolverTodo.TabIndex = 22;
+            this.btnDevolverTodo.Text = "Devolver Todo";
+            this.btnDevolverTodo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDevolverTodo.UseVisualStyleBackColor = true;
+            this.btnDevolverTodo.Click += new System.EventHandler(this.btnDevolverTodo_Click);
+            // 
             // frmDevolucionClientes
             // 
             this.AcceptButton = this.agregarButton;
@@ -367,6 +384,7 @@ namespace AppComercial
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(1298, 649);
+            this.Controls.Add(this.btnDevolverTodo);
             this.Controls.Add(this.fechaDevolucionDateTimePicker);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.eliminarTodoButton);
@@ -440,5 +458,6 @@ namespace AppComercial
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker fechaDevolucionDateTimePicker;
+        private System.Windows.Forms.Button btnDevolverTodo;
     }
 }

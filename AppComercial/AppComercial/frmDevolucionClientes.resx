@@ -159,6 +159,19 @@
         InQJo1XgEBrEXM+rBOPFeM745+XlQUZGBmhoaMB/AfV94HCgwOcjAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="btnDevolverTodo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAGnSURBVFhH5ZfNUoMwEMd78DH06MfdJhxRcDo6vqDTJ3AcbdWDHrT1IPVB/LppS2md0Qvuho3F
+        TCgJCnT0P7NDSQj/X7ObAA1Vp/3BfrcfPMIxLjV6wUPn+naPbGfCDu2AMqI3uCfbmWQnnZamTJ8/AzBs
+        t2NdUPdCAwTvUIgHdFpYqqExwPnVgNHPH6kwAGrc2tyIfNad+GyMEfm8E/psjbqNVBhguuU4E58PIeLv
+        wV5tIAoBCHOPj9AQZ2Dq8mUMmIELAjmiS3NlDZA2h+Nh7LpL1NVACAHlsSdqypUVwDxz1FuruUIzoAmq
+        ke3mOl0uZAyABQc3SnKuMcfzpCBVYyU89oIzRcPMAeTN8aiamyirRowBkqXG4zS9rb5S5LGQmuoC4CNq
+        MgfAAsLBRVOA5pHHL2kGjqnZHAA3Fxj8K0UY7jirNMwcAJW3DOU+oA3IO/7ztDnKCgA1D0LmGKb6mZpy
+        ZQ2A0m3FIsdVbMVSAqKuh5EUbqtidST5heAnlT2Oa38hgdexj1pfyTI7LCUN1aDufwCQpwUGqPvjFD+Z
+        K4EA87Obu91PuKfi2TOxukoAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="eliminarTodoButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAD

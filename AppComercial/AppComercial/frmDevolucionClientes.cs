@@ -189,6 +189,16 @@ namespace AppComercial
                 return;
             }
 
+            foreach (DevolucionClienteDevuelto nuevoDevuelto in misDevueltos)
+                {
+                    if ((int) productoComboBox.SelectedValue== nuevoDevuelto.IDProducto)
+                    {
+                        errorProvider1.SetError(productoComboBox, "El Producto ya fue agregado a la devolución");
+                        productoComboBox.Focus();
+                        return;
+                    }
+                }
+
             DevolucionClienteDevuelto miDevuelto = new DevolucionClienteDevuelto();
             miDevuelto.CantidadADevolver = cantidad;
             miDevuelto.Descripcion = misDisponibles[productoComboBox.SelectedIndex].Descripcion;
@@ -270,9 +280,16 @@ namespace AppComercial
                 else
                 {
                     nuevoSaldo = miKardex.Saldo + midevuelto.CantidadADevolver;
-                    nuevoCostoPromedio = (miKardex.CostoPromedio * (decimal)miKardex.Saldo
-                        + midevuelto.Precio)*(decimal)midevuelto.CantidadADevolver / (decimal)nuevoSaldo;
-                    nuevoUltimoCosto = (decimal) midevuelto.Precio;
+                    if(nuevoSaldo != 0)
+                    {
+                        nuevoCostoPromedio = (miKardex.CostoPromedio * (decimal)miKardex.Saldo
+                        + midevuelto.Precio * (decimal)midevuelto.CantidadADevolver) / (decimal)nuevoSaldo;
+                    }
+                    else
+                    {
+                        nuevoCostoPromedio = 0;
+                    }
+                    nuevoUltimoCosto = (decimal)midevuelto.Precio;
                 }
 
                 IDKardex = CADKardex.KardexInsertKardex(
@@ -325,6 +342,91 @@ namespace AppComercial
             PersonalizarDevueltos();
 
             ventaComboBox.Focus();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void eliminarTodoButton_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            if (misDevueltos.Count == 0) return;
+
+            DialogResult rta = MessageBox.Show(
+             "¿Está seguro de borrar el todas las líneas de la Devolución?",
+             "Confirmación",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question,
+             MessageBoxDefaultButton.Button2);
+
+            if (rta == DialogResult.No) return;
+
+            misDevueltos.Clear();
+            RefrescarDevueltos();
+            PersonalizarDevueltos();
+        }
+
+        private void RefrescarDevueltos()
+        {
+            dgvDatosDevuelto.DataSource = null;
+            dgvDatosDevuelto.DataSource = misDevueltos;
+        }
+
+        private void eliminarLineaButton_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            if (misDevueltos.Count == 0) return;
+            if (dgvDatosDevuelto.SelectedRows.Count == 0)
+            {
+                misDevueltos.RemoveAt(misDevueltos.Count - 1);
+                RefrescarDevueltos();
+            }
+            else
+            {
+                int IDProducto = (int)dgvDatosDevuelto.SelectedRows[0].Cells[0].Value;
+                for (int i = 0; i < misDevueltos.Count; i++)
+                {
+                    if (misDevueltos[i].IDProducto == IDProducto)
+                    {
+                        misDevueltos.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+            RefrescarDevueltos();
+            PersonalizarDevueltos();
+        }
+
+        private void btnDevolverTodo_Click(object sender, EventArgs e)
+        {
+            DialogResult rta = MessageBox.Show(
+             "¿Está seguro de agregar todos los ítems de la venta original a la Devolución?",
+             "Confirmación",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question,
+             MessageBoxDefaultButton.Button2);
+
+            if (rta == DialogResult.No) return;
+
+            misDevueltos.Clear();
+            foreach(DevolucionClienteDisponible miDisponible in misDisponibles)
+            {
+                if (miDisponible.CantidadDisponible>0)
+                {
+                    DevolucionClienteDevuelto miDevuelto = new DevolucionClienteDevuelto();
+                    miDevuelto.CantidadADevolver = miDisponible.CantidadDisponible;
+                    miDevuelto.Descripcion = miDisponible.Descripcion;
+                    miDevuelto.IDProducto = miDisponible.IDProducto;
+                    miDevuelto.PorcentajeDescuento = miDisponible.PorcentajeDescuento;
+                    miDevuelto.PorcentajeIVA = miDisponible.PorcentajeIVA;
+                    miDevuelto.Precio = miDisponible.Precio;
+                    misDevueltos.Add(miDevuelto);
+                }
+            }
+            RefrescarDevueltos();
+            PersonalizarDevueltos();
         }
     }
 }
