@@ -1,4 +1,5 @@
-﻿using CADAppComercial;
+﻿using AppComercial.Listados;
+using CADAppComercial;
 using System;
 using System.Windows.Forms;
 
@@ -233,6 +234,14 @@ namespace AppComercial
         private void tsbSalidas_Click(object sender, EventArgs e)
         {
             salidasToolStripMenuItem_Click(sender, e);
+        }
+
+        private void productosToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            frmListadoProductos miForm = new frmListadoProductos();
+            miForm.MdiParent = this;
+            //miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.Show();
         }
     }
 }
