@@ -74,9 +74,10 @@ namespace AppComercial
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCompras = new System.Windows.Forms.ToolStripButton();
             this.tsbVentas = new System.Windows.Forms.ToolStripButton();
+            this.tsbDevolucionCliente = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.nombresUsuarioToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsbDevolucionCliente = new System.Windows.Forms.ToolStripButton();
+            this.tsbSalidas = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -288,6 +289,7 @@ namespace AppComercial
             this.salidasToolStripMenuItem.Name = "salidasToolStripMenuItem";
             this.salidasToolStripMenuItem.Size = new System.Drawing.Size(303, 26);
             this.salidasToolStripMenuItem.Text = "&Salidas";
+            this.salidasToolStripMenuItem.Click += new System.EventHandler(this.salidasToolStripMenuItem_Click);
             // 
             // trasladosToolStripMenuItem
             // 
@@ -388,7 +390,8 @@ namespace AppComercial
             this.toolStripSeparator1,
             this.tsbCompras,
             this.tsbVentas,
-            this.tsbDevolucionCliente});
+            this.tsbDevolucionCliente,
+            this.tsbSalidas});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1291, 39);
@@ -450,6 +453,15 @@ namespace AppComercial
             this.tsbVentas.Text = "Ventas";
             this.tsbVentas.Click += new System.EventHandler(this.tsbVentas_Click);
             // 
+            // tsbDevolucionCliente
+            // 
+            this.tsbDevolucionCliente.Image = ((System.Drawing.Image)(resources.GetObject("tsbDevolucionCliente.Image")));
+            this.tsbDevolucionCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDevolucionCliente.Name = "tsbDevolucionCliente";
+            this.tsbDevolucionCliente.Size = new System.Drawing.Size(164, 36);
+            this.tsbDevolucionCliente.Text = "Devolución Clientes";
+            this.tsbDevolucionCliente.Click += new System.EventHandler(this.tsbDevolucionCliente_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -466,14 +478,14 @@ namespace AppComercial
             this.nombresUsuarioToolStripStatusLabel.Name = "nombresUsuarioToolStripStatusLabel";
             this.nombresUsuarioToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
             // 
-            // tsbDevolucionCliente
+            // tsbSalidas
             // 
-            this.tsbDevolucionCliente.Image = ((System.Drawing.Image)(resources.GetObject("tsbDevolucionCliente.Image")));
-            this.tsbDevolucionCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDevolucionCliente.Name = "tsbDevolucionCliente";
-            this.tsbDevolucionCliente.Size = new System.Drawing.Size(164, 36);
-            this.tsbDevolucionCliente.Text = "Devolución Clientes";
-            this.tsbDevolucionCliente.Click += new System.EventHandler(this.tsbDevolucionCliente_Click);
+            this.tsbSalidas.Image = ((System.Drawing.Image)(resources.GetObject("tsbSalidas.Image")));
+            this.tsbSalidas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSalidas.Name = "tsbSalidas";
+            this.tsbSalidas.Size = new System.Drawing.Size(80, 36);
+            this.tsbSalidas.Text = "Salidas";
+            this.tsbSalidas.Click += new System.EventHandler(this.tsbSalidas_Click);
             // 
             // frmPrincipal
             // 
@@ -551,5 +563,6 @@ namespace AppComercial
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem verificarConsistenciaDeKardexToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton tsbDevolucionCliente;
+        private System.Windows.Forms.ToolStripButton tsbSalidas;
     }
 }

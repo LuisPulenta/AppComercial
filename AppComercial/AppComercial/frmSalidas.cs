@@ -1,12 +1,18 @@
 ﻿using CADAppComercial;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppComercial
 {
-    public partial class frmVentas : Form
+    public partial class frmSalidas : Form
     {
         private CADUsuario usuarioLogueado;
 
@@ -17,37 +23,22 @@ namespace AppComercial
         }
 
         private int totalItems = 0;
-        private decimal totalBruto = 0;
-        private decimal totalIVA = 0;
-        private decimal totalDescuento = 0;
-        private decimal totalNeto = 0;
-        List<DetalleVenta> misDetalles = new List<DetalleVenta>();
+        List<DetalleSalida> misDetalles = new List<DetalleSalida>();
         CADProducto ultimoProducto = null;
 
-        
-
-        public frmVentas()
+        public frmSalidas()
         {
             InitializeComponent();
         }
 
-        private void frmVentas_Load(object sender, EventArgs e)
+        private void frmSalidas_Load(object sender, EventArgs e)
         {
-            this.clienteTableAdapter.FillBy1(this.dSAppComercial.Cliente);
-            this.bodegaTableAdapter.FillBy(this.dSAppComercial.Bodega);
-            clienteComboBox.SelectedIndex = -1;
+            this.bodegaTableAdapter.Fill(this.dSAppComercial.Bodega);
+            this.conceptoTableAdapter.Fill(this.dSAppComercial.Concepto);
+            conceptoComboBox.SelectedIndex = -1;
             bodegaComboBox.SelectedIndex = -1;
             productoLabel.Text = string.Empty;
         }
-
-        private void btnBuscarCliente_Click(object sender, EventArgs e)
-        {
-            frmBusquedaCliente miBusqueda = new frmBusquedaCliente();
-            miBusqueda.ShowDialog();
-            if (miBusqueda.IDElegido == 0) return;
-            clienteComboBox.SelectedValue = miBusqueda.IDElegido;
-        }
-
         private void btnBuscarProducto_Click(object sender, EventArgs e)
         {
             frmBusquedaProducto miBusqueda = new frmBusquedaProducto();
@@ -57,7 +48,16 @@ namespace AppComercial
             productoTextBox_Validating(sender, new System.ComponentModel.CancelEventArgs());
         }
 
-        private void productoTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void btnBuscarProducto_Click_1(object sender, EventArgs e)
+        {
+            frmBusquedaProducto miBusqueda = new frmBusquedaProducto();
+            miBusqueda.ShowDialog();
+            if (miBusqueda.IDElegido == 0) return;
+            productoTextBox.Text = miBusqueda.IDElegido.ToString();
+            productoTextBox_Validating(sender, new System.ComponentModel.CancelEventArgs());
+        }
+
+        private void productoTextBox_Validating(object sender, CancelEventArgs e)
         {
             errorProvider1.Clear();
             pbxImagen.Image = null;
@@ -128,6 +128,11 @@ namespace AppComercial
             }
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void agregarButton_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();
@@ -158,33 +163,13 @@ namespace AppComercial
                 return;
             }
 
-            float porcentajeDescuento = 0;
-            if (porcentajeDescuentoTextBox.Text != string.Empty)
-            {
-                if (!float.TryParse(porcentajeDescuentoTextBox.Text, out porcentajeDescuento))
-                {
-                    errorProvider1.SetError(porcentajeDescuentoTextBox, "Debe ingresar un valor numérico");
-                    porcentajeDescuentoTextBox.Focus();
-                    return;
-                }
+            decimal precio = ultimoProducto.Precio;
 
-                if (porcentajeDescuento < 0 || porcentajeDescuento > 100)
-                {
-                    errorProvider1.SetError(porcentajeDescuentoTextBox, "Debe ingresar un valor igual o mayor a 0 y menor o igual a 100");
-                    porcentajeDescuentoTextBox.Focus();
-                    return;
-                }
-                porcentajeDescuento /= 100;
-            }
-
-            decimal precio= ultimoProducto.Precio;
-
-            DetalleVenta miDetalle = new DetalleVenta();
+            DetalleSalida miDetalle = new DetalleSalida();
             miDetalle.Cantidad = cantidad;
             miDetalle.Precio = precio;
             miDetalle.Descripcion = ultimoProducto.Descripcion;
             miDetalle.IDProducto = ultimoProducto.IDProducto;
-            miDetalle.PorcentajeDescuento = porcentajeDescuento;
             miDetalle.PorcentajeIVA = CADIVA.IVAGetIVAByIDIVA(ultimoProducto.IDIVA).Tarifa;
 
             misDetalles.Add(miDetalle);
@@ -203,7 +188,6 @@ namespace AppComercial
             productoLabel.Text = string.Empty;
             cantidadTextBox.Text = string.Empty;
             precioTextBox.Text = string.Empty;
-            porcentajeDescuentoTextBox.Text = string.Empty;
             productoTextBox.Focus();
         }
 
@@ -213,25 +197,14 @@ namespace AppComercial
             dgvDatos.DataSource = misDetalles;
 
             totalItems = 0;
-            totalBruto = 0;
-            totalIVA = 0;
-            totalDescuento = 0;
-            totalNeto = 0;
+            
 
-            foreach (DetalleVenta miDetalle in misDetalles)
+            foreach (DetalleSalida miDetalle in misDetalles)
             {
                 totalItems += 1;
-                totalBruto += miDetalle.valorBruto;
-                totalIVA += miDetalle.valorIVA;
-                totalDescuento += miDetalle.valorDescuento;
-                totalNeto += miDetalle.valorNeto;
             }
 
             totalItemTextBox.Text = string.Format("{0:N0}", totalItems);
-            totalBrutoTextBox.Text = string.Format("{0:C2}", totalBruto);
-            totalIVATextBox.Text = string.Format("{0:C2}", totalIVA);
-            totalDescuentoTextBox.Text = string.Format("{0:C2}", totalDescuento);
-            totalNetoTextBox.Text = string.Format("{0:C2}", totalNeto);
 
             PersonalizaGrid();
         }
@@ -255,10 +228,6 @@ namespace AppComercial
             dgvDatos.Columns["PorcentajeIVA"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvDatos.Columns["PorcentajeIVA"].DefaultCellStyle.Format = "P2";
 
-            dgvDatos.Columns["PorcentajeDescuento"].HeaderText = "% Descuento";
-            dgvDatos.Columns["PorcentajeDescuento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvDatos.Columns["PorcentajeDescuento"].DefaultCellStyle.Format = "P2";
-
             dgvDatos.Columns["ValorBruto"].HeaderText = "Valor Bruto";
             dgvDatos.Columns["ValorBruto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvDatos.Columns["ValorBruto"].DefaultCellStyle.Format = "C2";
@@ -266,10 +235,6 @@ namespace AppComercial
             dgvDatos.Columns["ValorIVA"].HeaderText = "Valor IVA";
             dgvDatos.Columns["ValorIVA"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvDatos.Columns["ValorIVA"].DefaultCellStyle.Format = "C2";
-
-            dgvDatos.Columns["ValorDescuento"].HeaderText = "Valor Descuento";
-            dgvDatos.Columns["ValorDescuento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvDatos.Columns["ValorDescuento"].DefaultCellStyle.Format = "C2";
 
             dgvDatos.Columns["ValorNeto"].HeaderText = "Valor Neto";
             dgvDatos.Columns["ValorNeto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -282,16 +247,30 @@ namespace AppComercial
             dgvDatos.Columns["Cantidad"].Width = 80;
             dgvDatos.Columns["Precio"].Width = 80;
             dgvDatos.Columns["PorcentajeIVA"].Width = 80;
-            dgvDatos.Columns["PorcentajeDescuento"].Width = 80;
             dgvDatos.Columns["ValorBruto"].Width = 80;
             dgvDatos.Columns["ValorIVA"].Width = 80;
-            dgvDatos.Columns["ValorDescuento"].Width = 80;
             dgvDatos.Columns["ValorNeto"].Width = 80;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void eliminarTodoButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            errorProvider1.Clear();
+            if (misDetalles.Count == 0) return;
+
+            DialogResult rta = MessageBox.Show(
+             "¿Está seguro de borrar todas las líneas de la Salida?",
+             "Confirmación",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question,
+             MessageBoxDefaultButton.Button2);
+
+            if (rta == DialogResult.No) return;
+
+            misDetalles.Clear();
+
+            totalItems = 0;
+            RefrescaGrid();
+            pbxImagen.Image = null;
         }
 
         private void eliminarLineaButton_Click(object sender, EventArgs e)
@@ -305,10 +284,10 @@ namespace AppComercial
             }
             else
             {
-                int IDProducto = (int) dgvDatos.SelectedRows[0].Cells[0].Value;
-                for(int i=0;i<misDetalles.Count;i++)
+                int IDProducto = (int)dgvDatos.SelectedRows[0].Cells[0].Value;
+                for (int i = 0; i < misDetalles.Count; i++)
                 {
-                    if (misDetalles[i].IDProducto==IDProducto)
+                    if (misDetalles[i].IDProducto == IDProducto)
                     {
                         misDetalles.RemoveAt(i);
                         break;
@@ -318,56 +297,13 @@ namespace AppComercial
             RefrescaGrid();
         }
 
-        private void eliminarTodoButton_Click(object sender, EventArgs e)
-        {
-            errorProvider1.Clear();
-            if (misDetalles.Count == 0) return;
-
-            DialogResult rta = MessageBox.Show(
-             "¿Está seguro de borrar todas las líneas de la Venta?",
-             "Confirmación",
-             MessageBoxButtons.YesNo,
-             MessageBoxIcon.Question,
-             MessageBoxDefaultButton.Button2);
-
-            if (rta == DialogResult.No) return;
-
-            misDetalles.Clear();
-
-            totalItems = 0;
-            totalBruto = 0;
-            totalIVA = 0;
-            totalDescuento = 0;
-            totalNeto = 0;
-            RefrescaGrid();
-            pbxImagen.Image = null;
-        }
-
-        private void frmVentas_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (misDetalles.Count > 0)
-            {
-                DialogResult rta = MessageBox.Show(
-            "La Venta tiene productos cargados, ¿está seguro de salir sin terminar la Venta?",
-            "Confirmación",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question,
-            MessageBoxDefaultButton.Button2);
-
-                if (rta == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-            }
-        }
-
         private void btnGrabar_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();
-            if (clienteComboBox.SelectedIndex == -1)
+            if (conceptoComboBox.SelectedIndex == -1)
             {
-                errorProvider1.SetError(clienteComboBox, "Debe seleccionar un Cliente");
-                clienteComboBox.Focus();
+                errorProvider1.SetError(conceptoComboBox, "Debe seleccionar un Concepto");
+                conceptoComboBox.Focus();
                 return;
             }
 
@@ -386,7 +322,7 @@ namespace AppComercial
             }
 
             DialogResult rta = MessageBox.Show(
-            "¿Está seguro de guardar la Venta?",
+            "¿Está seguro de guardar la Salida?",
             "Confirmación",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question,
@@ -394,18 +330,18 @@ namespace AppComercial
 
             if (rta == DialogResult.No) return;
 
-            int IDCliente = (int)clienteComboBox.SelectedValue;
+            int IDConcepto = (int)conceptoComboBox.SelectedValue;
             int IDBodega = (int)bodegaComboBox.SelectedValue;
             DateTime fecha = fechaDateTimePicker.Value;
 
-            //Grabamos la Cabecera de la Compra
-            int IDVenta = CADVenta.VentaInsertVenta(
+            //Grabamos la Cabecera de la Salida
+            int IDSalida = CADSalida.SalidaInsertSalida(
                 fechaDateTimePicker.Value,
-                IDCliente,
+                IDConcepto,
                 IDBodega);
 
-            //Grabamos el Detalle de la Compra
-            foreach (DetalleVenta midetalle in misDetalles)
+            //Grabamos el Detalle de la Salida
+            foreach (DetalleSalida midetalle in misDetalles)
             {
                 //Actualizamos la Tabla BodegaProducto
                 CADBodegaProducto miBodegaProducto = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodega, midetalle.IDProducto);
@@ -442,44 +378,58 @@ namespace AppComercial
                         IDBodega,
                         midetalle.IDProducto,
                         fecha,
-                        string.Format("VE-{0}", IDVenta),
+                        string.Format("SA-{0}", IDSalida),
                         0,
                         midetalle.Cantidad,
                         nuevoSaldo,
                         nuevoUltimoCosto,
                         nuevoCostoPromedio);
 
-                //Actualizamos VentaDetalle
-                CADVentaDetalle.VentaDetalleInsertVentaDetalle(
-                    IDVenta,
+                //Actualizamos SalidaDetalle
+                CADSalidaDetalle.SalidaDetalleInsertSalidaDetalle(
+                    IDSalida,
                     midetalle.IDProducto,
                     midetalle.Descripcion,
-                    midetalle.Precio,
                     midetalle.Cantidad,
-                    IDKardex, midetalle.PorcentajeIVA,
-                    midetalle.PorcentajeDescuento);
+                    IDKardex);
             }
 
+
+
             MessageBox.Show(
-                string.Format("La Venta {0}, fue grabada de forma exitosa", IDVenta),
+                string.Format("La Salida {0}, fue grabada de forma exitosa", IDSalida),
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
             totalItems = 0;
-            totalBruto = 0;
-            totalIVA = 0;
-            totalDescuento = 0;
-            totalNeto = 0;
             pbxImagen.Image = null;
 
-            clienteComboBox.SelectedIndex = -1;
+            conceptoComboBox.SelectedIndex = -1;
             bodegaComboBox.SelectedIndex = -1;
             misDetalles.Clear();
             pbxImagen.Image = null;
             RefrescaGrid();
             fechaDateTimePicker.Value = DateTime.Now;
-            clienteComboBox.Focus();
+            conceptoComboBox.Focus();
+        }
+
+        private void frmSalidas_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (misDetalles.Count > 0)
+            {
+                DialogResult rta = MessageBox.Show(
+            "La Salida tiene productos cargados, ¿está seguro de salir sin terminar la Salida?",
+            "Confirmación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button2);
+
+                if (rta == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

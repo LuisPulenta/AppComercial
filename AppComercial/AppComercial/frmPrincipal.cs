@@ -221,5 +221,18 @@ namespace AppComercial
         {
             dEvolucionesDeClientesToolStripMenuItem_Click(sender, e);
         }
+
+        private void salidasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSalidas miForm = new frmSalidas();
+            miForm.MdiParent = this;
+            miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.Show();
+        }
+
+        private void tsbSalidas_Click(object sender, EventArgs e)
+        {
+            salidasToolStripMenuItem_Click(sender, e);
+        }
     }
 }
