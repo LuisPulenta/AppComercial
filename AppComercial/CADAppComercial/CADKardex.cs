@@ -105,7 +105,15 @@ namespace CADAppComercial
                     {
                         if(misKardex[i].Entrada>0)
                         {
-                            costoPromedio = ((decimal)saldo * costoPromedio + (decimal)misKardex[i].Entrada * misKardex[i].UltimoCosto) / (decimal)(saldo + misKardex[i].Entrada);
+                            if((decimal)(saldo + misKardex[i].Entrada)!=0)
+                            {
+                                costoPromedio = ((decimal)saldo * costoPromedio + (decimal)misKardex[i].Entrada * misKardex[i].UltimoCosto) / (decimal)(saldo + misKardex[i].Entrada);
+                            }
+                            else
+                            {
+                                costoPromedio = 0;
+                            }
+                            
                             ultimoCosto = misKardex[i].UltimoCosto;
                             saldo += (float) misKardex[i].Entrada;
                         }

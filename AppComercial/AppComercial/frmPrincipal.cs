@@ -1,4 +1,5 @@
 ﻿using AppComercial.Listados;
+using AppComercial.Movimientos;
 using CADAppComercial;
 using System;
 using System.Windows.Forms;
@@ -114,7 +115,9 @@ namespace AppComercial
         private void usuarioToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             frmUsuarios miForm = new frmUsuarios();
-            miForm.ShowDialog();
+            miForm.MdiParent = this;
+            miForm.Show();
+            
         }
 
         private void frmPrincipal_Load(object sender, System.EventArgs e)
@@ -242,6 +245,24 @@ namespace AppComercial
             miForm.MdiParent = this;
             //miForm.UsuarioLogueado = usuarioLogueado;
             miForm.Show();
+        }
+
+        private void trasladosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTraslados miForm = new frmTraslados();
+            miForm.MdiParent = this;
+            miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.Show();
+        }
+
+        private void tsbTraslados_Click(object sender, EventArgs e)
+        {
+            trasladosToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tsbKardex_Click(object sender, EventArgs e)
+        {
+            kardexToolStripMenuItem_Click(sender, e);
         }
     }
 }

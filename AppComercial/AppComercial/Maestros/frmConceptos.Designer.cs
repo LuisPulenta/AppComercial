@@ -109,15 +109,21 @@ namespace AppComercial
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BarraTableAdapter = null;
+            this.tableAdapterManager.BodegaProductoTableAdapter = null;
             this.tableAdapterManager.BodegaTableAdapter = null;
             this.tableAdapterManager.ClienteTableAdapter = null;
             this.tableAdapterManager.ConceptoTableAdapter = this.conceptoTableAdapter;
             this.tableAdapterManager.DepartamentoTableAdapter = null;
             this.tableAdapterManager.IVATableAdapter = null;
+            this.tableAdapterManager.KardexTableAdapter = null;
             this.tableAdapterManager.MedidaTableAdapter = null;
+            this.tableAdapterManager.ProductoTableAdapter = null;
             this.tableAdapterManager.ProveedorTableAdapter = null;
+            this.tableAdapterManager.RolTableAdapter = null;
             this.tableAdapterManager.TipoDocumentoTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AppComercial.DSAppComercialTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UsuarioTableAdapter = null;
             // 
             // conceptoBindingNavigator
             // 
@@ -357,6 +363,7 @@ namespace AppComercial
             this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.conceptoBindingNavigator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmConceptos";

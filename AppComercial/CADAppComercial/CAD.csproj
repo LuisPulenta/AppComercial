@@ -54,6 +54,7 @@
     <Compile Include="CADProducto.cs" />
     <Compile Include="CADSalida.cs" />
     <Compile Include="CADSalidaDetalle.cs" />
+    <Compile Include="CADTraslado.cs" />
     <Compile Include="CADUsuario.cs" />
     <Compile Include="CADVenta.cs" />
     <Compile Include="CADVentaDetalle.cs" />
@@ -71,6 +72,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="CADTrasladoDetalle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

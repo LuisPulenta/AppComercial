@@ -197,6 +197,7 @@ namespace AppComercial
             this.tableAdapterManager.ConceptoTableAdapter = null;
             this.tableAdapterManager.DepartamentoTableAdapter = null;
             this.tableAdapterManager.IVATableAdapter = null;
+            this.tableAdapterManager.KardexTableAdapter = null;
             this.tableAdapterManager.MedidaTableAdapter = null;
             this.tableAdapterManager.ProductoTableAdapter = null;
             this.tableAdapterManager.ProveedorTableAdapter = null;
@@ -398,12 +399,12 @@ namespace AppComercial
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvDatos.Location = new System.Drawing.Point(0, 167);
+            this.dgvDatos.Location = new System.Drawing.Point(0, 156);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
             this.dgvDatos.RowHeadersWidth = 51;
             this.dgvDatos.RowTemplate.Height = 24;
-            this.dgvDatos.Size = new System.Drawing.Size(1108, 485);
+            this.dgvDatos.Size = new System.Drawing.Size(1108, 437);
             this.dgvDatos.TabIndex = 17;
             this.dgvDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellClick);
             // 
@@ -567,7 +568,7 @@ namespace AppComercial
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(1108, 672);
+            this.ClientSize = new System.Drawing.Size(1108, 595);
             this.Controls.Add(label1);
             this.Controls.Add(this.confirmacionTextBox);
             this.Controls.Add(this.iDRolComboBox);

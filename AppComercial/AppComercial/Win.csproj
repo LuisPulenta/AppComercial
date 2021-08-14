@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Clases\DetalleCompra.cs" />
     <Compile Include="Clases\DetalleSalida.cs" />
+    <Compile Include="Clases\DetalleTraslado.cs" />
     <Compile Include="Clases\DetalleVenta.cs" />
     <Compile Include="Clases\DevolucionClienteDevuelto.cs" />
     <Compile Include="Clases\DevolucionClienteDisponible.cs" />
@@ -104,6 +105,12 @@
     </Compile>
     <Compile Include="Busqueda\frmBusquedaProveedor.Designer.cs">
       <DependentUpon>frmBusquedaProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Movimientos\frmTraslados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Movimientos\frmTraslados.Designer.cs">
+      <DependentUpon>frmTraslados.cs</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\frmCambioClave.cs">
       <SubType>Form</SubType>
@@ -249,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Busqueda\frmBusquedaProveedor.resx">
       <DependentUpon>frmBusquedaProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Movimientos\frmTraslados.resx">
+      <DependentUpon>frmTraslados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\frmCambioClave.resx">
       <DependentUpon>frmCambioClave.cs</DependentUpon>
