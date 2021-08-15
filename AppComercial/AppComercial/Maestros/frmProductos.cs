@@ -1,4 +1,5 @@
-﻿using CADAppComercial;
+﻿using AppComercial.Listados;
+using CADAppComercial;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -280,6 +281,12 @@ namespace AppComercial
         {
             LlenarGrillas();
             CargarImagen();
+        }
+
+        private void bindingNavigatorPrint_Click(object sender, EventArgs e)
+        {
+            frmListadoProductos miForm = new frmListadoProductos();
+            miForm.ShowDialog();
         }
     }
 }

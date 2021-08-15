@@ -40,18 +40,18 @@ namespace AppComercial
             System.Windows.Forms.Label iDMedidaLabel;
             System.Windows.Forms.Label medidaLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.productoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -103,8 +103,14 @@ namespace AppComercial
             this.gbxBodegas = new System.Windows.Forms.GroupBox();
             this.btnAgregarBodega = new System.Windows.Forms.Button();
             this.bodegasDataGridView = new System.Windows.Forms.DataGridView();
+            this.IDBodega = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.bodegaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dSAppComercialBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Minimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Maximo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiasReposicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadMinima = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bodegaProductoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.productoTableAdapter = new AppComercial.DSAppComercialTableAdapters.ProductoTableAdapter();
             this.tableAdapterManager = new AppComercial.DSAppComercialTableAdapters.TableAdapterManager();
@@ -116,12 +122,14 @@ namespace AppComercial
             this.medidaTableAdapter = new AppComercial.DSAppComercialTableAdapters.MedidaTableAdapter();
             this.bodegaTableAdapter = new AppComercial.DSAppComercialTableAdapters.BodegaTableAdapter();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.IDBodega = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Minimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Maximo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiasReposicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadMinima = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDBodegaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minimoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maximoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diasReposicionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadMinimaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingNavigatorPrint = new System.Windows.Forms.ToolStripButton();
             iDProductoLabel = new System.Windows.Forms.Label();
             descripcionLabel = new System.Windows.Forms.Label();
             iDDepartamentoLabel = new System.Windows.Forms.Label();
@@ -259,7 +267,8 @@ namespace AppComercial
             this.bindingNavigatorDeleteItem,
             this.bindingNavigatorSaveItem,
             this.bindingNavigatorCancelItem,
-            this.bindingNavigatorSearchItem});
+            this.bindingNavigatorSearchItem,
+            this.bindingNavigatorPrint});
             this.productoBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.productoBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.productoBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -267,7 +276,7 @@ namespace AppComercial
             this.productoBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.productoBindingNavigator.Name = "productoBindingNavigator";
             this.productoBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.productoBindingNavigator.Size = new System.Drawing.Size(1298, 27);
+            this.productoBindingNavigator.Size = new System.Drawing.Size(1298, 31);
             this.productoBindingNavigator.TabIndex = 0;
             this.productoBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -295,7 +304,7 @@ namespace AppComercial
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveFirstItem.Text = "Mover primero";
             // 
             // bindingNavigatorMovePreviousItem
@@ -424,9 +433,9 @@ namespace AppComercial
             this.dgvDatos.AllowUserToAddRows = false;
             this.dgvDatos.AllowUserToDeleteRows = false;
             this.dgvDatos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
-            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
+            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvDatos.AutoGenerateColumns = false;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -439,14 +448,14 @@ namespace AppComercial
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9});
             this.dgvDatos.DataSource = this.productoBindingSource;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDatos.Location = new System.Drawing.Point(0, 378);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
@@ -514,9 +523,9 @@ namespace AppComercial
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "Precio";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Format = "C2";
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "C2";
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxColumn5.HeaderText = "Precio";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -726,22 +735,22 @@ namespace AppComercial
             this.barrasDataGridView.AllowUserToAddRows = false;
             this.barrasDataGridView.AllowUserToDeleteRows = false;
             this.barrasDataGridView.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
-            this.barrasDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
+            this.barrasDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.barrasDataGridView.AutoGenerateColumns = false;
             this.barrasDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.barrasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.barraDataGridViewTextBoxColumn});
             this.barrasDataGridView.DataSource = this.barraBindingSource;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.barrasDataGridView.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.barrasDataGridView.DefaultCellStyle = dataGridViewCellStyle9;
             this.barrasDataGridView.Location = new System.Drawing.Point(6, 57);
             this.barrasDataGridView.Name = "barrasDataGridView";
             this.barrasDataGridView.ReadOnly = true;
@@ -786,9 +795,9 @@ namespace AppComercial
             this.bodegasDataGridView.AllowUserToAddRows = false;
             this.bodegasDataGridView.AllowUserToDeleteRows = false;
             this.bodegasDataGridView.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
-            this.bodegasDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
+            this.bodegasDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.bodegasDataGridView.AutoGenerateColumns = false;
             this.bodegasDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.bodegasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -797,16 +806,23 @@ namespace AppComercial
             this.Minimo,
             this.Maximo,
             this.DiasReposicion,
-            this.CantidadMinima});
+            this.CantidadMinima,
+            this.iDBodegaDataGridViewTextBoxColumn,
+            this.iDProductoDataGridViewTextBoxColumn,
+            this.stockDataGridViewTextBoxColumn,
+            this.minimoDataGridViewTextBoxColumn,
+            this.maximoDataGridViewTextBoxColumn,
+            this.diasReposicionDataGridViewTextBoxColumn,
+            this.cantidadMinimaDataGridViewTextBoxColumn});
             this.bodegasDataGridView.DataSource = this.bodegaProductoBindingSource1;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.bodegasDataGridView.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.bodegasDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
             this.bodegasDataGridView.Location = new System.Drawing.Point(6, 57);
             this.bodegasDataGridView.Name = "bodegasDataGridView";
             this.bodegasDataGridView.ReadOnly = true;
@@ -814,6 +830,20 @@ namespace AppComercial
             this.bodegasDataGridView.RowTemplate.Height = 24;
             this.bodegasDataGridView.Size = new System.Drawing.Size(785, 143);
             this.bodegasDataGridView.TabIndex = 1;
+            // 
+            // IDBodega
+            // 
+            this.IDBodega.DataPropertyName = "IDBodega";
+            this.IDBodega.DataSource = this.bodegaBindingSource;
+            this.IDBodega.DisplayMember = "Descripcion";
+            this.IDBodega.HeaderText = "Bodega";
+            this.IDBodega.MinimumWidth = 6;
+            this.IDBodega.Name = "IDBodega";
+            this.IDBodega.ReadOnly = true;
+            this.IDBodega.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IDBodega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IDBodega.ValueMember = "IDBodega";
+            this.IDBodega.Width = 125;
             // 
             // bodegaBindingSource
             // 
@@ -824,6 +854,66 @@ namespace AppComercial
             // 
             this.dSAppComercialBindingSource.DataSource = this.dSAppComercial;
             this.dSAppComercialBindingSource.Position = 0;
+            // 
+            // Stock
+            // 
+            this.Stock.DataPropertyName = "Stock";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "N2";
+            this.Stock.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Stock.HeaderText = "Stock";
+            this.Stock.MinimumWidth = 6;
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
+            this.Stock.Width = 125;
+            // 
+            // Minimo
+            // 
+            this.Minimo.DataPropertyName = "Minimo";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "N2";
+            this.Minimo.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Minimo.HeaderText = "Mínimo";
+            this.Minimo.MinimumWidth = 6;
+            this.Minimo.Name = "Minimo";
+            this.Minimo.ReadOnly = true;
+            this.Minimo.Width = 125;
+            // 
+            // Maximo
+            // 
+            this.Maximo.DataPropertyName = "Maximo";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "N2";
+            this.Maximo.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Maximo.HeaderText = "Máximo";
+            this.Maximo.MinimumWidth = 6;
+            this.Maximo.Name = "Maximo";
+            this.Maximo.ReadOnly = true;
+            this.Maximo.Width = 125;
+            // 
+            // DiasReposicion
+            // 
+            this.DiasReposicion.DataPropertyName = "DiasReposicion";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "N0";
+            this.DiasReposicion.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DiasReposicion.HeaderText = "Días Repos.";
+            this.DiasReposicion.MinimumWidth = 6;
+            this.DiasReposicion.Name = "DiasReposicion";
+            this.DiasReposicion.ReadOnly = true;
+            this.DiasReposicion.Width = 125;
+            // 
+            // CantidadMinima
+            // 
+            this.CantidadMinima.DataPropertyName = "CantidadMinima";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Format = "N2";
+            this.CantidadMinima.DefaultCellStyle = dataGridViewCellStyle6;
+            this.CantidadMinima.HeaderText = "Cant. Mín.";
+            this.CantidadMinima.MinimumWidth = 6;
+            this.CantidadMinima.Name = "CantidadMinima";
+            this.CantidadMinima.ReadOnly = true;
+            this.CantidadMinima.Width = 125;
             // 
             // bodegaProductoBindingSource1
             // 
@@ -844,6 +934,7 @@ namespace AppComercial
             this.tableAdapterManager.ConceptoTableAdapter = null;
             this.tableAdapterManager.DepartamentoTableAdapter = null;
             this.tableAdapterManager.IVATableAdapter = null;
+            this.tableAdapterManager.KardexTableAdapter = null;
             this.tableAdapterManager.MedidaTableAdapter = null;
             this.tableAdapterManager.ProductoTableAdapter = this.productoTableAdapter;
             this.tableAdapterManager.ProveedorTableAdapter = null;
@@ -885,79 +976,79 @@ namespace AppComercial
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // IDBodega
+            // iDBodegaDataGridViewTextBoxColumn
             // 
-            this.IDBodega.DataPropertyName = "IDBodega";
-            this.IDBodega.DataSource = this.bodegaBindingSource;
-            this.IDBodega.DisplayMember = "Descripcion";
-            this.IDBodega.HeaderText = "Bodega";
-            this.IDBodega.MinimumWidth = 6;
-            this.IDBodega.Name = "IDBodega";
-            this.IDBodega.ReadOnly = true;
-            this.IDBodega.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.IDBodega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.IDBodega.ValueMember = "IDBodega";
-            this.IDBodega.Width = 125;
+            this.iDBodegaDataGridViewTextBoxColumn.DataPropertyName = "IDBodega";
+            this.iDBodegaDataGridViewTextBoxColumn.HeaderText = "IDBodega";
+            this.iDBodegaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iDBodegaDataGridViewTextBoxColumn.Name = "iDBodegaDataGridViewTextBoxColumn";
+            this.iDBodegaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDBodegaDataGridViewTextBoxColumn.Width = 125;
             // 
-            // Stock
+            // iDProductoDataGridViewTextBoxColumn
             // 
-            this.Stock.DataPropertyName = "Stock";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.Format = "N2";
-            this.Stock.DefaultCellStyle = dataGridViewCellStyle19;
-            this.Stock.HeaderText = "Stock";
-            this.Stock.MinimumWidth = 6;
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
-            this.Stock.Width = 125;
+            this.iDProductoDataGridViewTextBoxColumn.DataPropertyName = "IDProducto";
+            this.iDProductoDataGridViewTextBoxColumn.HeaderText = "IDProducto";
+            this.iDProductoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iDProductoDataGridViewTextBoxColumn.Name = "iDProductoDataGridViewTextBoxColumn";
+            this.iDProductoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDProductoDataGridViewTextBoxColumn.Width = 125;
             // 
-            // Minimo
+            // stockDataGridViewTextBoxColumn
             // 
-            this.Minimo.DataPropertyName = "Minimo";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.Format = "N2";
-            this.Minimo.DefaultCellStyle = dataGridViewCellStyle20;
-            this.Minimo.HeaderText = "Mínimo";
-            this.Minimo.MinimumWidth = 6;
-            this.Minimo.Name = "Minimo";
-            this.Minimo.ReadOnly = true;
-            this.Minimo.Width = 125;
+            this.stockDataGridViewTextBoxColumn.DataPropertyName = "Stock";
+            this.stockDataGridViewTextBoxColumn.HeaderText = "Stock";
+            this.stockDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.stockDataGridViewTextBoxColumn.Name = "stockDataGridViewTextBoxColumn";
+            this.stockDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stockDataGridViewTextBoxColumn.Width = 125;
             // 
-            // Maximo
+            // minimoDataGridViewTextBoxColumn
             // 
-            this.Maximo.DataPropertyName = "Maximo";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.Format = "N2";
-            this.Maximo.DefaultCellStyle = dataGridViewCellStyle21;
-            this.Maximo.HeaderText = "Máximo";
-            this.Maximo.MinimumWidth = 6;
-            this.Maximo.Name = "Maximo";
-            this.Maximo.ReadOnly = true;
-            this.Maximo.Width = 125;
+            this.minimoDataGridViewTextBoxColumn.DataPropertyName = "Minimo";
+            this.minimoDataGridViewTextBoxColumn.HeaderText = "Minimo";
+            this.minimoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.minimoDataGridViewTextBoxColumn.Name = "minimoDataGridViewTextBoxColumn";
+            this.minimoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.minimoDataGridViewTextBoxColumn.Width = 125;
             // 
-            // DiasReposicion
+            // maximoDataGridViewTextBoxColumn
             // 
-            this.DiasReposicion.DataPropertyName = "DiasReposicion";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.Format = "N0";
-            this.DiasReposicion.DefaultCellStyle = dataGridViewCellStyle22;
-            this.DiasReposicion.HeaderText = "Días Repos.";
-            this.DiasReposicion.MinimumWidth = 6;
-            this.DiasReposicion.Name = "DiasReposicion";
-            this.DiasReposicion.ReadOnly = true;
-            this.DiasReposicion.Width = 125;
+            this.maximoDataGridViewTextBoxColumn.DataPropertyName = "Maximo";
+            this.maximoDataGridViewTextBoxColumn.HeaderText = "Maximo";
+            this.maximoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maximoDataGridViewTextBoxColumn.Name = "maximoDataGridViewTextBoxColumn";
+            this.maximoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maximoDataGridViewTextBoxColumn.Width = 125;
             // 
-            // CantidadMinima
+            // diasReposicionDataGridViewTextBoxColumn
             // 
-            this.CantidadMinima.DataPropertyName = "CantidadMinima";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.Format = "N2";
-            this.CantidadMinima.DefaultCellStyle = dataGridViewCellStyle23;
-            this.CantidadMinima.HeaderText = "Cant. Mín.";
-            this.CantidadMinima.MinimumWidth = 6;
-            this.CantidadMinima.Name = "CantidadMinima";
-            this.CantidadMinima.ReadOnly = true;
-            this.CantidadMinima.Width = 125;
+            this.diasReposicionDataGridViewTextBoxColumn.DataPropertyName = "DiasReposicion";
+            this.diasReposicionDataGridViewTextBoxColumn.HeaderText = "DiasReposicion";
+            this.diasReposicionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diasReposicionDataGridViewTextBoxColumn.Name = "diasReposicionDataGridViewTextBoxColumn";
+            this.diasReposicionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diasReposicionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // cantidadMinimaDataGridViewTextBoxColumn
+            // 
+            this.cantidadMinimaDataGridViewTextBoxColumn.DataPropertyName = "CantidadMinima";
+            this.cantidadMinimaDataGridViewTextBoxColumn.HeaderText = "CantidadMinima";
+            this.cantidadMinimaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.cantidadMinimaDataGridViewTextBoxColumn.Name = "cantidadMinimaDataGridViewTextBoxColumn";
+            this.cantidadMinimaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cantidadMinimaDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // bindingNavigatorPrint
+            // 
+            this.bindingNavigatorPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorPrint.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorPrint.Image")));
+            this.bindingNavigatorPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorPrint.Name = "bindingNavigatorPrint";
+            this.bindingNavigatorPrint.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorPrint.Text = "toolStripButton1";
+            this.bindingNavigatorPrint.ToolTipText = "Listado de Productos";
+            this.bindingNavigatorPrint.Click += new System.EventHandler(this.bindingNavigatorPrint_Click);
             // 
             // frmProductos
             // 
@@ -1094,5 +1185,13 @@ namespace AppComercial
         private System.Windows.Forms.DataGridViewTextBoxColumn Maximo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiasReposicion;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadMinima;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDBodegaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDProductoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minimoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maximoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diasReposicionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadMinimaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorPrint;
     }
 }

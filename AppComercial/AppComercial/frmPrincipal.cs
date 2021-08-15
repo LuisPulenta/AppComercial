@@ -1,5 +1,6 @@
 ﻿using AppComercial.Listados;
 using AppComercial.Movimientos;
+using AppComercial.Reportes;
 using CADAppComercial;
 using System;
 using System.Windows.Forms;
@@ -263,6 +264,14 @@ namespace AppComercial
         private void tsbKardex_Click(object sender, EventArgs e)
         {
             kardexToolStripMenuItem_Click(sender, e);
+        }
+
+        private void ventasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmReporteVentas miForm = new frmReporteVentas();
+            miForm.MdiParent = this;
+            //miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.Show();
         }
     }
 }
