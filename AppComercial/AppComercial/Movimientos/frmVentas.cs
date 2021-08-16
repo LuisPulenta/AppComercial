@@ -1,4 +1,5 @@
-﻿using CADAppComercial;
+﻿using AppComercial.Reportes;
+using CADAppComercial;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -465,6 +466,10 @@ namespace AppComercial
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+
+            frmReporteVentas miReporte = new frmReporteVentas();
+            miReporte.IdVenta = IDVenta;
+            miReporte.Show();
 
             totalItems = 0;
             totalBruto = 0;
