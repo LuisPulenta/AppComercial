@@ -85,6 +85,7 @@ namespace AppComercial
             this.tsbTraslados = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.nombresUsuarioToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsbDevolucionProveedor = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -291,7 +292,7 @@ namespace AppComercial
             // 
             this.dEvolucionesDeClientesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dEvolucionesDeClientesToolStripMenuItem.Image")));
             this.dEvolucionesDeClientesToolStripMenuItem.Name = "dEvolucionesDeClientesToolStripMenuItem";
-            this.dEvolucionesDeClientesToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
+            this.dEvolucionesDeClientesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.dEvolucionesDeClientesToolStripMenuItem.Text = "De &Clientes";
             this.dEvolucionesDeClientesToolStripMenuItem.Click += new System.EventHandler(this.dEvolucionesDeClientesToolStripMenuItem_Click);
             // 
@@ -299,8 +300,9 @@ namespace AppComercial
             // 
             this.devolucionesDeProveedoresToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("devolucionesDeProveedoresToolStripMenuItem.Image")));
             this.devolucionesDeProveedoresToolStripMenuItem.Name = "devolucionesDeProveedoresToolStripMenuItem";
-            this.devolucionesDeProveedoresToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
+            this.devolucionesDeProveedoresToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.devolucionesDeProveedoresToolStripMenuItem.Text = "A &Proveedores";
+            this.devolucionesDeProveedoresToolStripMenuItem.Click += new System.EventHandler(this.devolucionesDeProveedoresToolStripMenuItem_Click);
             // 
             // salidasToolStripMenuItem
             // 
@@ -379,7 +381,7 @@ namespace AppComercial
             // 
             this.productosToolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("productosToolStripMenuItem2.Image")));
             this.productosToolStripMenuItem2.Name = "productosToolStripMenuItem2";
-            this.productosToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.productosToolStripMenuItem2.Size = new System.Drawing.Size(158, 26);
             this.productosToolStripMenuItem2.Text = "&Productos";
             this.productosToolStripMenuItem2.Click += new System.EventHandler(this.productosToolStripMenuItem2_Click);
             // 
@@ -398,14 +400,14 @@ namespace AppComercial
             // 
             this.inventarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("inventarioToolStripMenuItem.Image")));
             this.inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
-            this.inventarioToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.inventarioToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.inventarioToolStripMenuItem.Text = "&Inventario";
             // 
             // ventasToolStripMenuItem1
             // 
             this.ventasToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("ventasToolStripMenuItem1.Image")));
             this.ventasToolStripMenuItem1.Name = "ventasToolStripMenuItem1";
-            this.ventasToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.ventasToolStripMenuItem1.Size = new System.Drawing.Size(158, 26);
             this.ventasToolStripMenuItem1.Text = "&Ventas";
             this.ventasToolStripMenuItem1.Click += new System.EventHandler(this.ventasToolStripMenuItem1_Click);
             // 
@@ -424,14 +426,14 @@ namespace AppComercial
             // 
             this.acercaDeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("acercaDeToolStripMenuItem.Image")));
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
             this.acercaDeToolStripMenuItem.Text = "A&cerca de...";
             // 
             // ayudaToolStripMenuItem1
             // 
             this.ayudaToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("ayudaToolStripMenuItem1.Image")));
             this.ayudaToolStripMenuItem1.Name = "ayudaToolStripMenuItem1";
-            this.ayudaToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.ayudaToolStripMenuItem1.Size = new System.Drawing.Size(167, 26);
             this.ayudaToolStripMenuItem1.Text = "&Ayuda";
             // 
             // toolStrip1
@@ -449,6 +451,7 @@ namespace AppComercial
             this.tsbCompras,
             this.tsbVentas,
             this.tsbDevolucionCliente,
+            this.tsbDevolucionProveedor,
             this.tsbSalidas,
             this.tsbTraslados});
             this.toolStrip1.Location = new System.Drawing.Point(0, 40);
@@ -543,8 +546,8 @@ namespace AppComercial
             this.tsbDevolucionCliente.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbDevolucionCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDevolucionCliente.Name = "tsbDevolucionCliente";
-            this.tsbDevolucionCliente.Size = new System.Drawing.Size(176, 36);
-            this.tsbDevolucionCliente.Text = "Devolución Clientes";
+            this.tsbDevolucionCliente.Size = new System.Drawing.Size(197, 36);
+            this.tsbDevolucionCliente.Text = "Devolución de Clientes";
             this.tsbDevolucionCliente.Click += new System.EventHandler(this.tsbDevolucionCliente_Click);
             // 
             // tsbSalidas
@@ -582,6 +585,16 @@ namespace AppComercial
             // 
             this.nombresUsuarioToolStripStatusLabel.Name = "nombresUsuarioToolStripStatusLabel";
             this.nombresUsuarioToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
+            // 
+            // tsbDevolucionProveedor
+            // 
+            this.tsbDevolucionProveedor.Image = ((System.Drawing.Image)(resources.GetObject("tsbDevolucionProveedor.Image")));
+            this.tsbDevolucionProveedor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDevolucionProveedor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDevolucionProveedor.Name = "tsbDevolucionProveedor";
+            this.tsbDevolucionProveedor.Size = new System.Drawing.Size(204, 36);
+            this.tsbDevolucionProveedor.Text = "Devolución a Proveedor";
+            this.tsbDevolucionProveedor.Click += new System.EventHandler(this.tsbDevolucionProveedor_Click);
             // 
             // frmPrincipal
             // 
@@ -669,5 +682,6 @@ namespace AppComercial
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton tsbDevolucionProveedor;
     }
 }

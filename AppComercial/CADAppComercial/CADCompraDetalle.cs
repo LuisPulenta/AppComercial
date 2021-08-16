@@ -18,5 +18,10 @@ namespace CADAppComercial
         {
             adaptador.CompraDetalleInsertCompraDetalle(IDCompra, IDProducto, Descripcion, Costo, Cantidad, IDKardex, PorcentajeIVA, PorcentajeDescuento);
         }
+
+        public static DSAppComercial.CompraDetalleDataTable CompraDetalleGetCompraDetalleByIDCompra(int IDCompra)
+        {
+            return adaptador.CompraDetalleGetCompraDetalleByIDCompra(IDCompra);
+        }
     }
 }

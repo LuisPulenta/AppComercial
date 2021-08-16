@@ -174,6 +174,15 @@ ORDER BY Nombre</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="LuisAplicacionComercialConnectionString (Settings)" DbObjectName="LuisAplicacionComercial.dbo.Proveedor" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy2" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FillBy2">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT IDProveedor, Nombre, IDTipoDocumento, Documento, NombresContacto, ApellidosContacto, Direccion, Telefono1, Telefono2, Correo, Notas FROM dbo.Proveedor
+ORDER BY Nombre</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
             </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BodegaTableAdapter" GeneratorDataComponentClassName="BodegaTableAdapter" Name="Bodega" UserDataComponentName="BodegaTableAdapter">
@@ -1270,6 +1279,29 @@ ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto</CommandTex
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CompraTableAdapter" GeneratorDataComponentClassName="CompraTableAdapter" Name="Compra" UserDataComponentName="CompraTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="LuisAplicacionComercialConnectionString (Settings)" DbObjectName="LuisAplicacionComercial.dbo.Compra" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Compra.IDCompra, 'Compra: ' +Convert(NVARCHAR,Compra.IDCompra)+' '+Convert(NVARCHAR,Compra.Fecha)+' Proveedor: '+ Convert(NVARCHAR,Proveedor.IDProveedor) + '-'+Proveedor.Nombre+' Monto: '+ Convert(NVARCHAR,SUM( CompraDetalle.Cantidad * CompraDetalle.Costo - ( CompraDetalle.Costo * CompraDetalle.Cantidad) / (1 + CompraDetalle.PorcentajeIVA) 
+         * CompraDetalle.PorcentajeDescuento)) +' Items: '+ Convert(NVARCHAR,COUNT( CompraDetalle.IDCompra)) AS Compra
+FROM   Compra INNER JOIN
+          Proveedor ON Compra.IDProveedor = Proveedor.IDProveedor INNER JOIN
+          CompraDetalle ON Compra.IDCompra = CompraDetalle.IDCompra
+GROUP BY Compra.IDCompra, Compra.Fecha, Proveedor.IDProveedor,Proveedor.Nombre
+ORDER BY Compra.Fecha DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IDCompra" DataSetColumn="IDCompra" />
+              <Mapping SourceColumn="Compra" DataSetColumn="Compra" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1809,6 +1841,20 @@ ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto</CommandTex
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Compra" msprop:Generator_TableClassName="CompraDataTable" msprop:Generator_TableVarName="tableCompra" msprop:Generator_RowChangedName="CompraRowChanged" msprop:Generator_TablePropName="Compra" msprop:Generator_RowDeletingName="CompraRowDeleting" msprop:Generator_RowChangingName="CompraRowChanging" msprop:Generator_RowEvHandlerName="CompraRowChangeEventHandler" msprop:Generator_RowDeletedName="CompraRowDeleted" msprop:Generator_RowClassName="CompraRow" msprop:Generator_UserTableName="Compra" msprop:Generator_RowEvArgName="CompraRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDCompra" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIDCompra" msprop:Generator_ColumnPropNameInRow="IDCompra" msprop:Generator_ColumnPropNameInTable="IDCompraColumn" msprop:Generator_UserColumnName="IDCompra" type="xs:int" />
+              <xs:element name="Compra" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCompra" msprop:Generator_ColumnPropNameInRow="Compra" msprop:Generator_ColumnPropNameInTable="CompraColumn" msprop:Generator_UserColumnName="Compra" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -1883,6 +1929,10 @@ ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto</CommandTex
       <xs:field xpath="mstns:Fecha" />
       <xs:field xpath="mstns:IDProducto" />
       <xs:field xpath="mstns:Cantidad" />
+    </xs:unique>
+    <xs:unique name="Compra_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Compra" />
+      <xs:field xpath="mstns:IDCompra" />
     </xs:unique>
   </xs:element>
   <xs:annotation>

@@ -5,6 +5,11 @@ namespace CADAppComercial
 {
     public class CADCompra
     {
+        public int IDCompra { get; set; }
+        public DateTime Fecha { get; set; }
+        public int IDProveedor { get; set; }
+        public int IDBodega { get; set; }
+
         private static CompraTableAdapter adaptador = new CompraTableAdapter();
 
         public static int CompraInsertCompra(
@@ -22,6 +27,26 @@ namespace CADAppComercial
                 return false;
             }
             return true;
+        }
+
+        public static CADCompra ComprasGetCompraByIDCompra(int IDCompra)
+        {
+            CADCompra miCompra = null;
+            DSAppComercial.CompraDataTable miTabla = adaptador.ComprasGetCompraByIDCompra(IDCompra);
+            if (miTabla.Rows.Count == 0)
+            {
+                return miCompra;
+            }
+            else
+            {
+                DSAppComercial.CompraRow miRegistro = (DSAppComercial.CompraRow)miTabla.Rows[0];
+                miCompra = new CADCompra();
+                miCompra.Fecha = miRegistro.Fecha;
+                miCompra.IDProveedor = miRegistro.IDProveedor;
+                miCompra.IDBodega = miRegistro.IDBodega;
+                miCompra.IDCompra = miRegistro.IDCompra;
+                return miCompra;
+            }
         }
     }
 }
