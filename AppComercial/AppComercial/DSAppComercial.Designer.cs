@@ -94,9 +94,9 @@ namespace AppComercial {
         
         private global::System.Data.DataRelation relationFK_Kardex_Bodega2;
         
-        private global::System.Data.DataRelation relationFK_BodegaProducto_Bodega3;
-        
         private global::System.Data.DataRelation relationFK_Kardex_Bodega3;
+        
+        private global::System.Data.DataRelation relationFK_BodegaProducto_Bodega3;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -699,8 +699,8 @@ namespace AppComercial {
             this.relationFK_Kardex_Bodega1 = this.Relations["FK_Kardex_Bodega1"];
             this.relationFK_BodegaProducto_Bodega2 = this.Relations["FK_BodegaProducto_Bodega2"];
             this.relationFK_Kardex_Bodega2 = this.Relations["FK_Kardex_Bodega2"];
-            this.relationFK_BodegaProducto_Bodega3 = this.Relations["FK_BodegaProducto_Bodega3"];
             this.relationFK_Kardex_Bodega3 = this.Relations["FK_Kardex_Bodega3"];
+            this.relationFK_BodegaProducto_Bodega3 = this.Relations["FK_BodegaProducto_Bodega3"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -811,14 +811,14 @@ namespace AppComercial {
                         this.tableReporteValorInventarioCostoPromedio.IDBodegaColumn}, new global::System.Data.DataColumn[] {
                         this.tableKardex.IDBodegaColumn}, false);
             this.Relations.Add(this.relationFK_Kardex_Bodega2);
-            this.relationFK_BodegaProducto_Bodega3 = new global::System.Data.DataRelation("FK_BodegaProducto_Bodega3", new global::System.Data.DataColumn[] {
-                        this.tableReporteValorInventarioUltimoCosto.IDBodegaColumn}, new global::System.Data.DataColumn[] {
-                        this.tableBodegaProducto.IDBodegaColumn}, false);
-            this.Relations.Add(this.relationFK_BodegaProducto_Bodega3);
             this.relationFK_Kardex_Bodega3 = new global::System.Data.DataRelation("FK_Kardex_Bodega3", new global::System.Data.DataColumn[] {
                         this.tableReporteValorInventarioUltimoCosto.IDBodegaColumn}, new global::System.Data.DataColumn[] {
                         this.tableKardex.IDBodegaColumn}, false);
             this.Relations.Add(this.relationFK_Kardex_Bodega3);
+            this.relationFK_BodegaProducto_Bodega3 = new global::System.Data.DataRelation("FK_BodegaProducto_Bodega3", new global::System.Data.DataColumn[] {
+                        this.tableReporteValorInventarioUltimoCosto.IDBodegaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBodegaProducto.IDBodegaColumn}, false);
+            this.Relations.Add(this.relationFK_BodegaProducto_Bodega3);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10098,23 +10098,23 @@ namespace AppComercial {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public BodegaProductoRow[] GetBodegaProductoRows() {
-                if ((this.Table.ChildRelations["FK_BodegaProducto_Bodega3"] == null)) {
-                    return new BodegaProductoRow[0];
-                }
-                else {
-                    return ((BodegaProductoRow[])(base.GetChildRows(this.Table.ChildRelations["FK_BodegaProducto_Bodega3"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public KardexRow[] GetKardexRows() {
                 if ((this.Table.ChildRelations["FK_Kardex_Bodega3"] == null)) {
                     return new KardexRow[0];
                 }
                 else {
                     return ((KardexRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Kardex_Bodega3"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public BodegaProductoRow[] GetBodegaProductoRows() {
+                if ((this.Table.ChildRelations["FK_BodegaProducto_Bodega3"] == null)) {
+                    return new BodegaProductoRow[0];
+                }
+                else {
+                    return ((BodegaProductoRow[])(base.GetChildRows(this.Table.ChildRelations["FK_BodegaProducto_Bodega3"])));
                 }
             }
         }
@@ -17046,7 +17046,7 @@ ORDER BY Venta.IDVenta, VentaDetalle.IDProducto";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT Kardex.IDBodega,
@@ -17065,6 +17065,104 @@ FROM   Kardex INNER JOIN
           Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
 ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT Kardex.IDBodega,
+	   Bodega.Descripcion AS Bodega,
+	   Producto.IDDepartamento,
+	   Departamento.Descripcion AS Departamento,
+	   Kardex.IDProducto,
+	   Producto.Descripcion AS Producto, 
+       Kardex.CostoPromedio AS Costo,
+	   Kardex.Saldo,  
+       Kardex.Saldo * Kardex.CostoPromedio AS [ValorInventario]
+FROM   Kardex INNER JOIN
+          KardexUltimoKardex1 ON Kardex.Fecha = KardexUltimoKardex1.Fecha AND Kardex.IDBodega = KardexUltimoKardex1.IDBodega AND Kardex.IDProducto = KardexUltimoKardex1.IDProducto INNER JOIN
+          Bodega ON Kardex.IDBodega = Bodega.IDBodega INNER JOIN
+          Producto ON Kardex.IDProducto = Producto.IDProducto INNER JOIN
+          Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
+WHERE Kardex.IDBodega=@IDBodega
+ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDBodega", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDBodega", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT Kardex.IDBodega,
+	   Bodega.Descripcion AS Bodega,
+	   Producto.IDDepartamento,
+	   Departamento.Descripcion AS Departamento,
+	   Kardex.IDProducto,
+	   Producto.Descripcion AS Producto, 
+       Kardex.CostoPromedio AS Costo,
+	   Kardex.Saldo,  
+       Kardex.Saldo * Kardex.CostoPromedio AS [ValorInventario]
+FROM   Kardex INNER JOIN
+          KardexUltimoKardex1 ON Kardex.Fecha = KardexUltimoKardex1.Fecha AND Kardex.IDBodega = KardexUltimoKardex1.IDBodega AND Kardex.IDProducto = KardexUltimoKardex1.IDProducto INNER JOIN
+          Bodega ON Kardex.IDBodega = Bodega.IDBodega INNER JOIN
+          Producto ON Kardex.IDProducto = Producto.IDProducto INNER JOIN
+          Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
+WHERE Kardex.IDBodega=@IDBodega AND Kardex.Saldo<0
+ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDBodega", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDBodega", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT Kardex.IDBodega,
+	   Bodega.Descripcion AS Bodega,
+	   Producto.IDDepartamento,
+	   Departamento.Descripcion AS Departamento,
+	   Kardex.IDProducto,
+	   Producto.Descripcion AS Producto, 
+       Kardex.CostoPromedio AS Costo,
+	   Kardex.Saldo,  
+       Kardex.Saldo * Kardex.CostoPromedio AS [ValorInventario]
+FROM   Kardex INNER JOIN
+          KardexUltimoKardex1 ON Kardex.Fecha = KardexUltimoKardex1.Fecha AND Kardex.IDBodega = KardexUltimoKardex1.IDBodega AND Kardex.IDProducto = KardexUltimoKardex1.IDProducto INNER JOIN
+          Bodega ON Kardex.IDBodega = Bodega.IDBodega INNER JOIN
+          Producto ON Kardex.IDProducto = Producto.IDProducto INNER JOIN
+          Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
+WHERE Kardex.IDBodega=@IDBodega AND Kardex.Saldo>=0
+ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDBodega", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDBodega", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = @"SELECT Kardex.IDBodega,
+	   Bodega.Descripcion AS Bodega,
+	   Producto.IDDepartamento,
+	   Departamento.Descripcion AS Departamento,
+	   Kardex.IDProducto,
+	   Producto.Descripcion AS Producto, 
+       Kardex.CostoPromedio AS Costo,
+	   Kardex.Saldo,  
+       Kardex.Saldo * Kardex.CostoPromedio AS [ValorInventario]
+FROM   Kardex INNER JOIN
+          KardexUltimoKardex1 ON Kardex.Fecha = KardexUltimoKardex1.Fecha AND Kardex.IDBodega = KardexUltimoKardex1.IDBodega AND Kardex.IDProducto = KardexUltimoKardex1.IDProducto INNER JOIN
+          Bodega ON Kardex.IDBodega = Bodega.IDBodega INNER JOIN
+          Producto ON Kardex.IDProducto = Producto.IDProducto INNER JOIN
+          Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
+WHERE Kardex.Saldo<0
+ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = @"SELECT Kardex.IDBodega,
+	   Bodega.Descripcion AS Bodega,
+	   Producto.IDDepartamento,
+	   Departamento.Descripcion AS Departamento,
+	   Kardex.IDProducto,
+	   Producto.Descripcion AS Producto, 
+       Kardex.CostoPromedio AS Costo,
+	   Kardex.Saldo,  
+       Kardex.Saldo * Kardex.CostoPromedio AS [ValorInventario]
+FROM   Kardex INNER JOIN
+          KardexUltimoKardex1 ON Kardex.Fecha = KardexUltimoKardex1.Fecha AND Kardex.IDBodega = KardexUltimoKardex1.IDBodega AND Kardex.IDProducto = KardexUltimoKardex1.IDProducto INNER JOIN
+          Bodega ON Kardex.IDBodega = Bodega.IDBodega INNER JOIN
+          Producto ON Kardex.IDProducto = Producto.IDProducto INNER JOIN
+          Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
+WHERE Kardex.Saldo>=0
+ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17086,6 +17184,132 @@ ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual DSAppComercial.ReporteValorInventarioCostoPromedioDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable = new DSAppComercial.ReporteValorInventarioCostoPromedioDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByIDBodega(DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable, int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DSAppComercial.ReporteValorInventarioCostoPromedioDataTable GetDataByIDBodega(int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable = new DSAppComercial.ReporteValorInventarioCostoPromedioDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByIDBodegaAndNegativos(DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable, int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DSAppComercial.ReporteValorInventarioCostoPromedioDataTable GetDataByIDBodegaAndNegativos(int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable = new DSAppComercial.ReporteValorInventarioCostoPromedioDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByIDBodegaAndPositivos(DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable, int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DSAppComercial.ReporteValorInventarioCostoPromedioDataTable GetDataByIDBodegaAndPositivos(int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable = new DSAppComercial.ReporteValorInventarioCostoPromedioDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByNegativos(DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DSAppComercial.ReporteValorInventarioCostoPromedioDataTable GetDataByNegativos() {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable = new DSAppComercial.ReporteValorInventarioCostoPromedioDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByPositivos(DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[5];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DSAppComercial.ReporteValorInventarioCostoPromedioDataTable GetDataByPositivos() {
+            this.Adapter.SelectCommand = this.CommandCollection[5];
             DSAppComercial.ReporteValorInventarioCostoPromedioDataTable dataTable = new DSAppComercial.ReporteValorInventarioCostoPromedioDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -17235,7 +17459,7 @@ ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT Kardex.IDBodega,
@@ -17254,6 +17478,104 @@ FROM   Kardex INNER JOIN
           Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
 ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT Kardex.IDBodega,
+	   Bodega.Descripcion AS Bodega,
+	   Producto.IDDepartamento,
+	   Departamento.Descripcion AS Departamento,
+	   Kardex.IDProducto,
+	   Producto.Descripcion AS Producto, 
+       Kardex.UltimoCosto AS Costo,
+	   Kardex.Saldo,  
+       Kardex.Saldo * Kardex.UltimoCosto AS [ValorInventario]
+FROM   Kardex INNER JOIN
+          KardexUltimoKardex1 ON Kardex.Fecha = KardexUltimoKardex1.Fecha AND Kardex.IDBodega = KardexUltimoKardex1.IDBodega AND Kardex.IDProducto = KardexUltimoKardex1.IDProducto INNER JOIN
+          Bodega ON Kardex.IDBodega = Bodega.IDBodega INNER JOIN
+          Producto ON Kardex.IDProducto = Producto.IDProducto INNER JOIN
+          Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
+WHERE Kardex.IDBodega=@IDBodega
+ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDBodega", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDBodega", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT Kardex.IDBodega,
+	   Bodega.Descripcion AS Bodega,
+	   Producto.IDDepartamento,
+	   Departamento.Descripcion AS Departamento,
+	   Kardex.IDProducto,
+	   Producto.Descripcion AS Producto, 
+       Kardex.UltimoCosto AS Costo,
+	   Kardex.Saldo,  
+       Kardex.Saldo * Kardex.UltimoCosto AS [ValorInventario]
+FROM   Kardex INNER JOIN
+          KardexUltimoKardex1 ON Kardex.Fecha = KardexUltimoKardex1.Fecha AND Kardex.IDBodega = KardexUltimoKardex1.IDBodega AND Kardex.IDProducto = KardexUltimoKardex1.IDProducto INNER JOIN
+          Bodega ON Kardex.IDBodega = Bodega.IDBodega INNER JOIN
+          Producto ON Kardex.IDProducto = Producto.IDProducto INNER JOIN
+          Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
+WHERE Kardex.IDBodega=@IDBodega AND Kardex.Saldo<0 
+ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDBodega", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDBodega", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT Kardex.IDBodega,
+	   Bodega.Descripcion AS Bodega,
+	   Producto.IDDepartamento,
+	   Departamento.Descripcion AS Departamento,
+	   Kardex.IDProducto,
+	   Producto.Descripcion AS Producto, 
+       Kardex.UltimoCosto AS Costo,
+	   Kardex.Saldo,  
+       Kardex.Saldo * Kardex.UltimoCosto AS [ValorInventario]
+FROM   Kardex INNER JOIN
+          KardexUltimoKardex1 ON Kardex.Fecha = KardexUltimoKardex1.Fecha AND Kardex.IDBodega = KardexUltimoKardex1.IDBodega AND Kardex.IDProducto = KardexUltimoKardex1.IDProducto INNER JOIN
+          Bodega ON Kardex.IDBodega = Bodega.IDBodega INNER JOIN
+          Producto ON Kardex.IDProducto = Producto.IDProducto INNER JOIN
+          Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
+WHERE Kardex.IDBodega=@IDBodega AND Kardex.Saldo>=0 
+ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDBodega", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDBodega", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = @"SELECT Kardex.IDBodega,
+	   Bodega.Descripcion AS Bodega,
+	   Producto.IDDepartamento,
+	   Departamento.Descripcion AS Departamento,
+	   Kardex.IDProducto,
+	   Producto.Descripcion AS Producto, 
+       Kardex.UltimoCosto AS Costo,
+	   Kardex.Saldo,  
+       Kardex.Saldo * Kardex.UltimoCosto AS [ValorInventario]
+FROM   Kardex INNER JOIN
+          KardexUltimoKardex1 ON Kardex.Fecha = KardexUltimoKardex1.Fecha AND Kardex.IDBodega = KardexUltimoKardex1.IDBodega AND Kardex.IDProducto = KardexUltimoKardex1.IDProducto INNER JOIN
+          Bodega ON Kardex.IDBodega = Bodega.IDBodega INNER JOIN
+          Producto ON Kardex.IDProducto = Producto.IDProducto INNER JOIN
+          Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
+WHERE Kardex.Saldo<0
+ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = @"SELECT Kardex.IDBodega,
+	   Bodega.Descripcion AS Bodega,
+	   Producto.IDDepartamento,
+	   Departamento.Descripcion AS Departamento,
+	   Kardex.IDProducto,
+	   Producto.Descripcion AS Producto, 
+       Kardex.UltimoCosto AS Costo,
+	   Kardex.Saldo,  
+       Kardex.Saldo * Kardex.UltimoCosto AS [ValorInventario]
+FROM   Kardex INNER JOIN
+          KardexUltimoKardex1 ON Kardex.Fecha = KardexUltimoKardex1.Fecha AND Kardex.IDBodega = KardexUltimoKardex1.IDBodega AND Kardex.IDProducto = KardexUltimoKardex1.IDProducto INNER JOIN
+          Bodega ON Kardex.IDBodega = Bodega.IDBodega INNER JOIN
+          Producto ON Kardex.IDProducto = Producto.IDProducto INNER JOIN
+          Departamento ON Producto.IDDepartamento = Departamento.IDDepartamento
+WHERE Kardex.Saldo>=0
+ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17275,6 +17597,132 @@ ORDER BY Kardex.IDBodega, Producto.IDDepartamento, Kardex.IDProducto";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual DSAppComercial.ReporteValorInventarioUltimoCostoDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable = new DSAppComercial.ReporteValorInventarioUltimoCostoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByIDBodega(DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable, int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DSAppComercial.ReporteValorInventarioUltimoCostoDataTable GetDataByIDBodega(int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable = new DSAppComercial.ReporteValorInventarioUltimoCostoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByIDBodegaAndNegativos(DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable, int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DSAppComercial.ReporteValorInventarioUltimoCostoDataTable GetDataByIDBodegaAndNegativos(int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable = new DSAppComercial.ReporteValorInventarioUltimoCostoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByIDBodegaAndPositivos(DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable, int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DSAppComercial.ReporteValorInventarioUltimoCostoDataTable GetDataByIDBodegaAndPositivos(int IDBodega) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IDBodega));
+            DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable = new DSAppComercial.ReporteValorInventarioUltimoCostoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByNegativos(DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DSAppComercial.ReporteValorInventarioUltimoCostoDataTable GetDataByNegativos() {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable = new DSAppComercial.ReporteValorInventarioUltimoCostoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByPositivos(DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[5];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DSAppComercial.ReporteValorInventarioUltimoCostoDataTable GetDataByPositivos() {
+            this.Adapter.SelectCommand = this.CommandCollection[5];
             DSAppComercial.ReporteValorInventarioUltimoCostoDataTable dataTable = new DSAppComercial.ReporteValorInventarioUltimoCostoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -17883,12 +18331,12 @@ ORDER BY Compra.Fecha DESC";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._bodegaTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Bodega.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._rolTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Rol.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._bodegaTableAdapter.Update(updatedRows));
+                    result = (result + this._rolTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -17901,30 +18349,12 @@ ORDER BY Compra.Fecha DESC";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._rolTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Rol.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._bodegaTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Bodega.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._rolTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._kardexTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Kardex.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._kardexTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._barraTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Barra.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._barraTableAdapter.Update(updatedRows));
+                    result = (result + this._bodegaTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -17937,12 +18367,12 @@ ORDER BY Compra.Fecha DESC";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._clienteTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Cliente.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._usuarioTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Usuario.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._clienteTableAdapter.Update(updatedRows));
+                    result = (result + this._usuarioTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -17955,6 +18385,15 @@ ORDER BY Compra.Fecha DESC";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._kardexTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Kardex.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._kardexTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._proveedorTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Proveedor.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -17964,12 +18403,21 @@ ORDER BY Compra.Fecha DESC";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._usuarioTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Usuario.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._clienteTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Cliente.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._usuarioTableAdapter.Update(updatedRows));
+                    result = (result + this._clienteTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._barraTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Barra.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._barraTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -18015,11 +18463,11 @@ ORDER BY Compra.Fecha DESC";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._bodegaTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Bodega.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._rolTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Rol.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._bodegaTableAdapter.Update(addedRows));
+                    result = (result + this._rolTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18031,27 +18479,11 @@ ORDER BY Compra.Fecha DESC";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._rolTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Rol.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._bodegaTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Bodega.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._rolTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._kardexTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Kardex.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._kardexTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._barraTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Barra.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._barraTableAdapter.Update(addedRows));
+                    result = (result + this._bodegaTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18063,11 +18495,11 @@ ORDER BY Compra.Fecha DESC";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._clienteTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Cliente.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._usuarioTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Usuario.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._clienteTableAdapter.Update(addedRows));
+                    result = (result + this._usuarioTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18079,6 +18511,14 @@ ORDER BY Compra.Fecha DESC";
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._kardexTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Kardex.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._kardexTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._proveedorTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Proveedor.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -18087,11 +18527,19 @@ ORDER BY Compra.Fecha DESC";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._usuarioTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Usuario.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._clienteTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Cliente.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._usuarioTableAdapter.Update(addedRows));
+                    result = (result + this._clienteTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._barraTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Barra.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._barraTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18105,27 +18553,11 @@ ORDER BY Compra.Fecha DESC";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateDeletedRows(DSAppComercial dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._usuarioTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Usuario.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._barraTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Barra.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._usuarioTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._proveedorTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Proveedor.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._proveedorTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._conceptoTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Concepto.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._conceptoTableAdapter.Update(deletedRows));
+                    result = (result + this._barraTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18137,19 +18569,11 @@ ORDER BY Compra.Fecha DESC";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._bodegaProductoTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BodegaProducto.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._proveedorTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Proveedor.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._bodegaProductoTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._barraTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Barra.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._barraTableAdapter.Update(deletedRows));
+                    result = (result + this._proveedorTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18161,11 +18585,35 @@ ORDER BY Compra.Fecha DESC";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._rolTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Rol.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._conceptoTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Concepto.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._rolTableAdapter.Update(deletedRows));
+                    result = (result + this._conceptoTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._usuarioTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Usuario.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._usuarioTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._bodegaProductoTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.BodegaProducto.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._bodegaProductoTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._bodegaTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Bodega.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._bodegaTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18177,11 +18625,11 @@ ORDER BY Compra.Fecha DESC";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._bodegaTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Bodega.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._rolTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Rol.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._bodegaTableAdapter.Update(deletedRows));
+                    result = (result + this._rolTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

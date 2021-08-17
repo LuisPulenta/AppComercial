@@ -126,10 +126,16 @@
       <DependentUpon>cryReporteVentas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reportes\cryValorInventario.cs">
+    <Compile Include="Reportes\cryValorInventarioCostoPromedio.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>cryValorInventario.rpt</DependentUpon>
+      <DependentUpon>cryValorInventarioCostoPromedio.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\cryValorInventarioUltimoCosto.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cryValorInventarioUltimoCosto.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\frmReporteVentas.cs">
@@ -137,6 +143,12 @@
     </Compile>
     <Compile Include="Reportes\frmReporteVentas.Designer.cs">
       <DependentUpon>frmReporteVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frmValorInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frmValorInventario.Designer.cs">
+      <DependentUpon>frmValorInventario.cs</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\frmCambioClave.cs">
       <SubType>Form</SubType>
@@ -293,12 +305,19 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cryReporteVentas.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\cryValorInventario.rpt">
+    <EmbeddedResource Include="Reportes\cryValorInventarioCostoPromedio.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>cryValorInventario.cs</LastGenOutput>
+      <LastGenOutput>cryValorInventarioCostoPromedio.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\cryValorInventarioUltimoCosto.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cryValorInventarioUltimoCosto.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\frmReporteVentas.resx">
       <DependentUpon>frmReporteVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frmValorInventario.resx">
+      <DependentUpon>frmValorInventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\frmCambioClave.resx">
       <DependentUpon>frmCambioClave.cs</DependentUpon>

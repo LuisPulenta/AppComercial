@@ -287,5 +287,13 @@ namespace AppComercial
         {
             devolucionesDeProveedoresToolStripMenuItem_Click(sender, e);
         }
+
+        private void inventarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmValorInventario miForm = new frmValorInventario();
+            miForm.MdiParent = this;
+            //miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.Show();
+        }
     }
 }
