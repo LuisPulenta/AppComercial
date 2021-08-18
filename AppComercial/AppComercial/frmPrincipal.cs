@@ -303,5 +303,13 @@ namespace AppComercial
             //miForm.UsuarioLogueado = usuarioLogueado;
             miForm.Show();
         }
+
+        private void programarInventarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmInventarioFisicoPaso1 miForm = new frmInventarioFisicoPaso1();
+            miForm.MdiParent = this;
+            //miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.Show();
+        }
     }
 }

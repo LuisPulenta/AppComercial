@@ -66,6 +66,7 @@ namespace AppComercial
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.utilidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,7 +87,13 @@ namespace AppComercial
             this.tsbTraslados = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.nombresUsuarioToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.utilidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.programarInventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ingresarPrimerConteoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ingresarSegundoConteoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.últimosAjustesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelarInventariosNoTerminadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -260,6 +267,7 @@ namespace AppComercial
             this.movimientosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.comprasToolStripMenuItem,
             this.devolucionesToolStripMenuItem,
+            this.inventariosToolStripMenuItem,
             this.salidasToolStripMenuItem,
             this.trasladosToolStripMenuItem,
             this.ventasToolStripMenuItem,
@@ -293,7 +301,7 @@ namespace AppComercial
             // 
             this.dEvolucionesDeClientesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dEvolucionesDeClientesToolStripMenuItem.Image")));
             this.dEvolucionesDeClientesToolStripMenuItem.Name = "dEvolucionesDeClientesToolStripMenuItem";
-            this.dEvolucionesDeClientesToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
+            this.dEvolucionesDeClientesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.dEvolucionesDeClientesToolStripMenuItem.Text = "De &Clientes";
             this.dEvolucionesDeClientesToolStripMenuItem.Click += new System.EventHandler(this.dEvolucionesDeClientesToolStripMenuItem_Click);
             // 
@@ -301,7 +309,7 @@ namespace AppComercial
             // 
             this.devolucionesDeProveedoresToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("devolucionesDeProveedoresToolStripMenuItem.Image")));
             this.devolucionesDeProveedoresToolStripMenuItem.Name = "devolucionesDeProveedoresToolStripMenuItem";
-            this.devolucionesDeProveedoresToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
+            this.devolucionesDeProveedoresToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.devolucionesDeProveedoresToolStripMenuItem.Text = "A &Proveedores";
             this.devolucionesDeProveedoresToolStripMenuItem.Click += new System.EventHandler(this.devolucionesDeProveedoresToolStripMenuItem_Click);
             // 
@@ -357,7 +365,7 @@ namespace AppComercial
             // 
             this.kardexToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("kardexToolStripMenuItem.Image")));
             this.kardexToolStripMenuItem.Name = "kardexToolStripMenuItem";
-            this.kardexToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
+            this.kardexToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.kardexToolStripMenuItem.Text = "&Kardex";
             this.kardexToolStripMenuItem.Click += new System.EventHandler(this.kardexToolStripMenuItem_Click);
             // 
@@ -365,7 +373,7 @@ namespace AppComercial
             // 
             this.stockToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("stockToolStripMenuItem.Image")));
             this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
-            this.stockToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
+            this.stockToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.stockToolStripMenuItem.Text = "&Stock";
             // 
             // listadosToolStripMenuItem
@@ -402,7 +410,7 @@ namespace AppComercial
             // 
             this.inventarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("inventarioToolStripMenuItem.Image")));
             this.inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
-            this.inventarioToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.inventarioToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.inventarioToolStripMenuItem.Text = "&Inventario";
             this.inventarioToolStripMenuItem.Click += new System.EventHandler(this.inventarioToolStripMenuItem_Click);
             // 
@@ -410,9 +418,16 @@ namespace AppComercial
             // 
             this.ventasToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("ventasToolStripMenuItem1.Image")));
             this.ventasToolStripMenuItem1.Name = "ventasToolStripMenuItem1";
-            this.ventasToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.ventasToolStripMenuItem1.Size = new System.Drawing.Size(158, 26);
             this.ventasToolStripMenuItem1.Text = "&Ventas";
             this.ventasToolStripMenuItem1.Click += new System.EventHandler(this.ventasToolStripMenuItem1_Click);
+            // 
+            // utilidadToolStripMenuItem
+            // 
+            this.utilidadToolStripMenuItem.Name = "utilidadToolStripMenuItem";
+            this.utilidadToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.utilidadToolStripMenuItem.Text = "&Utilidad";
+            this.utilidadToolStripMenuItem.Click += new System.EventHandler(this.utilidadToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -599,12 +614,60 @@ namespace AppComercial
             this.nombresUsuarioToolStripStatusLabel.Name = "nombresUsuarioToolStripStatusLabel";
             this.nombresUsuarioToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
             // 
-            // utilidadToolStripMenuItem
+            // inventariosToolStripMenuItem
             // 
-            this.utilidadToolStripMenuItem.Name = "utilidadToolStripMenuItem";
-            this.utilidadToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.utilidadToolStripMenuItem.Text = "&Utilidad";
-            this.utilidadToolStripMenuItem.Click += new System.EventHandler(this.utilidadToolStripMenuItem_Click);
+            this.inventariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.programarInventarioToolStripMenuItem,
+            this.ingresarPrimerConteoToolStripMenuItem,
+            this.ingresarSegundoConteoToolStripMenuItem,
+            this.últimosAjustesToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.cancelarInventariosNoTerminadosToolStripMenuItem});
+            this.inventariosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("inventariosToolStripMenuItem.Image")));
+            this.inventariosToolStripMenuItem.Name = "inventariosToolStripMenuItem";
+            this.inventariosToolStripMenuItem.Size = new System.Drawing.Size(303, 26);
+            this.inventariosToolStripMenuItem.Text = "&Inventarios Físicos";
+            // 
+            // programarInventarioToolStripMenuItem
+            // 
+            this.programarInventarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("programarInventarioToolStripMenuItem.Image")));
+            this.programarInventarioToolStripMenuItem.Name = "programarInventarioToolStripMenuItem";
+            this.programarInventarioToolStripMenuItem.Size = new System.Drawing.Size(383, 26);
+            this.programarInventarioToolStripMenuItem.Text = "Paso 1: Programar Inventario";
+            this.programarInventarioToolStripMenuItem.Click += new System.EventHandler(this.programarInventarioToolStripMenuItem_Click);
+            // 
+            // ingresarPrimerConteoToolStripMenuItem
+            // 
+            this.ingresarPrimerConteoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ingresarPrimerConteoToolStripMenuItem.Image")));
+            this.ingresarPrimerConteoToolStripMenuItem.Name = "ingresarPrimerConteoToolStripMenuItem";
+            this.ingresarPrimerConteoToolStripMenuItem.Size = new System.Drawing.Size(383, 26);
+            this.ingresarPrimerConteoToolStripMenuItem.Text = "Paso 2: Ingresar Primer Conteo";
+            // 
+            // ingresarSegundoConteoToolStripMenuItem
+            // 
+            this.ingresarSegundoConteoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ingresarSegundoConteoToolStripMenuItem.Image")));
+            this.ingresarSegundoConteoToolStripMenuItem.Name = "ingresarSegundoConteoToolStripMenuItem";
+            this.ingresarSegundoConteoToolStripMenuItem.Size = new System.Drawing.Size(383, 26);
+            this.ingresarSegundoConteoToolStripMenuItem.Text = "Paso 3: Ingresar Segundo Conteo";
+            // 
+            // últimosAjustesToolStripMenuItem
+            // 
+            this.últimosAjustesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("últimosAjustesToolStripMenuItem.Image")));
+            this.últimosAjustesToolStripMenuItem.Name = "últimosAjustesToolStripMenuItem";
+            this.últimosAjustesToolStripMenuItem.Size = new System.Drawing.Size(383, 26);
+            this.últimosAjustesToolStripMenuItem.Text = "Paso 4: Ingresar Conteo Final y hacer Ajustes";
+            // 
+            // cancelarInventariosNoTerminadosToolStripMenuItem
+            // 
+            this.cancelarInventariosNoTerminadosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cancelarInventariosNoTerminadosToolStripMenuItem.Image")));
+            this.cancelarInventariosNoTerminadosToolStripMenuItem.Name = "cancelarInventariosNoTerminadosToolStripMenuItem";
+            this.cancelarInventariosNoTerminadosToolStripMenuItem.Size = new System.Drawing.Size(383, 26);
+            this.cancelarInventariosNoTerminadosToolStripMenuItem.Text = "Cancelar Inventarios no terminados";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(380, 6);
             // 
             // frmPrincipal
             // 
@@ -694,5 +757,12 @@ namespace AppComercial
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton tsbDevolucionProveedor;
         private System.Windows.Forms.ToolStripMenuItem utilidadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inventariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem programarInventarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ingresarPrimerConteoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ingresarSegundoConteoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem últimosAjustesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem cancelarInventariosNoTerminadosToolStripMenuItem;
     }
 }
