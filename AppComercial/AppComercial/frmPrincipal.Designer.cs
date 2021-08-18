@@ -86,6 +86,7 @@ namespace AppComercial
             this.tsbTraslados = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.nombresUsuarioToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.utilidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -381,7 +382,7 @@ namespace AppComercial
             // 
             this.productosToolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("productosToolStripMenuItem2.Image")));
             this.productosToolStripMenuItem2.Name = "productosToolStripMenuItem2";
-            this.productosToolStripMenuItem2.Size = new System.Drawing.Size(158, 26);
+            this.productosToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
             this.productosToolStripMenuItem2.Text = "&Productos";
             this.productosToolStripMenuItem2.Click += new System.EventHandler(this.productosToolStripMenuItem2_Click);
             // 
@@ -389,7 +390,8 @@ namespace AppComercial
             // 
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inventarioToolStripMenuItem,
-            this.ventasToolStripMenuItem1});
+            this.ventasToolStripMenuItem1,
+            this.utilidadToolStripMenuItem});
             this.reportesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reportesToolStripMenuItem.Image")));
             this.reportesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
@@ -597,6 +599,13 @@ namespace AppComercial
             this.nombresUsuarioToolStripStatusLabel.Name = "nombresUsuarioToolStripStatusLabel";
             this.nombresUsuarioToolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
             // 
+            // utilidadToolStripMenuItem
+            // 
+            this.utilidadToolStripMenuItem.Name = "utilidadToolStripMenuItem";
+            this.utilidadToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.utilidadToolStripMenuItem.Text = "&Utilidad";
+            this.utilidadToolStripMenuItem.Click += new System.EventHandler(this.utilidadToolStripMenuItem_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -684,5 +693,6 @@ namespace AppComercial
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton tsbDevolucionProveedor;
+        private System.Windows.Forms.ToolStripMenuItem utilidadToolStripMenuItem;
     }
 }

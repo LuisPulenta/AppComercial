@@ -295,5 +295,13 @@ namespace AppComercial
             //miForm.UsuarioLogueado = usuarioLogueado;
             miForm.Show();
         }
+
+        private void utilidadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReporteUtilidad miForm = new frmReporteUtilidad();
+            miForm.MdiParent = this;
+            //miForm.UsuarioLogueado = usuarioLogueado;
+            miForm.Show();
+        }
     }
 }
