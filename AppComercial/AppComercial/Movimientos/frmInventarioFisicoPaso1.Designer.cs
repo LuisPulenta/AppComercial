@@ -61,7 +61,6 @@ namespace AppComercial
             this.label1.Size = new System.Drawing.Size(51, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "Fecha:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // fechaDateTimePicker
             // 
@@ -69,7 +68,6 @@ namespace AppComercial
             this.fechaDateTimePicker.Name = "fechaDateTimePicker";
             this.fechaDateTimePicker.Size = new System.Drawing.Size(260, 22);
             this.fechaDateTimePicker.TabIndex = 8;
-            this.fechaDateTimePicker.ValueChanged += new System.EventHandler(this.fechaDateTimePicker_ValueChanged);
             // 
             // bodegaComboBox
             // 
@@ -81,7 +79,6 @@ namespace AppComercial
             this.bodegaComboBox.Size = new System.Drawing.Size(260, 24);
             this.bodegaComboBox.TabIndex = 10;
             this.bodegaComboBox.ValueMember = "IDBodega";
-            this.bodegaComboBox.SelectedIndexChanged += new System.EventHandler(this.bodegaComboBox_SelectedIndexChanged);
             // 
             // bodegaBindingSource
             // 
@@ -101,7 +98,6 @@ namespace AppComercial
             this.label3.Size = new System.Drawing.Size(61, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "Bodega:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // departamentoComboBox
             // 
@@ -114,7 +110,6 @@ namespace AppComercial
             this.departamentoComboBox.Size = new System.Drawing.Size(260, 24);
             this.departamentoComboBox.TabIndex = 12;
             this.departamentoComboBox.ValueMember = "IDDepartamento";
-            this.departamentoComboBox.SelectedIndexChanged += new System.EventHandler(this.departamentoComboBox_SelectedIndexChanged);
             // 
             // departamentoBindingSource
             // 
@@ -153,7 +148,6 @@ namespace AppComercial
             this.label2.Size = new System.Drawing.Size(102, 17);
             this.label2.TabIndex = 15;
             this.label2.Text = "Departamento:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // bodegaTableAdapter
             // 

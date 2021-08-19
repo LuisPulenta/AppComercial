@@ -1,4 +1,5 @@
-﻿using CADAppComercial;
+﻿using BL;
+using CADAppComercial;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,8 @@ namespace AppComercial
 {
     public partial class frmInventarioFisicoPaso1 : Form
     {
+        private List<ProductoAInventariar> misProductosAInventariar = new List<ProductoAInventariar>();
+
         public frmInventarioFisicoPaso1()
         {
             InitializeComponent();
@@ -20,7 +23,7 @@ namespace AppComercial
 
         private void frmInventarioFisicoPaso1_Load(object sender, EventArgs e)
         {
-            //this.departamentoTableAdapter.FillBy1(this.dSAppComercial.Departamento);
+            this.departamentoTableAdapter.FillBy(this.dSAppComercial.Departamento);
             this.bodegaTableAdapter.Fill(this.dSAppComercial.Bodega);
             bodegaComboBox.SelectedIndex = -1;
             departamentoComboBox.SelectedIndex = -1;
@@ -85,52 +88,43 @@ namespace AppComercial
                 }
             }
 
-            //Grabamos la Cabecera del Inventario
+            DateTime fecha = fechaDateTimePicker.Value;
+            int IDBodega = (int)bodegaComboBox.SelectedValue;
 
-            int IDInventario = CADInventario.InventarioInsertInventario(
-                fechaDateTimePicker.Value,
-                (int) bodegaComboBox.SelectedValue);
+            if (radioButton1.Checked)
+            {
+                CADAppComercial.DSAppComercial.ProductosAInventariarDataTable miTabla = CADProductosAInventariar.ProductosAInventariarByIDBodega((int)bodegaComboBox.SelectedValue);
+                foreach (CADAppComercial.DSAppComercial.ProductosAInventariarRow miRegistro in miTabla.Rows)
+                {
+                    ProductoAInventariar productoAInventariar = new ProductoAInventariar();
+                    productoAInventariar.IDProducto = miRegistro.IDProducto;
+                    productoAInventariar.Descripcion = miRegistro.Descripcion;
+                    productoAInventariar.Saldo = (float)miRegistro.Saldo;
+                    misProductosAInventariar.Add(productoAInventariar);
+                }
+            }
+            else
+            {
+                CADAppComercial.DSAppComercial.ProductosAInventariarDataTable miTabla = CADProductosAInventariar.ProductosAInventariarByIDBodegaAndIDDepartamento((int)bodegaComboBox.SelectedValue, (int)departamentoComboBox.SelectedValue);
+                foreach (CADAppComercial.DSAppComercial.ProductosAInventariarRow miRegistro in miTabla.Rows)
+                {
+                    ProductoAInventariar productoAInventariar = new ProductoAInventariar();
+                    productoAInventariar.IDProducto = miRegistro.IDProducto;
+                    productoAInventariar.Descripcion = miRegistro.Descripcion;
+                    productoAInventariar.Saldo = (float)miRegistro.Saldo;
+                    misProductosAInventariar.Add(productoAInventariar);
+                }
+            }
 
-            //Grabamos el Detalle del Inventario
-                    //Hay que obtener la lista de productos y guardarla en InventarioDetalle
+            int IDInventario = Operaciones.GrabarInventario(fecha, IDBodega, misProductosAInventariar);
 
-            //Mensaje Final
-            MessageBox.Show(
+                //Mensaje Final
+                MessageBox.Show(
                 string.Format("El Inventario Físico {0}, fue grabado de forma exitosa. Puede proceder a hacer los Conteos.", IDInventario),
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
             this.Close();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void departamentoComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fechaDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bodegaComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

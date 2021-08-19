@@ -50,6 +50,7 @@
     <Compile Include="DevolucionProveedorDevuelto.cs" />
     <Compile Include="DevolucionProveedorDisponible.cs" />
     <Compile Include="Operaciones.cs" />
+    <Compile Include="ProductoAInventariar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

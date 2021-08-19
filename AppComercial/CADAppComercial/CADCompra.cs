@@ -17,12 +17,12 @@ namespace CADAppComercial
             int IDProveedor,
             int IDBodega)
         {
-            return (int) adaptador.CompraInsertCompra(Fecha, IDProveedor, IDBodega);
+            return (int)adaptador.CompraInsertCompra(Fecha, IDProveedor, IDBodega);
         }
 
         public static bool ProveedorTieneCompras(int IDProveedor)
         {
-            if(adaptador.ProveedorTieneCompras(IDProveedor)==null)
+            if (adaptador.ProveedorTieneCompras(IDProveedor) == null)
             {
                 return false;
             }

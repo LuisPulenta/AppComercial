@@ -455,5 +455,32 @@ namespace BL
             }
             return IDDevolucion;
         }
+
+        public static int GrabarInventario(DateTime fecha, int IDBodega, List<ProductoAInventariar> misProductosAInventariar)
+        {
+            //Grabamos la Cabecera del Inventario
+
+            int IDInventario = CADInventario.InventarioInsertInventario(
+                fecha,
+                IDBodega);
+
+            //Grabamos el Detalle del Inventario
+            //Hay que obtener la lista de productos y guardarla en InventarioDetalle
+
+
+            foreach (ProductoAInventariar miProductosAInventariar in misProductosAInventariar)
+            {
+                CADInventarioDetalle.InventarioDetalleInsertInventarioDetalle(
+                    IDInventario,
+                    miProductosAInventariar.IDProducto,
+                    miProductosAInventariar.Descripcion,
+                    miProductosAInventariar.Saldo,
+                    0,
+                    0,
+                    0,
+                    0);
+            }
+            return IDInventario;
+        }
     }
 }

@@ -14,10 +14,9 @@ namespace CADAppComercial
             double Conteo1,
             double Conteo2,
             double Conteo3,
-            double Ajuste,
-            int IDKardex)
+            double Ajuste)
         {
-            adaptador.InventarioDetalleInsertInventarioDetalle(IDInventario, IDProducto, Descripcion, Stock, Conteo1, Conteo2, Conteo3, Ajuste, IDKardex);
+            adaptador.InventarioDetalleInsertInventarioDetalle(IDInventario, IDProducto, Descripcion, Stock, Conteo1, Conteo2, Conteo3, Ajuste);
         }
     }
 }
