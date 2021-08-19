@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win", "AppComercial\Win.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAD", "CADAppComercial\CAD.csproj", "{DE647B50-A445-4522-B19A-DF2A4BDA8E8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{93C80828-14FD-49AE-81DC-883DAAD5B3A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DE647B50-A445-4522-B19A-DF2A4BDA8E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE647B50-A445-4522-B19A-DF2A4BDA8E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE647B50-A445-4522-B19A-DF2A4BDA8E8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93C80828-14FD-49AE-81DC-883DAAD5B3A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C80828-14FD-49AE-81DC-883DAAD5B3A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C80828-14FD-49AE-81DC-883DAAD5B3A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C80828-14FD-49AE-81DC-883DAAD5B3A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

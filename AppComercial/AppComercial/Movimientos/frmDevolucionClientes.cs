@@ -1,4 +1,5 @@
-﻿using CADAppComercial;
+﻿using BL;
+using CADAppComercial;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -53,7 +54,7 @@ namespace AppComercial
             foreach (CADAppComercial.DSAppComercial.VentaDetalleRow miRegistro in miTabla.Rows)
             {
                 DevolucionClienteDisponible miDisponible = new DevolucionClienteDisponible();
-                miDisponible.CantidadDevuelta = (float) CADDevolucionClienteDetalle.DevolucionClienteGetHistoriaDevolucionCliente(miRegistro.IDVenta, miRegistro.IDProducto);
+                miDisponible.CantidadDevuelta = (float)CADDevolucionClienteDetalle.DevolucionClienteGetHistoriaDevolucionCliente(miRegistro.IDVenta, miRegistro.IDProducto);
                 miDisponible.CantidadOriginal = (float)miRegistro.Cantidad;
                 miDisponible.Descripcion = miRegistro.Descripcion;
                 miDisponible.IDProducto = miRegistro.IDProducto;
@@ -190,14 +191,14 @@ namespace AppComercial
             }
 
             foreach (DevolucionClienteDevuelto nuevoDevuelto in misDevueltos)
+            {
+                if ((int)productoComboBox.SelectedValue == nuevoDevuelto.IDProducto)
                 {
-                    if ((int) productoComboBox.SelectedValue== nuevoDevuelto.IDProducto)
-                    {
-                        errorProvider1.SetError(productoComboBox, "El Producto ya fue agregado a la devolución");
-                        productoComboBox.Focus();
-                        return;
-                    }
+                    errorProvider1.SetError(productoComboBox, "El Producto ya fue agregado a la devolución");
+                    productoComboBox.Focus();
+                    return;
                 }
+            }
 
             DevolucionClienteDevuelto miDevuelto = new DevolucionClienteDevuelto();
             miDevuelto.CantidadADevolver = cantidad;
@@ -207,7 +208,7 @@ namespace AppComercial
             miDevuelto.PorcentajeIVA = misDisponibles[productoComboBox.SelectedIndex].PorcentajeIVA;
             miDevuelto.Precio = misDisponibles[productoComboBox.SelectedIndex].Precio;
             misDevueltos.Add(miDevuelto);
-            
+
             productoComboBox.SelectedIndex = -1;
             cantidadTextBox.Text = string.Empty;
             productoComboBox.Focus();
@@ -247,74 +248,7 @@ namespace AppComercial
             int IDBodega = (int)bodegaComboBox.SelectedValue;
             DateTime fecha = fechaDevolucionDateTimePicker.Value;
 
-            //Grabamos la Cabecera de la Devolución
-            int IDDevolucion = CADDevolucionCliente.DevolucionClienteInsertDevolucionCliente(fecha, IDVenta);
-
-            //Grabamos el Detalle de la Devolución
-            foreach (DevolucionClienteDevuelto midevuelto in misDevueltos)
-            {
-                //Actualizamos la Tabla BodegaProducto
-                CADBodegaProducto miBodegaProducto = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodega, midevuelto.IDProducto);
-
-                if (miBodegaProducto == null)
-                {
-                    CADBodegaProducto.BodegaProductoUpdate(IDBodega, midevuelto.IDProducto, 1, 1, 1, 1);
-
-                }
-                CADBodegaProducto.BodegaProductoActualizaStock(midevuelto.CantidadADevolver, IDBodega, midevuelto.IDProducto);
-
-                //Actualizamos el Kardex
-                CADKardex miKardex = CADKardex.KardexUltimoKardex(IDBodega, midevuelto.IDProducto);
-
-                int IDKardex;
-                float nuevoSaldo;
-                decimal nuevoCostoPromedio;
-                decimal nuevoUltimoCosto;
-
-                if (miKardex == null)
-                {
-                    nuevoSaldo = midevuelto.CantidadADevolver;
-                    nuevoCostoPromedio = midevuelto.Precio;
-                    nuevoUltimoCosto = nuevoCostoPromedio;
-                }
-                else
-                {
-                    nuevoSaldo = miKardex.Saldo + midevuelto.CantidadADevolver;
-                    if(nuevoSaldo != 0)
-                    {
-                        nuevoCostoPromedio = (miKardex.CostoPromedio * (decimal)miKardex.Saldo
-                        + midevuelto.Precio * (decimal)midevuelto.CantidadADevolver) / (decimal)nuevoSaldo;
-                    }
-                    else
-                    {
-                        nuevoCostoPromedio = 0;
-                    }
-                    nuevoUltimoCosto = (decimal)midevuelto.Precio;
-                }
-
-                IDKardex = CADKardex.KardexInsertKardex(
-                        IDBodega,
-                        midevuelto.IDProducto,
-                        fecha,
-                        string.Format("DC-{0}", IDDevolucion),
-                        midevuelto.CantidadADevolver,
-                        0,
-                        nuevoSaldo,
-                        nuevoUltimoCosto,
-                        nuevoCostoPromedio);
-
-                //Actualizamos DevolcuionCompraDetalle
-                CADDevolucionClienteDetalle.DevolucionClienteDetalleInsertDevolucionClienteDetalle(
-                    IDDevolucion,
-                    midevuelto.IDProducto,
-                    midevuelto.Descripcion,
-                    midevuelto.Precio,
-                    midevuelto.CantidadADevolver,
-                    IDKardex,
-                    midevuelto.PorcentajeIVA,
-                    midevuelto.PorcentajeDescuento)
-                    ;
-            }
+            int IDDevolucion = Operaciones.GrabarDevolucionCliente(fecha, IDBodega, IDVenta, misDevueltos);
 
             MessageBox.Show(
                 string.Format("La Devolución de Cliente {0}, fue grabada de forma exitosa", IDDevolucion),
@@ -411,9 +345,9 @@ namespace AppComercial
             if (rta == DialogResult.No) return;
 
             misDevueltos.Clear();
-            foreach(DevolucionClienteDisponible miDisponible in misDisponibles)
+            foreach (DevolucionClienteDisponible miDisponible in misDisponibles)
             {
-                if (miDisponible.CantidadDisponible>0)
+                if (miDisponible.CantidadDisponible > 0)
                 {
                     DevolucionClienteDevuelto miDevuelto = new DevolucionClienteDevuelto();
                     miDevuelto.CantidadADevolver = miDisponible.CantidadDisponible;

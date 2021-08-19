@@ -1,7 +1,7 @@
-﻿using CADAppComercial;
+﻿using BL;
+using CADAppComercial;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -24,14 +24,14 @@ namespace AppComercial
         private decimal totalNeto = 0;
         List<DetalleCompra> misDetalles = new List<DetalleCompra>();
         CADProducto ultimoProducto = null;
-        
+
 
         public frmCompras()
         {
             InitializeComponent();
         }
 
-      
+
 
         private void frmCompras_Load(object sender, EventArgs e)
         {
@@ -66,7 +66,7 @@ namespace AppComercial
         {
             errorProvider1.Clear();
             pbxImagen.Image = null;
-            if (productoTextBox.Text==string.Empty)
+            if (productoTextBox.Text == string.Empty)
             {
                 errorProvider1.SetError(productoTextBox, "Debe ingresar un Código de Producto o un Código de Barras");
                 return;
@@ -88,7 +88,7 @@ namespace AppComercial
             }
 
             CADProducto miProducto = CADProducto.ProductoGetProductoByIDProducto((int)producto);
-            if (miProducto==null)
+            if (miProducto == null)
             {
                 miProducto = CADProducto.ProductoGetProductoByIDBarra(producto);
             }
@@ -109,8 +109,8 @@ namespace AppComercial
                 }
                 else
                 {
-                    
-                  if (File.Exists("Images\\" + miProducto.Imagen))
+
+                    if (File.Exists("Images\\" + miProducto.Imagen))
                     {
                         if (miProducto.Imagen == string.Empty)
                         {
@@ -132,13 +132,13 @@ namespace AppComercial
             }
         }
 
-       
+
 
 
         private void agregarButton_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();
-            if (ultimoProducto==null)
+            if (ultimoProducto == null)
             {
                 errorProvider1.SetError(productoTextBox, "Debe ingresar un Producto");
                 productoTextBox.Focus();
@@ -187,7 +187,7 @@ namespace AppComercial
             }
 
             float porcentajeDescuento = 0;
-            if (porcentajeDescuentoTextBox.Text !=string.Empty)
+            if (porcentajeDescuentoTextBox.Text != string.Empty)
             {
                 if (!float.TryParse(porcentajeDescuentoTextBox.Text, out porcentajeDescuento))
                 {
@@ -196,7 +196,7 @@ namespace AppComercial
                     return;
                 }
 
-                if (porcentajeDescuento < 0 || porcentajeDescuento>100)
+                if (porcentajeDescuento < 0 || porcentajeDescuento > 100)
                 {
                     errorProvider1.SetError(porcentajeDescuentoTextBox, "Debe ingresar un valor igual o mayor a 0 y menor o igual a 100");
                     porcentajeDescuentoTextBox.Focus();
@@ -218,7 +218,7 @@ namespace AppComercial
             pbxImagen.Image = null;
 
             RefrescaGrid();
-            
+
             LimpiarControles();
         }
 
@@ -268,7 +268,7 @@ namespace AppComercial
             dgvDatos.Columns["IDProducto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvDatos.Columns["Descripcion"].HeaderText = "Descripción";
-            
+
             dgvDatos.Columns["Costo"].HeaderText = "Costo";
             dgvDatos.Columns["Costo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvDatos.Columns["Costo"].DefaultCellStyle.Format = "C2";
@@ -337,7 +337,7 @@ namespace AppComercial
                 return;
             }
 
-            if (misDetalles.Count==0)
+            if (misDetalles.Count == 0)
             {
                 errorProvider1.SetError(productoTextBox, "Debe ingresar al menos un Producto");
                 productoTextBox.Focus();
@@ -354,78 +354,17 @@ namespace AppComercial
             if (rta == DialogResult.No) return;
 
             int IDProveedor = (int)proveedorComboBox.SelectedValue;
-            int IDBodega=(int)bodegaComboBox.SelectedValue;
+            int IDBodega = (int)bodegaComboBox.SelectedValue;
             DateTime fecha = fechaDateTimePicker.Value;
 
-            //Grabamos la Cabecera de la Compra
-            int IDCompra = CADCompra.CompraInsertCompra(
-                fechaDateTimePicker.Value,
-                IDProveedor,
-                IDBodega);
-
-            //Grabamos el Detalle de la Compra
-            foreach (DetalleCompra midetalle in misDetalles)
-            {
-                //Actualizamos la Tabla BodegaProducto
-                CADBodegaProducto miBodegaProducto = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodega,midetalle.IDProducto);
-                
-                if (miBodegaProducto==null)
-                {
-                    CADBodegaProducto.BodegaProductoUpdate(IDBodega, midetalle.IDProducto, 1, 1, 1, 1);
-                    
-                }
-                CADBodegaProducto.BodegaProductoActualizaStock(midetalle.Cantidad, IDBodega, midetalle.IDProducto);
-
-                //Actualizamos el Kardex
-                CADKardex miKardex = CADKardex.KardexUltimoKardex(IDBodega, midetalle.IDProducto);
-                
-                int IDKardex;
-                float nuevoSaldo;
-                decimal nuevoCostoPromedio;
-                decimal nuevoUltimoCosto;
-
-                if (miKardex == null)
-                {
-                    nuevoSaldo = midetalle.Cantidad;
-                    nuevoCostoPromedio = midetalle.valorNeto/(decimal)midetalle.Cantidad;
-                    nuevoUltimoCosto = nuevoCostoPromedio;
-                }
-                else
-                {
-                    nuevoSaldo = miKardex.Saldo + midetalle.Cantidad;
-                    nuevoCostoPromedio = (miKardex.CostoPromedio * (decimal)miKardex.Saldo
-                        + midetalle.valorNeto) / (decimal)nuevoSaldo;
-                    nuevoUltimoCosto = midetalle.valorNeto / (decimal)midetalle.Cantidad;
-                }
-
-                IDKardex = CADKardex.KardexInsertKardex(
-                        IDBodega,
-                        midetalle.IDProducto,
-                        fecha,
-                        string.Format("CO-{0}", IDCompra),
-                        midetalle.Cantidad,
-                        0,
-                        nuevoSaldo,
-                        nuevoUltimoCosto,
-                        nuevoCostoPromedio);
-
-                //Actualizamos CompraDetalle
-                CADCompraDetalle.CompraDetalleInsertCompraDetalle(
-                    IDCompra,
-                    midetalle.IDProducto,
-                    midetalle.Descripcion,
-                    midetalle.Costo,
-                    midetalle.Cantidad,
-                    IDKardex, midetalle.PorcentajeIVA,
-                    midetalle.PorcentajeDescuento);
-            }
+            int IDCompra = Operaciones.GrabarCompra(IDBodega, IDProveedor,fecha,  misDetalles);
 
             MessageBox.Show(
-                string.Format("La Compra {0}, fue grabada de forma exitosa",IDCompra),
+                string.Format("La Compra {0}, fue grabada de forma exitosa", IDCompra),
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
-        
+
             totalItems = 0;
             totalBruto = 0;
             totalIVA = 0;
@@ -442,6 +381,8 @@ namespace AppComercial
             proveedorComboBox.Focus();
         }
 
+        
+
         private void eliminarTodoButton_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();
@@ -457,7 +398,7 @@ namespace AppComercial
             if (rta == DialogResult.No) return;
 
             misDetalles.Clear();
-            
+
             totalItems = 0;
             totalBruto = 0;
             totalIVA = 0;
@@ -494,7 +435,7 @@ namespace AppComercial
 
         private void frmCompras_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(misDetalles.Count>0)
+            if (misDetalles.Count > 0)
             {
                 DialogResult rta = MessageBox.Show(
             "La Compra tiene productos cargados, ¿está seguro de salir sin terminar la Compra?",

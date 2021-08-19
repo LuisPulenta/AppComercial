@@ -1,4 +1,4 @@
-﻿namespace AppComercial.Clases
+﻿namespace BL
 {
     public class DevolucionProveedorDisponible
     {

@@ -53,14 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\DetalleCompra.cs" />
-    <Compile Include="Clases\DetalleSalida.cs" />
-    <Compile Include="Clases\DetalleTraslado.cs" />
-    <Compile Include="Clases\DetalleVenta.cs" />
-    <Compile Include="Clases\DevolucionClienteDevuelto.cs" />
-    <Compile Include="Clases\DevolucionClienteDisponible.cs" />
-    <Compile Include="Clases\DevolucionProveedorDevuelto.cs" />
-    <Compile Include="Clases\DevolucionProveedorDisponible.cs" />
     <Compile Include="DSAppComercial.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -441,6 +433,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{93c80828-14fd-49ae-81dc-883daad5b3a8}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CADAppComercial\CAD.csproj">
       <Project>{de647b50-a445-4522-b19a-df2a4bda8e8e}</Project>
       <Name>CAD</Name>

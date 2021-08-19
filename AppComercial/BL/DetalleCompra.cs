@@ -1,4 +1,4 @@
-﻿namespace AppComercial
+﻿namespace BL
 {
     public class DetalleCompra
     {

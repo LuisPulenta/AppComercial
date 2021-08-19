@@ -1,4 +1,5 @@
 ﻿using AppComercial.Reportes;
+using BL;
 using CADAppComercial;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace AppComercial
         List<DetalleVenta> misDetalles = new List<DetalleVenta>();
         CADProducto ultimoProducto = null;
 
-        
+
 
         public frmVentas()
         {
@@ -178,7 +179,7 @@ namespace AppComercial
                 porcentajeDescuento /= 100;
             }
 
-            decimal precio= ultimoProducto.Precio;
+            decimal precio = ultimoProducto.Precio;
 
             DetalleVenta miDetalle = new DetalleVenta();
             miDetalle.Cantidad = cantidad;
@@ -306,10 +307,10 @@ namespace AppComercial
             }
             else
             {
-                int IDProducto = (int) dgvDatos.SelectedRows[0].Cells[0].Value;
-                for(int i=0;i<misDetalles.Count;i++)
+                int IDProducto = (int)dgvDatos.SelectedRows[0].Cells[0].Value;
+                for (int i = 0; i < misDetalles.Count; i++)
                 {
-                    if (misDetalles[i].IDProducto==IDProducto)
+                    if (misDetalles[i].IDProducto == IDProducto)
                     {
                         misDetalles.RemoveAt(i);
                         break;
@@ -399,67 +400,7 @@ namespace AppComercial
             int IDBodega = (int)bodegaComboBox.SelectedValue;
             DateTime fecha = fechaDateTimePicker.Value;
 
-            //Grabamos la Cabecera de la Compra
-            int IDVenta = CADVenta.VentaInsertVenta(
-                fechaDateTimePicker.Value,
-                IDCliente,
-                IDBodega);
-
-            //Grabamos el Detalle de la Compra
-            foreach (DetalleVenta midetalle in misDetalles)
-            {
-                //Actualizamos la Tabla BodegaProducto
-                CADBodegaProducto miBodegaProducto = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodega, midetalle.IDProducto);
-
-                if (miBodegaProducto == null)
-                {
-                    CADBodegaProducto.BodegaProductoUpdate(IDBodega, midetalle.IDProducto, 1, 1, 1, 1);
-
-                }
-                CADBodegaProducto.BodegaProductoActualizaStock(-midetalle.Cantidad, IDBodega, midetalle.IDProducto);
-
-                //Actualizamos el Kardex
-                CADKardex miKardex = CADKardex.KardexUltimoKardex(IDBodega, midetalle.IDProducto);
-
-                int IDKardex;
-                float nuevoSaldo;
-                decimal nuevoCostoPromedio;
-                decimal nuevoUltimoCosto;
-
-                if (miKardex == null)
-                {
-                    nuevoSaldo = -midetalle.Cantidad;
-                    nuevoCostoPromedio = 0;
-                    nuevoUltimoCosto = 0;
-                }
-                else
-                {
-                    nuevoSaldo = miKardex.Saldo - midetalle.Cantidad;
-                    nuevoCostoPromedio = miKardex.CostoPromedio;
-                    nuevoUltimoCosto = miKardex.UltimoCosto;
-                }
-
-                IDKardex = CADKardex.KardexInsertKardex(
-                        IDBodega,
-                        midetalle.IDProducto,
-                        fecha,
-                        string.Format("VE-{0}", IDVenta),
-                        0,
-                        midetalle.Cantidad,
-                        nuevoSaldo,
-                        nuevoUltimoCosto,
-                        nuevoCostoPromedio);
-
-                //Actualizamos VentaDetalle
-                CADVentaDetalle.VentaDetalleInsertVentaDetalle(
-                    IDVenta,
-                    midetalle.IDProducto,
-                    midetalle.Descripcion,
-                    midetalle.Precio,
-                    midetalle.Cantidad,
-                    IDKardex, midetalle.PorcentajeIVA,
-                    midetalle.PorcentajeDescuento);
-            }
+            int IDVenta = Operaciones.GrabarVenta(IDBodega, IDCliente, fecha, misDetalles);
 
             MessageBox.Show(
                 string.Format("La Venta {0}, fue grabada de forma exitosa", IDVenta),

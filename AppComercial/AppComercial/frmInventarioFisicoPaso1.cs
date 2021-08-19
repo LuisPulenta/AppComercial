@@ -20,7 +20,7 @@ namespace AppComercial
 
         private void frmInventarioFisicoPaso1_Load(object sender, EventArgs e)
         {
-            this.departamentoTableAdapter.FillBy1(this.dSAppComercial.Departamento);
+            //this.departamentoTableAdapter.FillBy1(this.dSAppComercial.Departamento);
             this.bodegaTableAdapter.Fill(this.dSAppComercial.Bodega);
             bodegaComboBox.SelectedIndex = -1;
             departamentoComboBox.SelectedIndex = -1;

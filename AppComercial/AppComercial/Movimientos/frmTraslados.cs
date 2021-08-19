@@ -1,4 +1,4 @@
-﻿using AppComercial.Clases;
+﻿using BL;
 using CADAppComercial;
 using System;
 using System.Collections.Generic;
@@ -342,110 +342,7 @@ namespace AppComercial.Movimientos
             int IDBodegaDestino = (int)bodegaDestinoComboBox.SelectedValue;
             DateTime fecha = fechaDateTimePicker.Value;
 
-            //Grabamos la Cabecera del Traslado
-            int IDTraslado = CADTraslado.TrasladoInsertTraslado(
-                fechaDateTimePicker.Value,
-                IDBodegaOrigen,
-                IDBodegaDestino);
-
-            //Grabamos el Detalle del Traslado
-            foreach (DetalleTraslado midetalle in misDetalles)
-            {
-                //Actualizamos la Tabla BodegaProducto
-                CADBodegaProducto miBodegaProductoOrigen = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodegaOrigen, midetalle.IDProducto);
-
-                if (miBodegaProductoOrigen == null)
-                {
-                    CADBodegaProducto.BodegaProductoUpdate(IDBodegaOrigen, midetalle.IDProducto, 1, 1, 1, 1);
-
-                }
-                CADBodegaProducto.BodegaProductoActualizaStock(-midetalle.Cantidad, IDBodegaOrigen, midetalle.IDProducto);
-
-                CADBodegaProducto miBodegaProductoDestino = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodegaDestino, midetalle.IDProducto);
-
-                if (miBodegaProductoDestino == null)
-                {
-                    CADBodegaProducto.BodegaProductoUpdate(IDBodegaDestino, midetalle.IDProducto, 1, 1, 1, 1);
-
-                }
-                CADBodegaProducto.BodegaProductoActualizaStock(midetalle.Cantidad, IDBodegaDestino, midetalle.IDProducto);
-
-
-                //Actualizamos el Kardex
-                CADKardex miKardexOrigen = CADKardex.KardexUltimoKardex(IDBodegaOrigen, midetalle.IDProducto);
-
-                int IDKardexOrigen;
-                float nuevoSaldoOrigen;
-                decimal nuevoCostoPromedioOrigen;
-                decimal nuevoUltimoCostoOrigen;
-
-                if (miKardexOrigen == null)
-                {
-                    nuevoSaldoOrigen = -midetalle.Cantidad;
-                    nuevoCostoPromedioOrigen = 0;
-                    nuevoUltimoCostoOrigen = 0;
-                }
-                else
-                {
-                    nuevoSaldoOrigen = miKardexOrigen.Saldo - midetalle.Cantidad;
-                    nuevoCostoPromedioOrigen = miKardexOrigen.CostoPromedio;
-                    nuevoUltimoCostoOrigen = miKardexOrigen.UltimoCosto;
-                }
-
-                IDKardexOrigen = CADKardex.KardexInsertKardex(
-                        IDBodegaOrigen,
-                        midetalle.IDProducto,
-                        fecha,
-                        string.Format("TR-{0}", IDTraslado),
-                        0,
-                        midetalle.Cantidad,
-                        nuevoSaldoOrigen,
-                        nuevoUltimoCostoOrigen,
-                        nuevoCostoPromedioOrigen);
-
-                CADKardex miKardexDestino = CADKardex.KardexUltimoKardex(IDBodegaDestino, midetalle.IDProducto);
-
-                int IDKardexDestino;
-                float nuevoSaldoDestino;
-                decimal nuevoCostoPromedioDestino;
-                decimal nuevoUltimoCostoDestino;
-
-                if (miKardexDestino == null)
-                {
-                    nuevoSaldoDestino = midetalle.Cantidad;
-                    nuevoCostoPromedioDestino = 0;
-                    nuevoUltimoCostoDestino = 0;
-                }
-                else
-                {
-                    nuevoSaldoDestino = miKardexDestino.Saldo + midetalle.Cantidad;
-                    nuevoCostoPromedioDestino = miKardexDestino.CostoPromedio;
-                    nuevoUltimoCostoDestino = miKardexDestino.UltimoCosto;
-                }
-
-                IDKardexDestino = CADKardex.KardexInsertKardex(
-                        IDBodegaDestino,
-                        midetalle.IDProducto,
-                        fecha,
-                        string.Format("TR-{0}", IDTraslado),
-                        midetalle.Cantidad,
-                        0,
-                        nuevoSaldoDestino,
-                        nuevoUltimoCostoDestino,
-                        nuevoCostoPromedioDestino);
-
-
-                //Actualizamos TrasladoDetalle
-                CADTrasladoDetalle.TrasladoDetalleInsertTrasladoDetalle(
-                    IDTraslado,
-                    midetalle.IDProducto,
-                    midetalle.Descripcion,
-                    midetalle.Cantidad,
-                    IDKardexOrigen,
-                    IDKardexDestino);
-            }
-
-
+            int IDTraslado = Operaciones.GrabarTraslado(fecha, IDBodegaOrigen,IDBodegaDestino, misDetalles);
 
             MessageBox.Show(
                 string.Format("El Traslado {0}, fue grabado de forma exitosa", IDTraslado),

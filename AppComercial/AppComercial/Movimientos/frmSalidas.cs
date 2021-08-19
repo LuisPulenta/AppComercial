@@ -1,13 +1,9 @@
-﻿using CADAppComercial;
+﻿using BL;
+using CADAppComercial;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppComercial
@@ -197,7 +193,7 @@ namespace AppComercial
             dgvDatos.DataSource = misDetalles;
 
             totalItems = 0;
-            
+
 
             foreach (DetalleSalida miDetalle in misDetalles)
             {
@@ -334,67 +330,7 @@ namespace AppComercial
             int IDBodega = (int)bodegaComboBox.SelectedValue;
             DateTime fecha = fechaDateTimePicker.Value;
 
-            //Grabamos la Cabecera de la Salida
-            int IDSalida = CADSalida.SalidaInsertSalida(
-                fechaDateTimePicker.Value,
-                IDConcepto,
-                IDBodega);
-
-            //Grabamos el Detalle de la Salida
-            foreach (DetalleSalida midetalle in misDetalles)
-            {
-                //Actualizamos la Tabla BodegaProducto
-                CADBodegaProducto miBodegaProducto = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodega, midetalle.IDProducto);
-
-                if (miBodegaProducto == null)
-                {
-                    CADBodegaProducto.BodegaProductoUpdate(IDBodega, midetalle.IDProducto, 1, 1, 1, 1);
-
-                }
-                CADBodegaProducto.BodegaProductoActualizaStock(-midetalle.Cantidad, IDBodega, midetalle.IDProducto);
-
-                //Actualizamos el Kardex
-                CADKardex miKardex = CADKardex.KardexUltimoKardex(IDBodega, midetalle.IDProducto);
-
-                int IDKardex;
-                float nuevoSaldo;
-                decimal nuevoCostoPromedio;
-                decimal nuevoUltimoCosto;
-
-                if (miKardex == null)
-                {
-                    nuevoSaldo = -midetalle.Cantidad;
-                    nuevoCostoPromedio = 0;
-                    nuevoUltimoCosto = 0;
-                }
-                else
-                {
-                    nuevoSaldo = miKardex.Saldo - midetalle.Cantidad;
-                    nuevoCostoPromedio = miKardex.CostoPromedio;
-                    nuevoUltimoCosto = miKardex.UltimoCosto;
-                }
-
-                IDKardex = CADKardex.KardexInsertKardex(
-                        IDBodega,
-                        midetalle.IDProducto,
-                        fecha,
-                        string.Format("SA-{0}", IDSalida),
-                        0,
-                        midetalle.Cantidad,
-                        nuevoSaldo,
-                        nuevoUltimoCosto,
-                        nuevoCostoPromedio);
-
-                //Actualizamos SalidaDetalle
-                CADSalidaDetalle.SalidaDetalleInsertSalidaDetalle(
-                    IDSalida,
-                    midetalle.IDProducto,
-                    midetalle.Descripcion,
-                    midetalle.Cantidad,
-                    IDKardex);
-            }
-
-
+            int IDSalida = Operaciones.GrabarSalida(IDBodega, fecha,IDConcepto, misDetalles);
 
             MessageBox.Show(
                 string.Format("La Salida {0}, fue grabada de forma exitosa", IDSalida),

@@ -1,4 +1,4 @@
-﻿using AppComercial.Clases;
+﻿using BL;
 using CADAppComercial;
 using System;
 using System.Collections.Generic;
@@ -334,74 +334,7 @@ namespace AppComercial.Movimientos
             int IDBodega = (int)bodegaComboBox.SelectedValue;
             DateTime fecha = fechaDevolucionDateTimePicker.Value;
 
-            //Grabamos la Cabecera de la Devolución
-            int IDDevolucion = CADDevolucionProveedor.DevolucionProveedorInsertDevolucionProveedor(fecha, IDCompra);
-
-            //Grabamos el Detalle de la Devolución
-            foreach (DevolucionProveedorDevuelto midevuelto in misDevueltos)
-            {
-                //Actualizamos la Tabla BodegaProducto
-                CADBodegaProducto miBodegaProducto = CADBodegaProducto.BodegaProductoGetBodegaProductoByIDBodegaAndIDProducto(IDBodega, midevuelto.IDProducto);
-
-                if (miBodegaProducto == null)
-                {
-                    CADBodegaProducto.BodegaProductoUpdate(IDBodega, midevuelto.IDProducto, 1, 1, 1, 1);
-
-                }
-                CADBodegaProducto.BodegaProductoActualizaStock(-midevuelto.CantidadADevolver, IDBodega, midevuelto.IDProducto);
-
-                //Actualizamos el Kardex
-                CADKardex miKardex = CADKardex.KardexUltimoKardex(IDBodega, midevuelto.IDProducto);
-
-                int IDKardex;
-                float nuevoSaldo;
-                decimal nuevoCostoPromedio;
-                decimal nuevoUltimoCosto;
-
-                if (miKardex == null)
-                {
-                    nuevoSaldo = -midevuelto.CantidadADevolver;
-                    nuevoCostoPromedio = midevuelto.Costo;
-                    nuevoUltimoCosto = nuevoCostoPromedio;
-                }
-                else
-                {
-                    nuevoSaldo = miKardex.Saldo - midevuelto.CantidadADevolver;
-                    if (nuevoSaldo != 0)
-                    {
-                        nuevoCostoPromedio = (miKardex.CostoPromedio * (decimal)miKardex.Saldo
-                        + midevuelto.Costo * (decimal)midevuelto.CantidadADevolver) / (decimal)nuevoSaldo;
-                    }
-                    else
-                    {
-                        nuevoCostoPromedio = 0;
-                    }
-                    nuevoUltimoCosto = (decimal)midevuelto.Costo;
-                }
-
-                IDKardex = CADKardex.KardexInsertKardex(
-                        IDBodega,
-                        midevuelto.IDProducto,
-                        fecha,
-                        string.Format("DP-{0}", IDDevolucion),
-                        0,
-                        midevuelto.CantidadADevolver,
-                        nuevoSaldo,
-                        nuevoUltimoCosto,
-                        nuevoCostoPromedio);
-
-                //Actualizamos DevolucionCompraDetalle
-                CADDevolucionProveedorDetalle.DevolucionProveedorDetalleInsertDevolucionProveedorDetalle(
-                    IDDevolucion,
-                    midevuelto.IDProducto,
-                    midevuelto.Descripcion,
-                    midevuelto.Costo,
-                    midevuelto.CantidadADevolver,
-                    IDKardex,
-                    midevuelto.PorcentajeIVA,
-                    midevuelto.PorcentajeDescuento)
-                    ;
-            }
+            int IDDevolucion = Operaciones.GrabarDevolucionProveedor(fecha, IDBodega, IDCompra, misDevueltos);
 
             MessageBox.Show(
                 string.Format("La Devolución a Proveedor {0}, fue grabada de forma exitosa", IDDevolucion),
