@@ -218,8 +218,9 @@ namespace AppComercial
             pbxImagen.Image = null;
 
             RefrescaGrid();
-
             LimpiarControles();
+            dgvDatos.DataSource = null;
+            dgvDatos.DataSource = misDetalles;
         }
 
         private void LimpiarControles()

@@ -57,7 +57,6 @@ namespace AppComercial
             this.label5 = new System.Windows.Forms.Label();
             this.agregarButton = new System.Windows.Forms.Button();
             this.eliminarLineaButton = new System.Windows.Forms.Button();
-            this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.costoTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.porcentajeDescuentoTextBox = new System.Windows.Forms.TextBox();
@@ -77,6 +76,7 @@ namespace AppComercial
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.eliminarTodoButton = new System.Windows.Forms.Button();
+            this.dgvDatos = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proveedorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSAppComercial)).BeginInit();
@@ -278,27 +278,6 @@ namespace AppComercial
             this.eliminarLineaButton.UseVisualStyleBackColor = true;
             this.eliminarLineaButton.Click += new System.EventHandler(this.eliminarLineaButton_Click);
             // 
-            // dgvDatos
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
-            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvDatos.Location = new System.Drawing.Point(0, 267);
-            this.dgvDatos.Name = "dgvDatos";
-            this.dgvDatos.RowHeadersWidth = 51;
-            this.dgvDatos.RowTemplate.Height = 24;
-            this.dgvDatos.Size = new System.Drawing.Size(1298, 328);
-            this.dgvDatos.TabIndex = 19;
-            // 
             // costoTextBox
             // 
             this.costoTextBox.Location = new System.Drawing.Point(118, 167);
@@ -485,6 +464,27 @@ namespace AppComercial
             this.eliminarTodoButton.UseVisualStyleBackColor = true;
             this.eliminarTodoButton.Click += new System.EventHandler(this.eliminarTodoButton_Click);
             // 
+            // dgvDatos
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
+            this.dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 7.8F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvDatos.Location = new System.Drawing.Point(2, 267);
+            this.dgvDatos.Name = "dgvDatos";
+            this.dgvDatos.RowHeadersWidth = 51;
+            this.dgvDatos.RowTemplate.Height = 24;
+            this.dgvDatos.Size = new System.Drawing.Size(1293, 328);
+            this.dgvDatos.TabIndex = 38;
+            // 
             // frmCompras
             // 
             this.AcceptButton = this.agregarButton;
@@ -492,6 +492,7 @@ namespace AppComercial
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(1298, 649);
+            this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.eliminarTodoButton);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGrabar);
@@ -511,7 +512,6 @@ namespace AppComercial
             this.Controls.Add(this.label7);
             this.Controls.Add(this.costoTextBox);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.eliminarLineaButton);
             this.Controls.Add(this.agregarButton);
             this.Controls.Add(this.cantidadTextBox);
@@ -571,7 +571,6 @@ namespace AppComercial
         private System.Windows.Forms.TextBox productoTextBox;
         private System.Windows.Forms.Label productoLabel;
         private System.Windows.Forms.PictureBox pbxImagen;
-        private System.Windows.Forms.DataGridView dgvDatos;
         private System.Windows.Forms.Button eliminarLineaButton;
         private System.Windows.Forms.Button agregarButton;
         private System.Windows.Forms.TextBox cantidadTextBox;
@@ -595,5 +594,6 @@ namespace AppComercial
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button eliminarTodoButton;
+        private System.Windows.Forms.DataGridView dgvDatos;
     }
 }
