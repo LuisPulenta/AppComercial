@@ -26,11 +26,22 @@ namespace AppComercial.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=keypress.serveftp.net;Initial Catalog=LuisAplicacionComercial;Persist" +
-            " Security Info=True;User ID=sa;Password=sentey14$")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=keypress.serveftp.net,14333;Initial Catalog=LuisAplicacionComercial;P" +
+            "ersist Security Info=True;User ID=sa;Password=sentey14$")]
         public string LuisAplicacionComercialConnectionString {
             get {
                 return ((string)(this["LuisAplicacionComercialConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LUISN\\SQLEXPRESS;Initial Catalog=Sistema;Integrated Security=True;Con" +
+            "nect Timeout=30;Encrypt=False;TrustServerCertificate=False")]
+        public string SistemaConnectionString {
+            get {
+                return ((string)(this["SistemaConnectionString"]));
             }
         }
     }
