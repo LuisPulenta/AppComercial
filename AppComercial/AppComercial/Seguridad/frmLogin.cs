@@ -40,14 +40,14 @@ namespace AppComercial
                 return;
             }
 
-            if(!CADUsuario.ValidaUsuario(txtUsuario.Text,txtClave.Text))
-            {
-                MessageBox.Show("Usuario o Clave no válidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtUsuario.Text = string.Empty;
-                txtClave.Text = string.Empty;
-                txtUsuario.Focus();
-                return;
-            }
+            //if(!CADUsuario.ValidaUsuario(txtUsuario.Text,txtClave.Text))
+            //{
+            //    MessageBox.Show("Usuario o Clave no válidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    txtUsuario.Text = string.Empty;
+            //    txtClave.Text = string.Empty;
+            //    txtUsuario.Focus();
+            //    return;
+            //}
 
             frmPrincipal miForm = new frmPrincipal();
             miForm.UsuarioLogueado = CADUsuario.UsuarioGetUsuarioByIDUsuario(txtUsuario.Text);

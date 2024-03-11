@@ -7,9 +7,12 @@
     }
 }
 
-namespace CADAppComercial.DSAppComercialTableAdapters {
-    
-    
+namespace CADAppComercial.DSAppComercialTableAdapters
+{
+    partial class VentaTableAdapter
+    {
+    }
+
     public partial class ClienteTableAdapter {
     }
 }
